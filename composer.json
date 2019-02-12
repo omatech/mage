@@ -1,0 +1,32 @@
+{
+    "name": "omatech/mage",
+    "license": "MIT",
+    "description": "",
+    "require": {
+        "spatie/laravel-permission": "^2.31",
+        "yajra/laravel-datatables-oracle": "^8.13",
+        "tightenco/ziggy": "^0.6.9",
+        "spatie/laravel-translation-loader": "^2.2"
+    },
+    "authors": [
+        {
+            "name": "Christian Bohollo",
+            "email": "cbohollo@omatech.com"
+        }
+    ],
+    "autoload": {
+        "files" : [
+            "src/app/Helpers/IsRoute.php"
+        ],
+        "psr-4": {
+            "Omatech\\Mage\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Omatech\\Mage\\MageServiceProvider"
+            ]
+        }
+    }
+}

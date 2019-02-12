@@ -1,0 +1,1 @@
+<li class="nav-header">@lang('mage.sidebar.navigation')</li>

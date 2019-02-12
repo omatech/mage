@@ -1,0 +1,13 @@
+.select2-search--inline .select2-search__field:focus {
+    outline: none;
+    border: 1px solid transparent;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    padding-left: 7px;
+}
+
+.no-click {
+    pointer-events: none;
+    cursor: pointer;
+}
