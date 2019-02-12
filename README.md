@@ -5,7 +5,7 @@
 ## Install
 
 ```
-composer require omatech/laravel-mage
+composer require omatech/mage
 ```
 
 ## Setup
