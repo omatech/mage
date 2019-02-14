@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "admin-lte": "^3.0.0-alpha.2",
+    "admin-lte": "git://github.com/almasaeed2010/AdminLTE.git#v3-dev",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.0",
     "ionicons": "^4.5.5",

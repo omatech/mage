@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{ url('vendor/mage/wizard.svg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="{{ url('vendor/mage/img/wizard.svg') }}" alt="Mage Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">Mage</span>
     </a>
