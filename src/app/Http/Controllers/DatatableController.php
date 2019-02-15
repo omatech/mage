@@ -9,7 +9,7 @@ class DatatableController extends Controller
     public function i18n()
     {
         return response()->json([
-            "sProcessing"     => trans('mage.datatables.sProcessing'),
+            "sProcessing"     => trans('Cargando...'),
             "sLengthMenu"     => trans('Mostrar _MENU_ registros'),
             "sZeroRecords"    => trans('No se encontraron resultados'),
             "sEmptyTable"     => trans('Ningún dato disponible en esta tabla'),

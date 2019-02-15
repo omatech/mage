@@ -37908,7 +37908,6 @@ $(document).ready(function () {
   $adminPermissionsDatatable.on('click', '.mage-permissions-delete-btn', function (e) {
     var id = $(e.target).attr('data-id');
     var lang = $adminPermissionsDatatable.dataTableSettings[0].oLanguage.sweetAlert;
-    console.log(id);
     swal(Object.assign(lang, {
       icon: "warning",
       dangerMode: true

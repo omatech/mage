@@ -15,6 +15,6 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        return route('mage.dashboard');
+        return route(config('mage.on_login_to_route'));
     }
 }
