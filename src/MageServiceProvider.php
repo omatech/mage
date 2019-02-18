@@ -4,6 +4,7 @@ namespace Omatech\Mage;
 
 use Illuminate\Support\ServiceProvider;
 use Omatech\Mage\App\Providers\ViewServiceProvider;
+use Omatech\Mage\App\Providers\HelpersServiceProvider;
 use Omatech\Mage\App\Providers\PublishServiceProvider;
 use Omatech\Mage\App\Providers\RoutingServiceProvider;
 use Omatech\Mage\App\Providers\MiddlewareServiceProvider;
@@ -41,6 +42,7 @@ class MageServiceProvider extends ServiceProvider
         $this->app->register(ViewServiceProvider::class);
         $this->app->register(RoutingServiceProvider::class);
         $this->app->register(MiddlewareServiceProvider::class);
+        $this->app->register(HelpersServiceProvider::class);
 
         $this->app->register(SpatiePermissionsServiceProvider::class);
         $this->app->register(SpatieTranslatableServiceProvider::class);

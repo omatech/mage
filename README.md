@@ -17,5 +17,5 @@ php artisan vendor:publish --tag=mage-publish
 ### Update scripts
 
 ```
-php artisan vendor:publish --tag=mage-scripts --force
+php artisan vendor:publish --tag=mage-assets --force
 ```

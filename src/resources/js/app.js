@@ -1,12 +1,12 @@
 window.$ = window.jQuery = require('jquery');
 require('bootstrap/dist/js/bootstrap.bundle');
 require('popper.js');
-require('admin-lte/plugins/select2/select2.full.min.js');
-require('./vendor/adminlte');
+require('select2/dist/js/select2.full');
 require('datatables.net/js/jquery.dataTables');
 require('datatables.net-bs4/js/dataTables.bootstrap4');
-
+require('feather-icons/dist/feather.js').replace();
 require('sweetalert/dist/sweetalert.min');
+require('./vendor/admin-lte/AdminLTE.js');
 
 window.axios = require('axios');
 

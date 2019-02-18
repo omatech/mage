@@ -15,9 +15,6 @@
         }
     ],
     "autoload": {
-        "files" : [
-            "src/app/Helpers/IsRoute.php"
-        ],
         "psr-4": {
             "Omatech\\Mage\\": "src"
         }

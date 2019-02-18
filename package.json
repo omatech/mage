@@ -16,17 +16,21 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "admin-lte": "git://github.com/almasaeed2010/AdminLTE.git#v3-dev",
+    "@fortawesome/fontawesome-free": "^5.7.2",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.0",
+    "datatables": "^1.10.18",
+    "datatables.net-bs4": "^1.10.19",
+    "feather-icons": "^4.17.0",
     "ionicons": "^4.5.5",
     "jquery": "^3.3.1",
     "laravel-mix": "^4.0.14",
+    "open-sans-fonts": "^1.5.0",
     "popper.js": "^1.14.7",
     "resolve-url-loader": "2.3.1",
     "sass": "^1.17.0",
     "sass-loader": "7.*",
-    "source-sans-pro": "^2.45.0",
+    "select2": "^4.0.6-rc.1",
     "sweetalert": "^2.1.2",
     "vue-template-compiler": "^2.6.5"
   }
