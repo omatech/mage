@@ -8,17 +8,11 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" style="padding: 0rem">
                 <span class="nav-link">
-                <img src="{{ url('/vendor/mage/img/wizard.svg')}}" alt="Mage Logo" class="img-circle elevation-3" style="
-
-max-height: 28px;
-margin-right: .7rem;
-margin-top: -3px;">
+                <img src="{{ url('/vendor/mage/img/wizard.svg')}}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
                     <span class="d-none d-sm-inline-block">{{auth()->user()->name}}</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                {{--<span class="dropdown-header"></span>--}}
-                {{--<a href="#" class="dropdown-item">@lang('mage.auth.user.password')</a>--}}
                 <div class="dropdown-divider"></div>
                 <a href="{{route('mage.auth.logout')}}" class="dropdown-item dropdown-footer">@lang('mage.auth.user.logout')</a>
             </div>
