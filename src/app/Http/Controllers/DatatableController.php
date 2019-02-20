@@ -32,14 +32,14 @@ class DatatableController extends Controller
                 "sSortDescending" => trans(': Activar para ordenar la columna de manera descendente')
             ],
             "sweetAlert" => [
-                "title"   => trans("Are you sureeeeee?"),
-                "text"    => trans("Once deleted, you will not be able to recover this imaginary file!"),
-                "success" => trans("Poof! Borrado!"),
+                "title"   => trans('mage.sweet.title'),
+                "text"    => trans('mage.sweet.description'),
+                "success" => trans('mage.sweet.success'),
                 "buttons" => [
-                    trans("cancela"),
-                    trans("borra")
+                    trans('mage.sweet.cancel'),
+                    trans('mage.sweet.confirm')
                 ],
-                "close" => trans('cerrar')
+                "close" => trans('mage.sweet.close')
             ]
         ]);
     }

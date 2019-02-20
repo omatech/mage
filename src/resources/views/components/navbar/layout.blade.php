@@ -20,7 +20,7 @@ margin-top: -3px;">
                 {{--<span class="dropdown-header"></span>--}}
                 {{--<a href="#" class="dropdown-item">@lang('mage.auth.user.password')</a>--}}
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">@lang('mage.auth.user.logout')</a>
+                <a href="{{route('mage.auth.logout')}}" class="dropdown-item dropdown-footer">@lang('mage.auth.user.logout')</a>
             </div>
         </li>
     </ul>

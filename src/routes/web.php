@@ -18,6 +18,10 @@ Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], funct
      
 
      Route::group(['middleware' => ['mageRedirectIfNotAuthenticated']], function () {
+
+          Route::get('logout', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@logout')
+               ->name('mage.auth.logout');
+
           Route::get('/', function () {
                return view('mage::pages.dashboard');
           })->name('mage.dashboard');
