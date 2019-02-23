@@ -18,4 +18,14 @@ class SpatiePermissionsServiceProvider extends PermissionServiceProvider
             $path => $this->getMigrationFileName($filesystem),
         ], 'mage-publish');
     }
+
+    public function register()
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/permission.php',
+            'permission'
+        );
+
+        parent::register();
+    }
 }

@@ -10,13 +10,25 @@
 Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], function () {
      
      Route::get('login', function () {
-          return view('mage::pages.auth.login');
+         return view('mage::pages.auth.login');
      })->middleware('mageRedirectIfAuthenticated');
 
      Route::post('login', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@login')
           ->name('mage.auth.login');
-     
 
+     Route::post('password/email', 'Omatech\Mage\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')
+          ->name('mage.auth.password.email');
+
+     Route::get('password/reset', 'Omatech\Mage\App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')
+          ->name('mage.auth.password.request');
+     
+     Route::get('password/reset/{token}', 'Omatech\Mage\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')
+          ->name('mage.auth.password.reset');
+
+     Route::post('password/reset', 'Omatech\Mage\App\Http\Controllers\Auth\ResetPasswordController@reset')
+          ->name('mage.auth.password.update');
+
+     
      Route::group(['middleware' => ['mageRedirectIfNotAuthenticated']], function () {
 
           Route::get('logout', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@logout')

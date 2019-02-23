@@ -4,7 +4,7 @@ namespace Omatech\Mage\App\Providers;
 
 use Spatie\TranslationLoader\TranslationServiceProvider;
 
-class SpatieTranslatableServiceProvider extends TranslationServiceProvider
+class SpatieTranslationServiceProvider extends TranslationServiceProvider
 {
     public function boot()
     {
@@ -17,5 +17,15 @@ class SpatieTranslatableServiceProvider extends TranslationServiceProvider
         $this->publishes([
             $path => database_path('migrations/'.$timestamp.'_create_language_lines_table.php'),
         ], 'mage-publish');
+    }
+
+    public function register()
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/translation-loader.php',
+            'translation-loader'
+        );
+
+        parent::register();
     }
 }

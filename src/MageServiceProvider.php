@@ -4,13 +4,15 @@ namespace Omatech\Mage;
 
 use Illuminate\Support\ServiceProvider;
 use Omatech\Mage\App\Providers\ViewServiceProvider;
-use Omatech\Mage\App\Providers\HelpersServiceProvider;
+use Omatech\Mage\App\Providers\HelperServiceProvider;
+use Omatech\Mage\App\Providers\CommandServiceProvider;
 use Omatech\Mage\App\Providers\PublishServiceProvider;
 use Omatech\Mage\App\Providers\RoutingServiceProvider;
 use Omatech\Mage\App\Providers\MiddlewareServiceProvider;
 use Omatech\Mage\App\Providers\ConfigurationServiceProvider;
 use Omatech\Mage\App\Providers\SpatiePermissionsServiceProvider;
-use Omatech\Mage\App\Providers\SpatieTranslatableServiceProvider;
+use Omatech\Mage\App\Providers\SpatieTranslationServiceProvider;
+use Spatie\TranslationLoader\TranslationServiceProvider;
 
 class MageServiceProvider extends ServiceProvider
 {
@@ -19,7 +21,7 @@ class MageServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Bootstrap the application services.
@@ -42,10 +44,14 @@ class MageServiceProvider extends ServiceProvider
         $this->app->register(ViewServiceProvider::class);
         $this->app->register(RoutingServiceProvider::class);
         $this->app->register(MiddlewareServiceProvider::class);
-        $this->app->register(HelpersServiceProvider::class);
+        $this->app->register(HelperServiceProvider::class);
+        $this->app->register(CommandServiceProvider::class);
 
         $this->app->register(SpatiePermissionsServiceProvider::class);
-        $this->app->register(SpatieTranslatableServiceProvider::class);
+
+        $this->app->register(SpatieTranslationServiceProvider::class);
+        $this->app->register(TranslationServiceProvider::class);
+
     }
 
     public function provides()

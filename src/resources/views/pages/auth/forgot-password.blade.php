@@ -27,31 +27,34 @@
             <div class="col-lg-4 align-items-stret h-100 align-items-center d-flex justify-content-center">
                 <div class=" auth-content text-center">
                     <div class="mb-4">
-                        <i class="fa fa-unlock icon-login"></i>
+                        <i class="fa fa-key icon-login"></i>
                     </div>
-                    <h3 class="mb-5">@lang('mage.auth.login.login')</h3>
-                    <form action="{{route('mage.auth.login')}}" method="POST" class="social-auth-links text-center mb-4">
+                    <h3 class="mb-5">@lang('mage.auth.forgot-password')</h3>
+                    {{ dump($errors)}}
+                    @if(!session()->has('status'))
+                    <form action="{{route('mage.auth.password.email')}}" method="POST" class="social-auth-links text-center mb-4">
                         {{ csrf_field() }}
                         @method('POST')
-                        <div class="input-group mb-3">
-                            <input type="email" name="email" class="form-control" placeholder="@lang('mage.auth.login.email')">
+                        <div class="input-group mb-4">
+                        <input type="email" name="email" class="form-control @if($errors->has('email')) is-invalid @endif" placeholder="@lang('mage.auth.forgot-password.email')" value="{{old('email')}}">
                             <div class="input-group-append">
                                 <span class="fa fa-envelope input-group-text"></span>
                             </div>
                         </div>
-                        <div class="input-group mb-4">
-                            <input type="password" name="password" class="form-control" placeholder="@lang('mage.auth.login.password')">
-                            <div class="input-group-append">
-                                <span class="fas fa-key input-group-text"></span>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">@lang('mage.auth.login.signin')</button>
+                                <button type="submit" class="btn btn-primary">@lang('mage.auth.forgot-password.reset')</button>
                             </div>
                         </div>
                     </form>
-                    <p class="mb-2 text-muted"><a href="{{ route('mage.auth.password.request') }}">@lang('mage.auth.login.forgot-password')</a></p>
+                    @else
+                    <div class="justify-content-center input-group mb-5">
+                        <i class="far fa-check-circle" class="icon-reset-success" style="font-size: 7rem"></i>
+                    </div>
+
+                    {{ session('status') }}
+
+                    @endif
                 </div>
             </div>
         </div>

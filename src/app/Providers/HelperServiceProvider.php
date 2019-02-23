@@ -4,7 +4,7 @@ namespace Omatech\Mage\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class HelpersServiceProvider extends ServiceProvider
+class HelperServiceProvider extends ServiceProvider
 {
     /**
      * Register any other events for your application.

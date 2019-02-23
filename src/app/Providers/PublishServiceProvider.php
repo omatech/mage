@@ -32,10 +32,6 @@ class PublishServiceProvider extends ServiceProvider
         ], 'mage-publish');
 
         $this->publishes([
-            __DIR__.'/../../config/permission.php' => config_path('permission.php'),
-        ], 'mage-publish');
-
-        $this->publishes([
             __DIR__.'/../../config/ziggy.php' => config_path('ziggy.php'),
         ], 'mage-publish');
     }
