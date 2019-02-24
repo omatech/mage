@@ -1,6 +1,6 @@
 <?php
 
-namespace Omatech\Mage\App\Repositories\Translations;
+namespace Omatech\Mage\App\Repositories\Translation;
 
 use Omatech\Mage\App\Repositories\TranslationBaseRepository;
 

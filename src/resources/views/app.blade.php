@@ -11,9 +11,8 @@
     @include('mage::components.favicon')
     @section('styles')
         <link rel="stylesheet" href="{{ mix('/mage.css', '/vendor/mage') }}">
+        @include('mage::assets.styles')
     @show
-
-    @routes
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -26,7 +25,9 @@
     </div>
 
     @section('scripts')
+        @routes
         <script src="{{ mix('/mage.js', '/vendor/mage') }}"></script>
+        @include('mage::assets.scripts')
     @show
 </body>
 </html>

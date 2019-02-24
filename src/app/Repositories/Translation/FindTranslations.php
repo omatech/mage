@@ -1,6 +1,6 @@
 <?php
 
-namespace Omatech\Mage\App\Repositories\Translations;
+namespace Omatech\Mage\App\Repositories\Translation;
 
 use Illuminate\Filesystem\Filesystem;
 
@@ -9,12 +9,14 @@ class FindTranslations
     private $disk;
     private $scanPaths;
     private $translationMethods;
+    private $updateOrCreateTranslations;
 
-    public function __construct(Filesystem $disk, $scanPaths, $translationMethods)
+    public function __construct(UpdateOrCreateTranslations $updateOrCreateTranslations)
     {
-        $this->disk = $disk;
-        $this->scanPaths = $scanPaths;
-        $this->translationMethods = $translationMethods;
+        $this->disk = new Filesystem;
+        $this->scanPaths = config('mage.translation.scan_paths');
+        $this->translationMethods = config('mage.translation.scan_functions');
+        $this->updateOrCreateTranslations = $updateOrCreateTranslations;
     }
 
     public function make()
@@ -39,15 +41,22 @@ class FindTranslations
                 foreach ($matches[2] as $key) {
                     if (preg_match("/(^[a-zA-Z0-9:_-]+([.][^\1)\ ]+)+$)/siU", $key, $arrayMatches)) {
                         list($file, $k) = explode('.', $arrayMatches[0], 2);
-                        $results['group'][$file][$k] = '';
+                        $results['group'][$file][app()->getLocale()][$k] = '';
                         continue;
                     } else {
-                        $results['single']['single'][$key] = '';
+                        $key = str_replace('/','.', $key);
+                        $key = explode('.', $key);
+
+                        $group = $key[0];
+                        array_splice($key, 0, 1);
+
+                        $key = join('.', $key);
+                        $results['group'][$group][app()->getLocale()][$key] = '';
                     }
                 }
             }
         }
 
-        return $results;
+        $this->updateOrCreateTranslations->make($results);
     }
 }

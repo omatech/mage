@@ -3,9 +3,7 @@
 namespace Omatech\Mage\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Omatech\Mage\App\Repositories\Translations\FindTranslations;
-use Illuminate\Filesystem\Filesystem;
-use Omatech\Mage\App\Repositories\Translations\UpdateOrCreateTranslations;
+use Omatech\Mage\App\Repositories\Translation\FindTranslations;
 
 class FindTranslationsKeysCommand extends Command
 {
@@ -14,7 +12,7 @@ class FindTranslationsKeysCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'mage:find-translations';
+    protected $signature = 'mage:translations-find';
 
     /**
      * The console command description.
@@ -23,39 +21,30 @@ class FindTranslationsKeysCommand extends Command
      */
     protected $description = 'Find translations keys and save them to database';
 
+    /**
+     * @var FindTranslations
+     */
     private $findTranslations;
 
     /**
      * Create a new command instance.
      *
-     * @param UpdateOrCreateTranslations $updateOrCreateTranslations
+     * @param FindTranslations $findTranslations
      */
-    public function __construct(UpdateOrCreateTranslations $updateOrCreateTranslations)
+    public function __construct(FindTranslations $findTranslations)
     {
         parent::__construct();
 
-        $this->findTranslations = new FindTranslations(new Filesystem, [
-            resource_path()
-        ], [
-            '@lang',
-            '@trans',
-            'trans',
-            '__'
-        ]);
-
-        $this->updateOrCreateTranslations = $updateOrCreateTranslations;
+        $this->findTranslations = $findTranslations;
     }
 
     /**
      * Execute the console command.
      *
-     * @return mixed
      */
     public function handle()
     {
-        $keys = $this->findTranslations->make();
-        $this->updateOrCreateTranslations->make($keys);
-
+        $this->findTranslations->make();
         $this->call('cache:clear');
     }
 }

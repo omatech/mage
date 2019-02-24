@@ -1,12 +1,12 @@
 <?php
 
-namespace Omatech\Mage\App\Repositories\Translations;
+namespace Omatech\Mage\App\Repositories\Translation;
 
 class AddMissingLanguagesToTranslations
 {
     public function make($translations, $key)
     {
-        $availableLanguages = config('mage.available_langs');
+        $availableLanguages = config('mage.available_locales');
 
         foreach($availableLanguages as $currentLanguage) {
             if(empty($translations[$currentLanguage])) {

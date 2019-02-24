@@ -4,6 +4,7 @@ namespace Omatech\Mage\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Omatech\Mage\App\Console\Commands\FindTranslationsKeysCommand;
+use Omatech\Mage\App\Console\Commands\ImportTranslationsFromFilesCommand;
 
 class CommandServiceProvider extends ServiceProvider
 {
@@ -25,5 +26,6 @@ class CommandServiceProvider extends ServiceProvider
     private function consoleCommands()
     {
         $this->commands(FindTranslationsKeysCommand::class);
+        $this->commands(ImportTranslationsFromFilesCommand::class);
     }
 }

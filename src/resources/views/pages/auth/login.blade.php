@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ env('APP_NAME')}} | Login</title>
+    <title>{{ env('APP_NAME') }} | @lang('mage.auth.login.login')</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,7 +18,7 @@
     <div class="auth-wrapper align-items-stretch">
         <div class="row align-items-center w-100 align-items-stretch bg-white">
             <div class="d-none d-lg-flex col-lg-8 auth-bg-img align-items-center d-flex justify-content-center"
-                 style="background-image: url('vendor/mage/img/login.jpg');">
+                 style="background-image: url('/vendor/mage/img/login.jpg');">
                 <div class="col-md-8">
                     <h1 class="text-white mb-3">Login in Mage</h1>
                     <p class="text-white">Speak, friend and enter.</p>

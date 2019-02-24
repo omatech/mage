@@ -17,9 +17,12 @@ if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 }
 
+window.mage = {'deleteAlert': require('./app/components/deleteAlert')};
+
 require('./app/datatables/users.datatable');
 require('./app/datatables/roles.datatable');
 require('./app/datatables/permissions.datatable');
 
 require('./app/components/select2');
 require('./app/components/togglePermissions');
+

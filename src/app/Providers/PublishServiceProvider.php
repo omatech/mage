@@ -66,6 +66,7 @@ class PublishServiceProvider extends ServiceProvider
     private function views()
     {
         $this->publishes([
+            __DIR__.'/../../resources/views/assets' => resource_path('views/vendor/mage/assets'),
             __DIR__.'/../../resources/views/components/sidebar/sections/extends' => resource_path('views/vendor/mage/components/sidebar/sections/extends'),
             __DIR__.'/../../resources/views/components/sidebar/logo.blade.php' => resource_path('views/vendor/mage/components/sidebar/logo.blade.php'),
             __DIR__.'/../../resources/views/components/favicon.blade.php' => resource_path('views/vendor/mage/components/favicon.blade.php'),

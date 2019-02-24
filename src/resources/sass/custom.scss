@@ -165,13 +165,8 @@ Login Page
     font-size: 2rem;
 }
 
-.select2-search--inline .select2-search__field:focus {
-    outline: none;
-    border: 1px solid transparent;
-}
-
-.select2-container--default .select2-search--inline .select2-search__field {
-    padding-left: 7px;
+.is-invalid .select2-selection {
+    border-color:#dc3545 !important;
 }
 
 .no-click {

@@ -12,6 +12,7 @@
         <div class="card-tools"></div>
     </div>
     <div class="card-body">
+        "A wizard is never late, Frodo Baggins. Nor is he early. He arrives precisely when he means to."
     </div>
 </div>
 @endsection

@@ -19,6 +19,6 @@ return [
     /*
      * This is the translation manager which overrides the default Laravel `translation.loader`
      */
-    'translation_manager' => Omatech\Mage\App\Repositories\Translations\TranslationLoaderManager::class,
+    'translation_manager' => Omatech\Mage\App\Repositories\Translation\TranslationLoaderManager::class,
 
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace Omatech\Mage\App\Repositories\Translations;
+namespace Omatech\Mage\App\Repositories\Translation;
 
 use Illuminate\Support\Arr;
 use Illuminate\Translation\FileLoader;
