@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    let $adminRolesDatatable = $('#mage-roles-datatable');
-    $adminRolesDatatable.DataTable({
+    let $adminUsersDatatable = $('#mage-users-datatable');
+    $adminUsersDatatable.DataTable({
         processing: true,
         serverSide: true,
-        ajax: route('mage.roles.list').url(),
+        ajax: route('mage.users.list').url(),
         deferRender: true,
         rowId: 'id',
         language: { 'url': route('mage.datatables.i18n') },
@@ -19,52 +19,45 @@ $(document).ready(function () {
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'roles', name: 'roles' },
+            { data: 'language', name: 'language' },
             { data: null, searchable: false, orderable: false, render: function(data, type, row) {
                 return "" +
                 "<div class=\"btn-group\" role=\"group\">" +
-                  "<a href=\"" + route('mage.roles.show', { id: data.id }) + "\">" +
+                /*  "<a href=\"" + route('mage.users.show', { id: data.id }) + "\">" +
                     "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
                       "<i class=\"fa fa-eye\"></i>" +
                     "</button>" +
-                  "</a>" +
-                  "<a href=\"" + route('mage.roles.edit', { id: data.id }) + "\">" +
+                  "</a>" +*/
+                  "<a href=\"" + route('mage.users.edit', { id: data.id }) + "\">" +
                     "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
-                      "<i class=\"fa fa-pencil\"></i>" +
+                      "<i class=\"fa fa-pen\"></i>" +
                     "</button>" +
                   "</a>" +
-                  "<a class=\"mage-roles-delete-btn\" data-id=\"" + data.id + "\">" +
+                  "<a class=\"mage-users-delete-btn\" data-id=\"" + data.id + "\">" +
                     "<button type=\"button\" data-id=\"" + data.id + "\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
-                      "<i class=\"fa fa-trash\"></i>" +
+                      "<i data-id=\"" + data.id + "\" class=\"fa fa-trash no-click\"></i>" +
                     "</button>" +
                   "</a>" +
                 "</div>";
                 }
             }
-        ]
+        ],
+        columnDefs: [{
+            targets: 3,
+            render: function (data, type, row) {
+                let cell = '';
+                Object.keys(data).forEach(function(role) {
+                    cell += "<span class=\"badge badge-pill badge-primary\">" + data[role].name + "</span> ";
+                });
+                return cell;
+            }
+        }]
     });
 
-    $adminRolesDatatable.on('click', '.mage-roles-delete-btn', function(e) {
+    $adminUsersDatatable.on('click', '.mage-users-delete-btn', function(e) {
         let id = $(e.target).attr('data-id');
-        let lang = $adminRolesDatatable.dataTableSettings[0].oLanguage.sweetAlert;
-
-        swal(Object.assign(lang, {
-            icon: "warning",
-            dangerMode: true,
-        }))
-        .then((willDelete) => {
-            if (willDelete) {
-                axios.delete(route('mage.roles.destroy', id)).then(() => {
-                    swal(lang.success, {
-                        icon: "success",
-                        buttons: lang.close
-                    }).then(() => {
-                        $adminRolesDatatable.DataTable().ajax.reload();
-                    });
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-            }
-        });
+        mage.deleteAlert.call(id, $adminUsersDatatable, 'mage.users.destroy');
     });
 });

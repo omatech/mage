@@ -24306,6 +24306,10 @@ Nav- Main
 Nav - sidebar
  */
 
+.sidebar {
+  padding: 0;
+}
+
 [class*=sidebar-dark] .brand-link {
   border-bottom: 0;
 }
@@ -24332,10 +24336,69 @@ Nav - sidebar
   color: white;
 }
 
+.nav-pills .nav-link {
+  border-radius: 0;
+}
+
 .nav-sidebar .nav-header {
   text-transform: uppercase;
   font-size: 0.7rem;
   font-weight: 600;
+}
+
+li.nav-item.has-treeview > a:after {
+  content: "\F104";
+  font-family: "Font Awesome 5 Free";
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  position: absolute;
+  top: 11px;
+  right: 20px;
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar-collapse .nav-sidebar li.nav-item.has-treeview > a:after {
+  content: "\F104";
+  font-family: "Font Awesome 5 Free";
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  position: absolute;
+  top: 11px;
+  right: 20px;
+  transition: 0.3s ease-in-out;
+}
+
+li.nav-item.has-treeview.menu-open > a:after {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.sidebar-collapse .nav-sidebar li.nav-item.has-treeview.menu-open > a:after {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  opacity: 0;
+}
+
+.sidebar-collapse .nav-sidebar li.nav-item.has-treeview > a:after {
+  opacity: 0;
+}
+
+.sidebar-collapse .main-sidebar:hover li.nav-item.has-treeview.menu-open > a:after,
+.sidebar-collapse .main-sidebar:hover li.nav-item.has-treeview > a:after {
+  opacity: 1 !important;
+}
+
+.sidebar-collapse .main-sidebar:hover .nav-text {
+  transition: margin-left 0.3s linear, opacity 0.5s ease;
+  opacity: 1;
+  top: 11px !important;
+}
+
+.sidebar-collapse .main-sidebar:hover .nav-treeview > li > a .nav-text,
+.sidebar-collapse .main-sidebar:hover li > a .nav-text {
+  opacity: 1;
 }
 
 .nav-sidebar .nav-item > .nav-link {
@@ -24351,7 +24414,7 @@ Nav - sidebar
   font-size: 1rem;
   padding: 4px 7px;
   margin-right: 7px;
-  border-radius: 4px;
+  border-radius: 0;
   width: 30px;
   display: inline-flex;
   align-items: center;
@@ -24359,15 +24422,19 @@ Nav - sidebar
   text-align: center;
 }
 
-.sidebar .nav-link .nav-text {
-  position: absolute;
-  top: 9px;
+.sidebar-collapse .nav-sidebar > li > a,
+.sidebar-collapse .nav-sidebar .nav-treeview > li > a {
+  padding: 4px 25px !important;
 }
 
-.nav-sidebar .nav-link > p > .right {
+.sidebar-collapse .nav-sidebar > li > a .nav-text,
+.sidebar-collapse .nav-sidebar .nav-treeview > li > a .nav-text {
+  opacity: 0;
+}
+
+.nav-sidebar .nav-link .nav-text {
   position: absolute;
-  right: -28px;
-  top: 5px;
+  top: 9px;
 }
 
 @media (min-width: 992px) {

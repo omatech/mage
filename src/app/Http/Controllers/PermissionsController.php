@@ -15,7 +15,7 @@ class PermissionsController extends Controller
 {
     public function index()
     {
-        return view('mage::pages.permissions.list');
+        return view('mage::pages.permissions.index');
     }
 
     public function list(ListPermissionDatatable $permissions)

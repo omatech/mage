@@ -19,27 +19,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        /*$find = new \Omatech\Mage\App\Repositories\Translations\FindTranslations(new Filesystem(), [
-            resource_path('views')
-        ],['@trans', '__', '@lang']);
-        $results = $find->make();
-
-        $results = $results['group'];
-
-        foreach($results as $group => $result) {
-            foreach($result as $key => $value) {
-                LanguageLine::create([
-                    'group' => $group,
-                    'key' => $key,
-                    'text' => ['en' => '', 'es' => '', 'ca' => '']
-                ]);
-            }
-        }*/
-
-
-
-
-        return view('mage::pages.users.list');
+        return view('mage::pages.users.index');
     }
 
     public function list(ListUserDatatable $users)

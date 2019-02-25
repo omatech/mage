@@ -4,7 +4,7 @@
         <span class="nav-icon">
             <i data-feather="users"></i>
         </span>
-        <p class="nav-text">@lang('mage.sidebar.users-management')<i class="right fa fa-angle-left"></i></p>
+        <span class="nav-text">@lang('mage.sidebar.users-management')</span>
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
@@ -12,19 +12,19 @@
                 <span class="nav-icon">
                     <i data-feather="user"></i>
                 </span>
-                <p class="nav-text">@lang('mage.sidebar.users')</p>
+                <span class="nav-text">@lang('mage.sidebar.users')</span>
             </a>
             <a href="{{route('mage.roles.index')}}" class="nav-link {{ !isRoute(['mage.roles.*']) ?: 'active' }}">
                 <span class="nav-icon">
                     <i data-feather="shield"></i>
                 </span>
-                <p class="nav-text">@lang('mage.sidebar.roles')</p>
+                <span class="nav-text">@lang('mage.sidebar.roles')</span>
             </a>
             <a href="{{route('mage.permissions.index')}}" class="nav-link {{ !isRoute(['mage.permissions.*']) ?: 'active' }}">
                 <span class="nav-icon">
                     <i data-feather="lock"></i>
                 </span>
-                <p class="nav-text">@lang('mage.sidebar.permissions')</p>
+                <span class="nav-text">@lang('mage.sidebar.permissions')</span>
             </a>
         </li>
     </ul>    

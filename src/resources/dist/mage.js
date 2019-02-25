@@ -46091,11 +46091,11 @@ window.mage = {
   'deleteAlert': __webpack_require__(/*! ./app/components/deleteAlert */ "./src/resources/js/app/components/deleteAlert.js")
 };
 
-__webpack_require__(/*! ./app/datatables/users.datatable */ "./src/resources/js/app/datatables/users.datatable.js");
+__webpack_require__(/*! ./app/users/list.datatable */ "./src/resources/js/app/users/list.datatable.js");
 
-__webpack_require__(/*! ./app/datatables/roles.datatable */ "./src/resources/js/app/datatables/roles.datatable.js");
+__webpack_require__(/*! ./app/roles/list.datatable */ "./src/resources/js/app/roles/list.datatable.js");
 
-__webpack_require__(/*! ./app/datatables/permissions.datatable */ "./src/resources/js/app/datatables/permissions.datatable.js");
+__webpack_require__(/*! ./app/permissions/list.datatable */ "./src/resources/js/app/permissions/list.datatable.js");
 
 __webpack_require__(/*! ./app/components/select2 */ "./src/resources/js/app/components/select2.js");
 
@@ -46177,10 +46177,10 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ "./src/resources/js/app/datatables/permissions.datatable.js":
-/*!******************************************************************!*\
-  !*** ./src/resources/js/app/datatables/permissions.datatable.js ***!
-  \******************************************************************/
+/***/ "./src/resources/js/app/permissions/list.datatable.js":
+/*!************************************************************!*\
+  !*** ./src/resources/js/app/permissions/list.datatable.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -46223,39 +46223,22 @@ $(document).ready(function () {
         "</a>" +*/
         "<a href=\"" + route('mage.permissions.edit', {
           id: data.id
-        }) + "\">" + "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-pencil\"></i>" + "</button>" + "</a>" + "<a class=\"mage-permissions-delete-btn\" data-id=\"" + data.id + "\">" + "<button type=\"button\" data-id=\"" + data.id + "\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-trash\"></i>" + "</button>" + "</a>" + "</div>";
+        }) + "\">" + "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-pen\"></i>" + "</button>" + "</a>" + "<a class=\"mage-permissions-delete-btn\" data-id=\"" + data.id + "\">" + "<button type=\"button\" data-id=\"" + data.id + "\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i data-id=\"" + data.id + "\" class=\"fa fa-trash\"></i>" + "</button>" + "</a>" + "</div>";
       }
     }]
   });
   $adminPermissionsDatatable.on('click', '.mage-permissions-delete-btn', function (e) {
     var id = $(e.target).attr('data-id');
-    var lang = $adminPermissionsDatatable.dataTableSettings[0].oLanguage.sweetAlert;
-    swal(Object.assign(lang, {
-      icon: "warning",
-      dangerMode: true
-    })).then(function (willDelete) {
-      if (willDelete) {
-        axios.delete(route('mage.permissions.destroy', id)).then(function () {
-          swal(lang.success, {
-            icon: "success",
-            buttons: lang.close
-          }).then(function () {
-            $adminPermissionsDatatable.DataTable().ajax.reload();
-          });
-        }).catch(function (error) {
-          console.log(error);
-        });
-      }
-    });
+    mage.deleteAlert.call(id, $adminPermissionsDatatable, 'mage.permissions.destroy');
   });
 });
 
 /***/ }),
 
-/***/ "./src/resources/js/app/datatables/roles.datatable.js":
-/*!************************************************************!*\
-  !*** ./src/resources/js/app/datatables/roles.datatable.js ***!
-  \************************************************************/
+/***/ "./src/resources/js/app/roles/list.datatable.js":
+/*!******************************************************!*\
+  !*** ./src/resources/js/app/roles/list.datatable.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -46294,39 +46277,22 @@ $(document).ready(function () {
           id: data.id
         }) + "\">" + "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-eye\"></i>" + "</button>" + "</a>" + "<a href=\"" + route('mage.roles.edit', {
           id: data.id
-        }) + "\">" + "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-pencil\"></i>" + "</button>" + "</a>" + "<a class=\"mage-roles-delete-btn\" data-id=\"" + data.id + "\">" + "<button type=\"button\" data-id=\"" + data.id + "\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-trash\"></i>" + "</button>" + "</a>" + "</div>";
+        }) + "\">" + "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-pencil\"></i>" + "</button>" + "</a>" + "<a class=\"mage-roles-delete-btn\" data-id=\"" + data.id + "\">" + "<button type=\"button\" data-id=\"" + data.id + "\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i data-id=\"" + data.id + "\" class=\"fa fa-trash\"></i>" + "</button>" + "</a>" + "</div>";
       }
     }]
   });
   $adminRolesDatatable.on('click', '.mage-roles-delete-btn', function (e) {
     var id = $(e.target).attr('data-id');
-    var lang = $adminRolesDatatable.dataTableSettings[0].oLanguage.sweetAlert;
-    swal(Object.assign(lang, {
-      icon: "warning",
-      dangerMode: true
-    })).then(function (willDelete) {
-      if (willDelete) {
-        axios.delete(route('mage.roles.destroy', id)).then(function () {
-          swal(lang.success, {
-            icon: "success",
-            buttons: lang.close
-          }).then(function () {
-            $adminRolesDatatable.DataTable().ajax.reload();
-          });
-        }).catch(function (error) {
-          console.log(error);
-        });
-      }
-    });
+    mage.deleteAlert.call(id, $adminRolesDatatable, 'mage.roles.destroy');
   });
 });
 
 /***/ }),
 
-/***/ "./src/resources/js/app/datatables/users.datatable.js":
-/*!************************************************************!*\
-  !*** ./src/resources/js/app/datatables/users.datatable.js ***!
-  \************************************************************/
+/***/ "./src/resources/js/app/users/list.datatable.js":
+/*!******************************************************!*\
+  !*** ./src/resources/js/app/users/list.datatable.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -46378,7 +46344,7 @@ $(document).ready(function () {
           "</a>" +*/
         "<a href=\"" + route('mage.users.edit', {
           id: data.id
-        }) + "\">" + "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-pencil\"></i>" + "</button>" + "</a>" + "<a class=\"mage-users-delete-btn\" data-id=\"" + data.id + "\">" + "<button type=\"button\" data-id=\"" + data.id + "\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-trash no-click\"></i>" + "</button>" + "</a>" + "</div>";
+        }) + "\">" + "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i class=\"fa fa-pen\"></i>" + "</button>" + "</a>" + "<a class=\"mage-users-delete-btn\" data-id=\"" + data.id + "\">" + "<button type=\"button\" data-id=\"" + data.id + "\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" + "<i data-id=\"" + data.id + "\" class=\"fa fa-trash no-click\"></i>" + "</button>" + "</a>" + "</div>";
       }
     }],
     columnDefs: [{
@@ -46394,24 +46360,7 @@ $(document).ready(function () {
   });
   $adminUsersDatatable.on('click', '.mage-users-delete-btn', function (e) {
     var id = $(e.target).attr('data-id');
-    var lang = $adminUsersDatatable.dataTableSettings[0].oLanguage.sweetAlert;
-    swal(Object.assign(lang, {
-      icon: "warning",
-      dangerMode: true
-    })).then(function (willDelete) {
-      if (willDelete) {
-        axios.delete(route('mage.users.destroy', id)).then(function (response) {
-          swal(lang.success, {
-            icon: "success",
-            buttons: lang.close
-          }).then(function () {
-            $adminUsersDatatable.DataTable().ajax.reload();
-          });
-        }).catch(function (error) {
-          console.log(error);
-        });
-      }
-    });
+    mage.deleteAlert.call(id, $adminUsersDatatable, 'mage.users.destroy');
   });
 });
 

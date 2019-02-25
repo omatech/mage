@@ -17,7 +17,7 @@ class RolesController extends Controller
 {
     public function index()
     {
-        return view('mage::pages.roles.list');
+        return view('mage::pages.roles.index');
     }
 
     public function list(ListRoleDatatable $roles)

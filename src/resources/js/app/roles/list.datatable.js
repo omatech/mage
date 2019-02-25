@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    let $adminPermissionsDatatable = $('#mage-permissions-datatable');
-    $adminPermissionsDatatable.DataTable({
+    let $adminRolesDatatable = $('#mage-roles-datatable');
+    $adminRolesDatatable.DataTable({
         processing: true,
         serverSide: true,
-        ajax: route('mage.permissions.list').url(),
+        ajax: route('mage.roles.list').url(),
         deferRender: true,
         rowId: 'id',
         language: { 'url': route('mage.datatables.i18n') },
@@ -22,19 +22,19 @@ $(document).ready(function () {
             { data: null, searchable: false, orderable: false, render: function(data, type, row) {
                 return "" +
                 "<div class=\"btn-group\" role=\"group\">" +
-                  /*"<a href=\"" + route('mage.permissions.show', { id: data.id }) + "\">" +
+                  "<a href=\"" + route('mage.roles.show', { id: data.id }) + "\">" +
                     "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
                       "<i class=\"fa fa-eye\"></i>" +
                     "</button>" +
-                  "</a>" +*/
-                  "<a href=\"" + route('mage.permissions.edit', { id: data.id }) + "\">" +
+                  "</a>" +
+                  "<a href=\"" + route('mage.roles.edit', { id: data.id }) + "\">" +
                     "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
                       "<i class=\"fa fa-pencil\"></i>" +
                     "</button>" +
                   "</a>" +
-                  "<a class=\"mage-permissions-delete-btn\" data-id=\"" + data.id + "\">" +
+                  "<a class=\"mage-roles-delete-btn\" data-id=\"" + data.id + "\">" +
                     "<button type=\"button\" data-id=\"" + data.id + "\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
-                      "<i class=\"fa fa-trash\"></i>" +
+                      "<i data-id=\"" + data.id + "\" class=\"fa fa-trash\"></i>" +
                     "</button>" +
                   "</a>" +
                 "</div>";
@@ -43,28 +43,8 @@ $(document).ready(function () {
         ]
     });
 
-    $adminPermissionsDatatable.on('click', '.mage-permissions-delete-btn', function(e) {
+    $adminRolesDatatable.on('click', '.mage-roles-delete-btn', function(e) {
         let id = $(e.target).attr('data-id');
-        let lang = $adminPermissionsDatatable.dataTableSettings[0].oLanguage.sweetAlert;
-
-        swal(Object.assign(lang, {
-            icon: "warning",
-            dangerMode: true,
-        }))
-        .then((willDelete) => {
-            if (willDelete) {
-                axios.delete(route('mage.permissions.destroy', id)).then(() => {
-                    swal(lang.success, {
-                        icon: "success",
-                        buttons: lang.close
-                    }).then(() => {
-                        $adminPermissionsDatatable.DataTable().ajax.reload();
-                    });
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-            }
-        });
+        mage.deleteAlert.call(id, $adminRolesDatatable, 'mage.roles.destroy');
     });
 });
