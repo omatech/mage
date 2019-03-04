@@ -14,7 +14,7 @@ class ImportTranslations
     public function __construct(UpdateOrCreateTranslations $updateOrCreateTranslations)
     {
         $this->disk = new Filesystem;
-        $this->scanPaths = config('mage.translation.import_path');
+        $this->scanPaths = config('mage.translations.import_path');
         $this->updateOrCreateTranslations = $updateOrCreateTranslations;
     }
 
@@ -22,7 +22,7 @@ class ImportTranslations
     {
         $results = [];
 
-        foreach($this->disk->allFiles($this->scanPaths) as $file) {
+        foreach ($this->disk->allFiles($this->scanPaths) as $file) {
             $relativePath = $file->getRelativePath();
             $lang = explode('/', $relativePath)[0];
 

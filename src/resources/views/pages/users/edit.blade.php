@@ -1,9 +1,9 @@
 @extends('mage::layout.page')
-@section('title', __('mage.users.edit.title'))
-@section('page-title', __('mage.users.edit.title'))
+@section('web-title', __('mage.users.edit.web-title'))
+@section('page-title', __('mage.users.edit.page-title'))
 @section('breadcrumbs')
-<li class="breadcrumb-item">@lang('mage.users.index.title')</li>
-<li class="breadcrumb-item active">@lang('mage.users.edit.title')</li>
+<li class="breadcrumb-item">@lang('mage.users.index.breadcrumb.title')</li>
+<li class="breadcrumb-item active">@lang('mage.users.edit.breadcrumb.title')</li>
 @endsection
 
 @section('page')
@@ -14,7 +14,7 @@
     </div>
     <form id="mage-users-form" action="{{route('mage.users.update', $user->id)}}" method="POST">
         @method('PUT')
-        @include('mage::users.forms.main')
+        @include('mage::pages.users.forms.main')
     </form>
 </div>
 @endsection

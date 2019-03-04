@@ -11,7 +11,7 @@ use Omatech\Mage\App\Repositories\Permission\GetPermission;
 use Omatech\Mage\App\Repositories\Permission\ListPermissionDatatable;
 use Omatech\Mage\App\Repositories\Permission\UpdatePermission;
 
-class PermissionsController extends Controller
+class PermissionController extends Controller
 {
     public function index()
     {

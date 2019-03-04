@@ -1,9 +1,9 @@
 @extends('mage::layout.page')
-@section('title', __('mage.roles.show.title'))
-@section('page-title', __('mage.roles.show.title'))
+@section('web-title', __('mage.roles.show.web-title'))
+@section('page-title', __('mage.roles.show.page-title'))
 @section('breadcrumbs')
-<li class="breadcrumb-item">@lang('mage.roles.index.title')</li>
-<li class="breadcrumb-item active">@lang('mage.roles.show.title')</li>
+<li class="breadcrumb-item">@lang('mage.roles.index.breadcrumb.title')</li>
+<li class="breadcrumb-item active">@lang('mage.roles.show.breadcrumb.title')</li>
 @endsection
 
 @section('page')

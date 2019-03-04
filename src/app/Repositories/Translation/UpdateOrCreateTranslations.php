@@ -27,9 +27,8 @@ class UpdateOrCreateTranslations extends TranslationBaseRepository
         foreach ($scannedTranslationsKeys as $groups) {
             foreach ($groups as $groupName => $group) {
                 foreach ($group as $locale => $keys) {
-                    foreach($keys as $key => $text) {
-
-                        $text = (is_array($text) || empty($text)) ? '__NOT TRANSLATED__' : $text;
+                    foreach ($keys as $key => $text) {
+                        $text = (is_array($text) || empty($text)) ? $groupName.'.'.$key : $text;
 
                         $translations[] = [
                             'group'  => $groupName,
@@ -50,7 +49,7 @@ class UpdateOrCreateTranslations extends TranslationBaseRepository
         $scannedTranslationsKeys = $this->parseTranslations($scannedTranslationsKeys);
 
         foreach ($scannedTranslationsKeys as $translationKey) {
-            $currentTranslation = array_fill_keys(config('mage.available_locales'), '__NOT TRANSLATED__');
+            $currentTranslation = array_fill_keys(config('mage.translations.available_locales'), $translationKey['group'].'.'.$translationKey['key']);
 
             $currentTranslation[$translationKey['locale']] = $translationKey['text'];
 
@@ -64,7 +63,7 @@ class UpdateOrCreateTranslations extends TranslationBaseRepository
                     $currentTranslation = $this->removeOrphanLanguagesFromTranslations->make($currentTranslation, $translationKey['key']);
                 }
             }
-
+            
             $this->query()->updateOrCreate([
                 'group' => $translationKey['group'],
                 'key' => $translationKey['key'],

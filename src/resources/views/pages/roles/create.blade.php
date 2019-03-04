@@ -1,9 +1,9 @@
 @extends('mage::layout.page')
-@section('title', __('mage.roles.create.title'))
-@section('page-title', __('mage.roles.create.title'))
+@section('web-title', __('mage.roles.create.web-title'))
+@section('page-title', __('mage.roles.create.page-title'))
 @section('breadcrumbs')
-<li class="breadcrumb-item">@lang('mage.roles.index.title')</li>
-<li class="breadcrumb-item active">@lang('mage.roles.create.title')</li>
+<li class="breadcrumb-item">@lang('mage.roles.index.breadcrumb.title')</li>
+<li class="breadcrumb-item active">@lang('mage.roles.create.breadcrumb.title')</li>
 @endsection
 
 @section('page')
@@ -14,7 +14,7 @@
     </div>
     <form action="{{route('mage.roles.store')}}" method="POST">
         @method('POST')
-        @include('mage::roles.forms.main')
+        @include('mage::pages.roles.forms.main')
     </form>
 </div>
 @endsection

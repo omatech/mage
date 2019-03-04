@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ env('APP_NAME')}} | @yield('title')</title>
+    <title>{{ env('APP_NAME')}} | @yield('web-title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     @include('mage::components.favicon')
@@ -23,9 +23,10 @@
 
         @include('mage::components.footer.layout')
     </div>
-
     @section('scripts')
         @routes
+        @translations
+
         <script src="{{ mix('/mage.js', '/vendor/mage') }}"></script>
         @include('mage::assets.scripts')
     @show

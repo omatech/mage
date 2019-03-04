@@ -3,8 +3,6 @@
 namespace Omatech\Mage\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Storage;
 use Omatech\Mage\App\Http\Requests\Users\CreateRequest;
 use Omatech\Mage\App\Repositories\Role\GetRoles;
 use Omatech\Mage\App\Repositories\User\CreateUser;
@@ -13,7 +11,6 @@ use Omatech\Mage\App\Repositories\User\GetUser;
 use Omatech\Mage\App\Repositories\User\ListUserDatatable;
 use Omatech\Mage\App\Http\Requests\Users\UpdateRequest;
 use Omatech\Mage\App\Repositories\User\UpdateUserAssignRoles;
-use Spatie\TranslationLoader\LanguageLine;
 
 class UserController extends Controller
 {

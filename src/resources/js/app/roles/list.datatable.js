@@ -29,7 +29,7 @@ $(document).ready(function () {
                   "</a>" +
                   "<a href=\"" + route('mage.roles.edit', { id: data.id }) + "\">" +
                     "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
-                      "<i class=\"fa fa-pencil\"></i>" +
+                      "<i class=\"fa fa-pen\"></i>" +
                     "</button>" +
                   "</a>" +
                   "<a class=\"mage-roles-delete-btn\" data-id=\"" + data.id + "\">" +
@@ -45,6 +45,8 @@ $(document).ready(function () {
 
     $adminRolesDatatable.on('click', '.mage-roles-delete-btn', function(e) {
         let id = $(e.target).attr('data-id');
-        mage.deleteAlert.call(id, $adminRolesDatatable, 'mage.roles.destroy');
+        let locale = $adminRolesDatatable.dataTableSettings[0].oLanguage.sweetAlert.roles;
+
+        mage.deleteAlert(id, $adminRolesDatatable, 'mage.roles.destroy', locale);
     });
 });

@@ -4,6 +4,7 @@ namespace Omatech\Mage\App\Providers;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
+use Omatech\Mage\App\Repositories\Translation\CustomTranslator;
 use Spatie\TranslationLoader\TranslationServiceProvider;
 
 class SpatieTranslationServiceProvider extends TranslationServiceProvider
@@ -27,6 +28,21 @@ class SpatieTranslationServiceProvider extends TranslationServiceProvider
         );
 
         parent::register();
+
+        $this->app->singleton('translator', function ($app) {
+            $loader = $app['translation.loader'];
+
+            // When registering the translator component, we'll need to set the default
+            // locale as well as the fallback locale. So, we'll grab the application
+            // configuration so we can easily get both of these values from there.
+            $locale = $app['config']['app.locale'];
+
+            $trans = new CustomTranslator($loader, $locale);
+
+            $trans->setFallback($app['config']['app.fallback_locale']);
+
+            return $trans;
+        });
     }
 
     /**

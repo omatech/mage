@@ -2,21 +2,22 @@
 
 namespace Omatech\Mage\App\Notifications;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class MailResetPasswordNotification extends Notification
 {
-    use Queueable;
-
-    private $token;
+    /**
+     * The password reset token.
+     *
+     * @var string
+     */
+    public $token;
 
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param $token
      */
     public function __construct($token)
     {
@@ -43,21 +44,10 @@ class MailResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url(config('app.url').route('mage.auth.password.reset', $this->token, false)))
-                    ->line('Thank you for using our application!');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
+            ->from(env('MAIL_USERNAME'), 'Omatech')
+            ->subject(__('mage.auth.reset-password.email.subject'))
+            ->view('mage::pages.auth.reset-email', [
+                "token" => $this->token
+            ]);
     }
 }

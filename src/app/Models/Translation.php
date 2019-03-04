@@ -20,7 +20,7 @@ class Translation extends LanguageLine
                     $translation = $languageLine->getTranslation($locale);
                     if ($translation !== null) {
                         array_set($lines, $languageLine->key, $translation);
-                        if($lines !== null) {
+                        if ($lines !== null) {
                             $lines = Arr::dot($lines);
                         }
                     }

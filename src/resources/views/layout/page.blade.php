@@ -35,10 +35,16 @@
                         'status'  => 'deleted'])
                     @endcomponent
 
+                    @component('mage::components.alerts.custom')
+                    @endcomponent
+
                     @if($errors->any())
                         @component('mage::components.alerts.main', [
                             'type'   => 'danger', 
                             'status' => 'errors'])
+                            @foreach ($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
                         @endcomponent
                     @endif
 

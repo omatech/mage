@@ -6,12 +6,12 @@ class RemoveOrphanLanguagesFromTranslations
 {
     public function make($translations, $key)
     {
-        $availableLanguages = config('mage.available_locales');
+        $availableLanguages = config('mage.translations.available_locales');
         $availableLanguages = array_fill_keys($availableLanguages, $key);
 
         $toRemove = array_diff(array_keys($translations), array_keys($availableLanguages));
 
-        foreach($toRemove as $key) {
+        foreach ($toRemove as $key) {
             unset($translations[$key]);
         }
 

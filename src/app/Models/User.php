@@ -4,9 +4,9 @@ namespace Omatech\Mage\App\Models;
 
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Omatech\Mage\App\Notifications\MailResetPasswordNotification;
+use Omatech\Mage\App\Events\UserCreated;
 
 class User extends Authenticatable
 {
@@ -31,6 +31,15 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => UserCreated::class
     ];
 
     /**

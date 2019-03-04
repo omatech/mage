@@ -25,13 +25,14 @@
     "ionicons": "^4.5.5",
     "jquery": "^3.3.1",
     "laravel-mix": "^4.0.14",
+    "libsodium-wrappers": "^0.7.4",
     "open-sans-fonts": "^1.5.0",
     "popper.js": "^1.14.7",
     "resolve-url-loader": "2.3.1",
     "sass": "^1.17.0",
     "sass-loader": "7.*",
     "select2": "^4.0.6-rc.1",
-    "sweetalert": "^2.1.2",
+    "sweetalert2": "^8.2.4",
     "vue-template-compiler": "^2.6.5"
   }
 }

@@ -58,6 +58,8 @@ $(document).ready(function () {
 
     $adminUsersDatatable.on('click', '.mage-users-delete-btn', function(e) {
         let id = $(e.target).attr('data-id');
-        mage.deleteAlert.call(id, $adminUsersDatatable, 'mage.users.destroy');
+        let locale = $adminUsersDatatable.dataTableSettings[0].oLanguage.sweetAlert.users;
+
+        mage.deleteAlert(id, $adminUsersDatatable, 'mage.users.destroy', locale);
     });
 });

@@ -41,4 +41,21 @@ class ResetPasswordController extends Controller
     {
         return route(config('mage.on_login_to_route'));
     }
+
+    /**
+     * Get the password reset validation error messages.
+     *
+     * @return array
+     */
+    protected function validationErrorMessages()
+    {
+        return [
+            'email.required' => __('mage.auth.validations.email.required'),
+            'email.email' => __('mage.auth.validations.email.email'),
+            'token.required' => __('mage.auth.validations.token.required'),
+            'password.required' => __('mage.auth.validations.password.required'),
+            'password.confirmed' => __('mage.auth.validations.password.confirmed'),
+            'password.min' => __('mage.auth.validations.password.min'),
+        ];
+    }
 }

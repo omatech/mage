@@ -1,8 +1,8 @@
 @extends('mage::layout.page')
-@section('title', __('mage.permissions.index.title'))
-@section('page-title', __('mage.permissions.index.title'))
+@section('web-title', __('mage.permissions.show.web-title'))
+@section('page-title', __('mage.permissions.show.page-title'))
 @section('breadcrumbs')
-<li class="breadcrumb-item active">@lang('mage.permissions.index.title')</li>
+<li class="breadcrumb-item active">@lang('mage.permissions.index.breadcrumb.title')</li>
 @endsection
 
 @section('page')

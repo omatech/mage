@@ -45,6 +45,8 @@ $(document).ready(function () {
 
     $adminPermissionsDatatable.on('click', '.mage-permissions-delete-btn', function(e) {
         let id = $(e.target).attr('data-id');
-        mage.deleteAlert.call(id, $adminPermissionsDatatable, 'mage.permissions.destroy');
+        let locale = $adminPermissionsDatatable.dataTableSettings[0].oLanguage.sweetAlert.permissions;
+
+        mage.deleteAlert(id, $adminPermissionsDatatable, 'mage.permissions.destroy', locale);
     });
 });

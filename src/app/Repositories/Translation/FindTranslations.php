@@ -14,8 +14,8 @@ class FindTranslations
     public function __construct(UpdateOrCreateTranslations $updateOrCreateTranslations)
     {
         $this->disk = new Filesystem;
-        $this->scanPaths = config('mage.translation.scan_paths');
-        $this->translationMethods = config('mage.translation.scan_functions');
+        $this->scanPaths = config('mage.translations.scan_paths');
+        $this->translationMethods = config('mage.translations.scan_functions');
         $this->updateOrCreateTranslations = $updateOrCreateTranslations;
     }
 
@@ -44,7 +44,7 @@ class FindTranslations
                         $results['group'][$file][app()->getLocale()][$k] = '';
                         continue;
                     } else {
-                        $key = str_replace('/','.', $key);
+                        $key = str_replace('/', '.', $key);
                         $key = explode('.', $key);
 
                         $group = $key[0];

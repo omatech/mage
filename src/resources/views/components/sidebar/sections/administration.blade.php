@@ -30,8 +30,14 @@
     </ul>    
 </li>
 <li class="nav-item">
-    {{--<a href="{{route('mage.translate')}}" class="nav-link {{ !isRoute(['mage.translate']) ?: 'active' }}">
-        <i class="nav-icon fa fa-book text-info"></i>
-        <p>@lang('mage.sidebar.translate')</p>
-    </a>--}}
+    <a href="{{route('mage.translations.index')}}" class="nav-link {{ !isRoute(['mage.translations.*']) ?: 'active' }}">
+        <span class="nav-icon">
+            <i data-feather="message-circle"></i>
+        </span>
+        <span class="nav-text">@lang('mage.sidebar.translations')</span>
+
+        @inject('countNotTrans', 'Omatech\Mage\App\Repositories\Translation\CountNotTranslatedTranslations')
+
+        <span class="label label-danger badge">{{ $countNotTrans->make() }}</span>
+    </a>
 </li>

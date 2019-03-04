@@ -31,4 +31,17 @@ class CreateRequest extends FormRequest
             ],
         ];
     }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'permissions_name.required' => __('mage.permissions.validations.name.required'),
+            'permissions_name.unique' => __('mage.permissions.validations.name.unique')
+        ];
+    }
 }

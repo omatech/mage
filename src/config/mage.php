@@ -5,9 +5,10 @@ return [
     'on_login_to_route' => 'mage.dashboard',
 
     'translations' => [
-        'available_langs' => ['es', 'ca', 'en'],
+        'available_locales' => ['es', 'ca', 'en'],
         'scan_paths' => [
-            resource_path('views')
+            resource_path('views'),
+            
         ],
         'scan_functions' => [
             '@lang',

@@ -11,7 +11,7 @@
         <label for="mage-users-language">@lang('mage.users.form.language')</label>
         <input name="users_language" type="text" class="form-control @if($errors->has('users_language')) is-invalid @endif" id="mage-users-language" placeholder="@lang('mage.users.form.language.placeholder')" value="{{ old('users_language', $user->language ?? '') }}">
     </div>
-    <div class="form-group">
+    <div class="form-group @if($errors->has('users_roles')) is-invalid @endif">
         <label for="mage-users-roles">@lang('mage.users.form.roles')</label>
         <select name="users_roles[]" id="mage-users-roles" class="form-control select2 @if($errors->has('users_roles')) is-invalid @endif" multiple="multiple" data-placeholder="@lang('mage.users.form.roles.placeholder')" style="width: 100%;">
             @foreach ($roles as $role)

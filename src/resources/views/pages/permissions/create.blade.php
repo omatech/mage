@@ -1,9 +1,9 @@
 @extends('mage::layout.page')
-@section('title', __('mage.permissions.create.title'))
-@section('page-title', __('mage.permissions.create.title'))
+@section('web-title', __('mage.permissions.create.web-title'))
+@section('page-title', __('mage.permissions.create.page-title'))
 @section('breadcrumbs')
-<li class="breadcrumb-item">@lang('mage.permissions.index.title')</li>
-<li class="breadcrumb-item active">@lang('mage.permissions.create.title')</li>
+<li class="breadcrumb-item">@lang('mage.permissions.index.breadcrumb.title')</li>
+<li class="breadcrumb-item active">@lang('mage.permissions.create.breadcrumb.title')</li>
 @endsection
 
 @section('page')
@@ -15,7 +15,7 @@
     
     <form action="{{route('mage.permissions.store')}}" method="POST">
         @method('POST')
-        @include('mage::permissions.forms.main')
+        @include('mage::pages.permissions.forms.main')
     </form>
 </div>
 @endsection

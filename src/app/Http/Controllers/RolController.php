@@ -13,7 +13,7 @@ use Omatech\Mage\App\Repositories\Role\GetRole;
 use Omatech\Mage\App\Repositories\Role\ListRoleDatatable;
 use Omatech\Mage\App\Repositories\Role\UpdateRole;
 
-class RolesController extends Controller
+class RolController extends Controller
 {
     public function index()
     {

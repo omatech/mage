@@ -35,4 +35,21 @@ class CreateRequest extends FormRequest
             'users_roles'    => 'required'
         ];
     }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'users_name.required' => __('mage.users.validations.name.required'),
+            'users_email.required' => __('mage.users.validations.email.required'),
+            'users_email.email' => __('mage.users.validations.email.email'),
+            'users_email.unique' => __('mage.users.validations.email.unique'),
+            'users_language.required' => __('mage.users.validations.language.required'),
+            'users_roles.required' => __('mage.users.validations.roles.required')
+        ];
+    }
 }
