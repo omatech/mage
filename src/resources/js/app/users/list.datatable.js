@@ -20,7 +20,7 @@ $(document).ready(function () {
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
-            { data: 'roles', name: 'roles' },
+            { data: 'roles', name: 'roles', searchable: false, orderable: false },
             { data: 'language', name: 'language' },
             { data: null, searchable: false, orderable: false, render: function(data, type, row) {
                 return "" +

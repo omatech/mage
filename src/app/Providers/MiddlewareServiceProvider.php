@@ -3,6 +3,8 @@
 namespace Omatech\Mage\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Omatech\Mage\App\Http\Middleware\CheckForPermissions;
 use Omatech\Mage\App\Http\Middleware\RedirectIfAuthenticated;
 use Omatech\Mage\App\Http\Middleware\RedirectIfNotAuthenticated;
 
@@ -13,7 +15,7 @@ class MiddlewareServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(HttpKernel $kernel)
     {
         $this->middlewares();
     }
@@ -27,5 +29,6 @@ class MiddlewareServiceProvider extends ServiceProvider
     {
         $this->app['router']->aliasMiddleware('mageRedirectIfAuthenticated', RedirectIfAuthenticated::class);
         $this->app['router']->aliasMiddleware('mageRedirectIfNotAuthenticated', RedirectIfNotAuthenticated::class);
+        $this->app['router']->aliasMiddleware('checkForPermissions', CheckForPermissions::class);
     }
 }

@@ -34,7 +34,7 @@ Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], funct
         Route::get('logout', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@logout')
              ->name('mage.auth.logout');
 
-        Route::group(['prefix' => 'users'], function () {
+        Route::group(['prefix' => 'users', 'middleware' => ['checkForPermissions:access-mage-users-zone']], function () {
             Route::get('/', 'Omatech\Mage\App\Http\Controllers\UserController@index')
                  ->name('mage.users.index');
      
@@ -60,7 +60,7 @@ Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], funct
                  ->name('mage.users.destroy');
         });
      
-        Route::group(['prefix' => 'roles'], function () {
+        Route::group(['prefix' => 'roles', 'middleware' => ['checkForPermissions:access-mage-roles-zone']], function () {
             Route::get('/', 'Omatech\Mage\App\Http\Controllers\RolController@index')
                  ->name('mage.roles.index');
 
@@ -89,7 +89,7 @@ Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], funct
                  ->name('mage.roles.permissions.assign');
         });
 
-        Route::group(['prefix' => 'permissions'], function () {
+        Route::group(['prefix' => 'permissions', 'middleware' => ['checkForPermissions:access-mage-permissions-zone']], function () {
             Route::get('/', 'Omatech\Mage\App\Http\Controllers\PermissionController@index')
                  ->name('mage.permissions.index');
 
@@ -115,7 +115,7 @@ Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], funct
                  ->name('mage.permissions.destroy');
         });
 
-        Route::group(['prefix' => 'translations'], function () {
+        Route::group(['prefix' => 'translations', 'middleware' => ['checkForPermissions:access-mage-translations-zone']], function () {
             Route::get('/', 'Omatech\Mage\App\Http\Controllers\TranslationController@index')
                  ->name('mage.translations.index');
 
@@ -135,4 +135,20 @@ Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], funct
         Route::get('datatables/i18n', 'Omatech\Mage\App\Http\Controllers\DatatableController@i18n')
              ->name('mage.datatables.i18n');
     });
+
+    /**
+     * Exceptions
+     */
+    Route::get('404', function () {
+        if(auth()->check()) {
+            return response()->view('mage::errors.auth.404', [], 404);
+        }
+        return response()->view('mage::errors.404', [], 404);
+    })->name('error404');
+
+    Route::get('403', function () {
+        if(auth()->check()) {
+            return response()->view('mage::errors.auth.403', [], 403);
+        }
+    })->name('error403');
 });

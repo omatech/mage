@@ -1,5 +1,4 @@
 export function call(id, dataTable, deleteRoute, model) {
-    
     let locale = dataTable.dataTableSettings[0].oLanguage.sweetAlert;
     
     Swal.fire({

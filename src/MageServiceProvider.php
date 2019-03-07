@@ -3,18 +3,20 @@
 namespace Omatech\Mage;
 
 use Illuminate\Support\ServiceProvider;
-use Omatech\Mage\App\Providers\BladeServiceProvider;
-use Omatech\Mage\App\Providers\TranslatorServiceProvider;
+use Omatech\Mage\App\Exceptions\CustomHandler;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Omatech\Mage\App\Providers\ViewServiceProvider;
+use Omatech\Mage\App\Providers\BladeServiceProvider;
 use Omatech\Mage\App\Providers\HelperServiceProvider;
 use Omatech\Mage\App\Providers\CommandServiceProvider;
 use Omatech\Mage\App\Providers\PublishServiceProvider;
 use Omatech\Mage\App\Providers\RoutingServiceProvider;
+use Spatie\TranslationLoader\TranslationServiceProvider;
 use Omatech\Mage\App\Providers\MiddlewareServiceProvider;
+use Omatech\Mage\App\Providers\TranslatorServiceProvider;
 use Omatech\Mage\App\Providers\ConfigurationServiceProvider;
 use Omatech\Mage\App\Providers\SpatiePermissionsServiceProvider;
 use Omatech\Mage\App\Providers\SpatieTranslationServiceProvider;
-use Spatie\TranslationLoader\TranslationServiceProvider;
 
 class MageServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,10 @@ class MageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->bind(
+            ExceptionHandler::class,
+            CustomHandler::class
+        );
     }
 
     /**
@@ -55,7 +61,6 @@ class MageServiceProvider extends ServiceProvider
 
         $this->app->register(SpatieTranslationServiceProvider::class);
         $this->app->register(TranslationServiceProvider::class);
-
     }
 
     public function provides()

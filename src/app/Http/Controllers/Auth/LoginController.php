@@ -23,9 +23,25 @@ class LoginController extends Controller
         return view('mage::pages.auth.login');
     }
 
+    /**
+     * Route after login.
+     *
+     * @return string
+     */
     public function redirectTo()
     {
         return route(config('mage.on_login_to_route'));
+    }
+
+    /**
+     * The user has logged out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    protected function loggedOut(Request $request)
+    {
+        return redirect(route(config('mage.on_logout_to_route')));
     }
 
     /**

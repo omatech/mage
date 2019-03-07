@@ -2,6 +2,7 @@
 
 namespace Omatech\Mage\App\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Filesystem\Filesystem;
 use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\PermissionServiceProvider;
@@ -17,6 +18,11 @@ class SpatiePermissionsServiceProvider extends PermissionServiceProvider
         $this->publishes([
             $path => $this->getMigrationFileName($filesystem),
         ], 'mage-publish');
+
+
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole(config('mage.authentication.god_role')) ? true : null;
+        });
     }
 
     public function register()

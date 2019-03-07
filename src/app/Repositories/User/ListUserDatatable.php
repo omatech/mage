@@ -7,11 +7,13 @@ use Yajra\DataTables\DataTables;
 
 class ListUserDatatable extends UserBaseRepository
 {
-    public function make()
+    public function make($columns = ['id', 'name', 'email', 'language'])
     {
         $users = $this->query()
-            ->with(['roles'])
-            ->select('id', 'name', 'email', 'name as language');
+            ->with(['roles' => function ($q) {
+                $q->select('id', 'name');
+            }])
+            ->select($columns);
 
         return DataTables::of($users)->make(true);
     }
