@@ -25,6 +25,6 @@ class CheckForPermissions
             return $next($request);
         }
 
-        throw new ForbiddenException('no estas autorizado');
+        throw new ForbiddenException;
     }
 }

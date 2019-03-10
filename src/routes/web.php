@@ -33,7 +33,7 @@ Route::group(['guard' => 'mage', 'prefix' => config('mage.prefix'), 'middleware'
 
         Route::get('/', function() {
             return view('mage::pages.dashboard.index');
-        });
+        })->name('mage.dashboard');
 
         Route::get('logout', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@logout')
              ->name('mage.auth.logout');

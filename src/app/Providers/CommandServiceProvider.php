@@ -3,6 +3,7 @@
 namespace Omatech\Mage\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Omatech\Mage\App\Console\Commands\CreateAdminUserCommand;
 use Omatech\Mage\App\Console\Commands\FindTranslationsKeysCommand;
 use Omatech\Mage\App\Console\Commands\ImportTranslationsFromFilesCommand;
 
@@ -27,5 +28,6 @@ class CommandServiceProvider extends ServiceProvider
     {
         $this->commands(FindTranslationsKeysCommand::class);
         $this->commands(ImportTranslationsFromFilesCommand::class);
+        $this->commands(CreateAdminUserCommand::class);
     }
 }
