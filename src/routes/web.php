@@ -38,7 +38,7 @@ Route::group(['guard' => 'mage', 'prefix' => config('mage.prefix'), 'middleware'
         Route::get('logout', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@logout')
              ->name('mage.auth.logout');
 
-        Route::group(['prefix' => 'users', 'middleware' => ['checkForPermissions:access-mage-users-zone']], function () {
+        Route::group(['prefix' => 'users', 'middleware' => ['checkForPermissions:mage-access-users-zone']], function () {
             Route::get('/', 'Omatech\Mage\App\Http\Controllers\UserController@index')
                  ->name('mage.users.index');
      
@@ -64,7 +64,7 @@ Route::group(['guard' => 'mage', 'prefix' => config('mage.prefix'), 'middleware'
                  ->name('mage.users.destroy');
         });
      
-        Route::group(['prefix' => 'roles', 'middleware' => ['checkForPermissions:access-mage-roles-zone']], function () {
+        Route::group(['prefix' => 'roles', 'middleware' => ['checkForPermissions:mage-access-roles-zone']], function () {
             Route::get('/', 'Omatech\Mage\App\Http\Controllers\RolController@index')
                  ->name('mage.roles.index');
 
@@ -93,7 +93,7 @@ Route::group(['guard' => 'mage', 'prefix' => config('mage.prefix'), 'middleware'
                  ->name('mage.roles.permissions.assign');
         });
 
-        Route::group(['prefix' => 'permissions', 'middleware' => ['checkForPermissions:access-mage-permissions-zone']], function () {
+        Route::group(['prefix' => 'permissions', 'middleware' => ['checkForPermissions:mage-access-permissions-zone']], function () {
             Route::get('/', 'Omatech\Mage\App\Http\Controllers\PermissionController@index')
                  ->name('mage.permissions.index');
 
@@ -119,7 +119,7 @@ Route::group(['guard' => 'mage', 'prefix' => config('mage.prefix'), 'middleware'
                  ->name('mage.permissions.destroy');
         });
 
-        Route::group(['prefix' => 'translations', 'middleware' => ['checkForPermissions:access-mage-translations-zone']], function () {
+        Route::group(['prefix' => 'translations', 'middleware' => ['checkForPermissions:mage-access-translations-zone']], function () {
             Route::get('/', 'Omatech\Mage\App\Http\Controllers\TranslationController@index')
                  ->name('mage.translations.index');
 

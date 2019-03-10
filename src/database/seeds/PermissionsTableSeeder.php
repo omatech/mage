@@ -1,5 +1,7 @@
 <?php
 
+namespace Omatech\Mage\Database\Seeds;
+
 use Illuminate\Database\Seeder;
 
 class PermissionsTableSeeder extends Seeder

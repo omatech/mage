@@ -1,5 +1,5 @@
 <li class="nav-header">@lang('mage.sidebar.administration')</li>
-@can('access-mage-users-management-zone', 'mage')
+@can('mage-access-users-management-zone', 'mage')
 <li class="nav-item has-treeview {{ !isRoute(['mage.users.*','mage.roles.*','mage.permissions.*']) ?: 'menu-open' }}">
     <a href="#" class="nav-link {{ !isRoute(['mage.users.*','mage.roles.*','mage.permissions.*']) ?: 'active' }}">
         <span class="nav-icon">
@@ -31,7 +31,7 @@
     </ul>    
 </li>
 @endcan
-@can('access-mage-translations-zone', 'mage')
+@can('mage-access-translations-zone', 'mage')
 <li class="nav-item">
     <a href="{{route('mage.translations.index')}}" class="nav-link {{ !isRoute(['mage.translations.*']) ?: 'active' }}">
         <span class="nav-icon">
