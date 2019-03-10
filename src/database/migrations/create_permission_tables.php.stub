@@ -84,8 +84,8 @@ class CreatePermissionTables extends Migration
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
             ->forget(config('permission.cache.key'));
 
-        Artisan::call("db:seed --class=\\\Omatech\\\Mage\\\Database\\\Seeds\\\RolesTableSeeder");
-        Artisan::call("db:seed --class=\\\Omatech\\\Mage\\\Database\\\Seeds\\\PermissionsTableSeeder");
+        Artisan::call("db:seed", ["--class" => "\\Omatech\\Mage\\Database\\Seeds\\RolesTableSeeder"]);
+        Artisan::call("db:seed", ["--class" => "\\Omatech\\Mage\\Database\\Seeds\\PermissionsTableSeeder"]);
     }
 
     /**

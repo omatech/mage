@@ -18,12 +18,14 @@ $(document).ready(function () {
                         if(data == null) value = '__NOT TRANSLATED__';
                         else {
                             value = data.replace(/&quot;/g, '"');
+                            value = value.replace(/^"(.*)"$/, '$1');
 
                             let key = row.group+'.'+row.key;
                             if(value === key) value = '__NOT TRANSLATED__';
+                            if(value === "") value = '__EMPTY__';
                         }
     
-                        return "<a href=\"#\"class=\"mage-translations-edit-btn\" data-id=\""+ row.id +"\" data-value=\""+value+"\" data-lang=\""+langs[index]+"\" data-key=\""+ row.key +"\">"+value+"</a>"
+                        return "<a href=\"#\" class=\"mage-translations-edit-btn\" data-id=\""+ row.id +"\" data-value=\""+value+"\" data-lang=\""+langs[index]+"\" data-key=\""+ row.key +"\">"+value+"</a>"
                     }
                 },
             );

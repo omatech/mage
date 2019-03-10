@@ -23,7 +23,7 @@ class CreateLanguageLinesTable extends Migration
             $table->timestamps();
         });
 
-        Artisan::call("db:seed --class=\\\Omatech\\\Mage\\\Database\\\Seeds\\\LanguageLinesTableSeeder");
+        Artisan::call("db:seed", ["--class" => "\\Omatech\\Mage\\Database\\Seeds\\LanguageLinesTableSeeder"]);
     }
 
     /**

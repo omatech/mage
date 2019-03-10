@@ -93,7 +93,7 @@ class LanguageLinesTableSeeder extends Seeder
                 array (
                     'group' => 'mage',
                     'key' => 'permissions.update.title',
-                    'text' => '{"es":"Actualizar permiso","ca":"__NOT TRANSLATED__","en":"__NOT TRANSLATED__"}',
+                    'text' => '{"es":"Actualizar permiso","ca":"Actualitzar perm\\u00eds","en":"Update permission"}',
                 ),
             14 =>
                 array (
@@ -1245,7 +1245,7 @@ class LanguageLinesTableSeeder extends Seeder
                 array (
                     'group' => 'mage',
                     'key' => 'auth.validations.password.min',
-                    'text' => '{"es":"La longitud de la contrase\\u00f1a ha de ser de m\\u00ednimo 6 caracteres","ca":"La longitud de la contrasenya ha de ser de m\\u00ednim 6 car\\u00e0cters","en":"The length of the password must be at least 6 characters"}',
+                    'text' => '{"es":"La longitud de la contrase\\u00f1a ha de ser de m\\u00ednimo :min caracteres","ca":"La longitud de la contrasenya ha de ser de m\\u00ednim :min car\\u00e0cters","en":"The length of the password must be at least :min characters"}',
                 ),
             206 =>
                 array (
