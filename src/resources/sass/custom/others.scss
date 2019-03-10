@@ -11,3 +11,7 @@
 .container-fluid {
   padding: 0 30px 25px 30px;
 }
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  background-position: right 10px center;
+}
