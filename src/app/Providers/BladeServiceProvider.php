@@ -17,5 +17,24 @@ class BladeServiceProvider extends ServiceProvider
         $this->app['blade.compiler']->directive('translations', function () {
             return "<?php echo app('" . BladeTranslationsGenerator::class . "')->make(); ?>";
         });
+
+
+        $this->app['blade.compiler']->directive('can', function ($expression) {
+            $segments = explode(',', preg_replace("/[\(\)\\\"\']/", '', $expression));
+
+            $expression = trim($segments[0]);
+            $guard = trim($segments[1] ?? config('auth.defaults.guard'));
+
+            return "<?php if (auth()->guard('{$guard}')->check() && auth()->guard('{$guard}')->user()->can('{$expression}')): ?>";
+        });
+
+        $this->app['blade.compiler']->directive('elsecan', function ($expression) {
+            $segments = explode(',', preg_replace("/[\(\)\\\"\']/", '', $expression));
+
+            $expression = trim($segments[0]);
+            $guard = trim($segments[1] ?? config('auth.defaults.guard'));
+
+            return "<?php elseif (auth()->guard('{$guard}')->check() && auth()->guard('{$guard}')->user()->can('{$expression}')): ?>";
+        });
     }
 }

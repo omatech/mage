@@ -4,7 +4,7 @@
     "description": "",
     "require": {
         "spatie/laravel-permission": "^2.31",
-        "yajra/laravel-datatables-oracle": "^8.13",
+        "yajra/laravel-datatables-oracle": "^8.13|^9.0.0",
         "tightenco/ziggy": "^0.6.9",
         "spatie/laravel-translation-loader": "^2.2"
     },

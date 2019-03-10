@@ -17,11 +17,11 @@ class CheckForPermissions
      */
     public function handle($request, Closure $next, $permission = null)
     {
-        if (auth()->user()->hasRole(config('mage.authentication.god_role'))) {
+        if (auth()->guard('mage')->user()->hasRole(config('mage.authentication.god_role'))) {
             return $next($request);
         }
 
-        if (auth()->user()->hasPermissionTo($permission)) {
+        if (auth()->guard('mage')->user()->hasPermissionTo($permission)) {
             return $next($request);
         }
 

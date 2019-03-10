@@ -17,7 +17,7 @@ $(document).ready(function () {
                         let value = null;
                         if(data == null) value = '__NOT TRANSLATED__';
                         else {
-                            value = data.replace(/&quot;/g, '"').slice(1, -1);
+                            value = data.replace(/&quot;/g, '"');
 
                             let key = row.group+'.'+row.key;
                             if(value === key) value = '__NOT TRANSLATED__';

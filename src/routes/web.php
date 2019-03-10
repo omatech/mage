@@ -7,7 +7,7 @@
 |
 */
 
-Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], function () {
+Route::group(['guard' => 'mage', 'prefix' => config('mage.prefix'), 'middleware' => ['web']], function () {
      
     Route::group(['middleware' => ['mageRedirectIfAuthenticated']], function () {
         Route::get('login', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@showLoginForm')
@@ -30,6 +30,10 @@ Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], funct
     });
 
     Route::group(['middleware' => ['mageRedirectIfNotAuthenticated']], function () {
+
+        Route::get('/', function() {
+            return view('mage::pages.dashboard.index');
+        });
 
         Route::get('logout', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@logout')
              ->name('mage.auth.logout');
@@ -140,14 +144,14 @@ Route::group(['prefix' => config('mage.prefix'), 'middleware' => ['web']], funct
      * Exceptions
      */
     Route::get('404', function () {
-        if(auth()->check()) {
+        if (auth()->guard('mage')->check()) {
             return response()->view('mage::errors.auth.404', [], 404);
         }
         return response()->view('mage::errors.404', [], 404);
     })->name('error404');
 
     Route::get('403', function () {
-        if(auth()->check()) {
+        if (auth()->guard('mage')->check()) {
             return response()->view('mage::errors.auth.403', [], 403);
         }
     })->name('error403');

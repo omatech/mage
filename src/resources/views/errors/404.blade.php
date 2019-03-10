@@ -1,5 +1,5 @@
 @extends('mage::layout.auth')
-@section('web-title', __('mage.auth.login.login'))
+@section('web-title', __('mage.errors.404.page-title'))
 @section('content')
     <div class=" auth-content text-center">
         <div class="mb-4" style="font-size: 80px;">

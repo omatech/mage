@@ -6,6 +6,6 @@ abstract class BaseCriteria
 {
     protected function godRole()
     {
-        return auth()->user()->hasRole(config('mage.authentication.god_role'));
+        return auth()->guard('mage')->user()->hasRole(config('mage.authentication.god_role'));
     }
 }

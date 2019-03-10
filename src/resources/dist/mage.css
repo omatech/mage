@@ -9152,8 +9152,11 @@ body.swal2-toast-column .swal2-toast {
     right: .1875em;
     width: 1.375em; } }
 
-body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
-  overflow: hidden; }
+body.swal2-shown {
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */ }
+  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+    overflow: hidden; }
 
 body.swal2-height-auto {
   height: auto !important; }
@@ -9218,7 +9221,22 @@ body.swal2-no-backdrop .swal2-shown {
   background-color: transparent;
   z-index: 1060;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch; }
+  -webkit-overflow-scrolling: touch;
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+  /* stylelint-disable-line scss/no-duplicate-dollar-variables */ }
   .swal2-container.swal2-top {
     align-items: flex-start; }
   .swal2-container.swal2-top-start, .swal2-container.swal2-top-left {
@@ -9703,10 +9721,10 @@ body.swal2-no-backdrop .swal2-shown {
     .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step {
       background: #3085d6; }
       .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step ~ .swal2-progress-step {
-        background: inherit;
+        background: #add8e6;
         color: #fff; }
       .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step ~ .swal2-progress-step-line {
-        background: inherit; }
+        background: #add8e6; }
   .swal2-progress-steps .swal2-progress-step-line {
     width: 2.5em;
     height: .4em;
@@ -9771,12 +9789,15 @@ body.swal2-no-backdrop .swal2-shown {
             transform: rotate(360deg); } }
 
 @media print {
-  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
-    overflow-y: scroll !important; }
-    body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) > [aria-hidden='true'] {
-      display: none; }
-    body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container {
-      position: initial !important; } }
+  body.swal2-shown {
+    /* stylelint-disable-line scss/no-duplicate-dollar-variables */
+    /* stylelint-disable-line scss/no-duplicate-dollar-variables */ }
+    body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+      overflow-y: scroll !important; }
+      body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) > [aria-hidden='true'] {
+        display: none; }
+      body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container {
+        position: initial !important; } }
 @charset "UTF-8";
 
 /*!

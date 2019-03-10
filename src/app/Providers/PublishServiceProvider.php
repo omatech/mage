@@ -72,6 +72,8 @@ class PublishServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/views/components/favicon.blade.php' => resource_path('views/vendor/mage/components/favicon.blade.php'),
             __DIR__.'/../../resources/views/components/navbar/layout.blade.php' => resource_path('views/vendor/mage/components/navbar/layout.blade.php'),
             __DIR__.'/../../resources/views/pages/auth' => resource_path('views/vendor/mage/pages/auth'),
+            __DIR__.'/../../resources/views/pages/dashboard' => resource_path('views/vendor/mage/pages/dashboard'),
+            __DIR__.'/../../resources/views/layout/auth.blade.php' => resource_path('views/vendor/mage/layout/auth.blade.php'),
         ], 'mage-publish');
     }
 }
