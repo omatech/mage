@@ -3,3 +3,22 @@
   top: -2px;
   position: relative;
 }
+
+.page-titles {
+  background: #ffffff;
+  margin: 0 -30px 18px;
+  -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 15px 15px 20px;
+
+  h3 {
+    margin-top: 8px;
+  }
+}
+
+.page-titles .breadcrumb {
+  padding: 0px;
+  background: transparent;
+  font-size: 14px;
+  margin-bottom: 0px;
+}

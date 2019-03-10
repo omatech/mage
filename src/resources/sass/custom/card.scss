@@ -1,0 +1,50 @@
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 0;
+  -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  border: none;
+  margin-bottom: 30px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+
+  .card-header {
+    background-color: transparent;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 20px 25px;
+    position: relative;
+
+    h3 {
+      position: relative;
+      &:after {
+        content: "";
+        background-color: $blue;
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 4px;
+        height: 20px;
+      }
+    }
+
+    .card-tools {
+      right: 25px;
+      top: 16px;
+      display: inline-block;
+      float: right;
+      padding: 0;
+      position: absolute;
+    }
+  }
+  .card-body {
+    padding: 30px 30px;
+  }
+}

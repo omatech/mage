@@ -2,7 +2,7 @@
 Nav- Main
  */
 .bg-custom {
-  background-color: #04a9f5;
+  background-color: $blue;
 
   .nav-link {
     color: rgba(255, 255, 255, 80%);
@@ -17,4 +17,46 @@ Nav- Main
   max-height: 28px;
   margin-right: .7rem;
   margin-top: -3px;
+}
+
+.navbar-nav .nav-item .dropdown-menu {
+  background: transparent;
+  .dropdown-header {
+    background: $gray-100;
+    border-radius: 0.25rem 0.25rem 0 0;
+    text-align: left;
+    padding: 0.5rem 0rem;
+
+    .nav-link {
+      height: auto;
+      cursor: default;
+      color: $black;
+
+      &:hover {
+        color: $black;
+      }
+      .img-avatar {
+        max-height: 48px;
+      }
+
+      .name-text {
+        font-size: 1rem;
+        vertical-align: middle;
+      }
+    }
+  }
+  .dropdown-footer {
+    background: white;
+    border-radius: 0 0 0.25rem 0.25rem;
+    padding: 1rem 2rem;
+    text-align: left;
+
+      &:hover {
+        color: $blue;
+      }
+      &:active {
+        color:$black;
+      }
+    
+  }
 }

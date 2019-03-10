@@ -1,17 +1,13 @@
 @extends('mage::app')
 @section('content')
 <div class="content-wrapper">
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">@yield('page-title')</h1>
-                </div>
-                <div class="col-sm-6">
-                    @component('mage::components.breadcrumbs.main')
-                        @yield('breadcrumbs')
-                    @endcomponent
-                </div>
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text-dark">@yield('page-title')</h3>
+                @component('mage::components.breadcrumbs.main')
+                    @yield('breadcrumbs')
+                @endcomponent
             </div>
         </div>
     </div>
