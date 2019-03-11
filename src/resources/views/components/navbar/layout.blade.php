@@ -16,7 +16,7 @@
                 <div class="dropdown-item dropdown-header">
                     <span class="nav-link">
                         <img src="{{ url('/vendor/mage/img/wizard.svg')}}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
-                        <span class="d-none d-sm-inline-block name-text">{{auth()->guard('mage')->user()->name}}</span>
+                        <span class="d-sm-inline-block name-text">{{auth()->guard('mage')->user()->name}}</span>
                     </span>
                 </div>
                 <div class="dropdown-divider"></div>

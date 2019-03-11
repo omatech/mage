@@ -7,152 +7,100 @@
 |
 */
 
-Route::group(['guard' => 'mage', 'prefix' => config('mage.prefix'), 'middleware' => ['web']], function () {
-     
-    Route::group(['middleware' => ['mageRedirectIfAuthenticated']], function () {
-        Route::get('login', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@showLoginForm')
-             ->name('mage.auth.login.index');
+Route::namespace('Omatech\Mage\App\Http\Controllers')
+     ->prefix(config('mage.prefix'))
+     ->middleware('web')
+     ->name('mage.')
+     ->group(function ($route) {
 
-        Route::post('login', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@login')
-             ->name('mage.auth.login');
+         /**
+          * Auth
+          */
+         $route->namespace('Auth')
+               ->middleware('mageRedirectIfAuthenticated')
+               ->name('auth.')
+               ->group(function ($auth) {
+                    $auth->get('login', 'LoginController@showLoginForm')->name('login.index');
+                    $auth->post('login', 'LoginController@login')->name('login');
+                    $auth->get('register', 'RegisterController@showRegistrationForm')->name('register.index');
+                    $auth->post('register', 'RegisterController@register')->name('register');
+                    $auth->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+                    $auth->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+                    $auth->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+                    $auth->post('password/reset', 'ResetPasswordController@reset')->name('password.update');
+               });
 
-        Route::post('password/email', 'Omatech\Mage\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')
-             ->name('mage.auth.password.email');
+         /**
+          * LoggedIn Routes
+          */
+         $route->middleware('mageRedirectIfNotAuthenticated')
+               ->group(function ($logged) {
 
-        Route::get('password/reset', 'Omatech\Mage\App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')
-             ->name('mage.auth.password.request');
+                   /*
+                    * Dashboard
+                    */
+                   $logged->get('/', function () {
+                       return view('mage::pages.dashboard.index');
+                   })->name('dashboard');
 
-        Route::get('password/reset/{token}', 'Omatech\Mage\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')
-             ->name('mage.auth.password.reset');
+                   /*
+                    * Logout
+                    */
+                   $logged->get('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
-        Route::post('password/reset', 'Omatech\Mage\App\Http\Controllers\Auth\ResetPasswordController@reset')
-             ->name('mage.auth.password.update');
-    });
+                   /**
+                    * Users
+                    */
+                    $logged->middleware('checkForPermissions:mage-access-users-zone')
+                           ->group(function ($users) {
+                                $users->get('users/list', 'UserController@list')->name('users.list');
+                                $users->resource('users', 'UserController');
+                           });
 
-    Route::group(['middleware' => ['mageRedirectIfNotAuthenticated']], function () {
+                    /**
+                     * Roles
+                     */
+                    $logged->middleware('checkForPermissions:mage-access-roles-zone')
+                           ->group(function ($roles) {
+                                $roles->get('roles/list', 'RolController@list')->name('roles.list');
+                                $roles->post('roles/{id}/permissions', 'RolController@assignPermissions')->name('roles.permissions.assign');
+                                $roles->resource('roles', 'RolController');
+                           });
+                    
+                    /**
+                     * Permissions
+                     */
+                    $logged->middleware('checkForPermissions:mage-access-permissions-zone')
+                           ->group(function ($permissions) {
+                                $permissions->get('permissions/list', 'PermissionController@list')->name('permissions.list');
+                                $permissions->resource('permissions', 'PermissionController');
+                           });
 
-        Route::get('/', function() {
-            return view('mage::pages.dashboard.index');
-        })->name('mage.dashboard');
+                    /**
+                     * Translations
+                     */
+                    $logged->middleware('checkForPermissions:mage-access-translations-zone')
+                           ->group(function ($translations) {
+                                $translations->get('translations/list', 'TranslationController@list')->name('translations.list');
+                                $translations->resource('translations', 'TranslationController');
+                           });
 
-        Route::get('logout', 'Omatech\Mage\App\Http\Controllers\Auth\LoginController@logout')
-             ->name('mage.auth.logout');
+                    $logged->get('datatables/i18n', 'DatatableController@i18n')->name('datatables.i18n');
+               });
 
-        Route::group(['prefix' => 'users', 'middleware' => ['checkForPermissions:mage-access-users-zone']], function () {
-            Route::get('/', 'Omatech\Mage\App\Http\Controllers\UserController@index')
-                 ->name('mage.users.index');
-     
-            Route::get('list', 'Omatech\Mage\App\Http\Controllers\UserController@list')
-                 ->name('mage.users.list');
+        /**
+         * Exceptions
+         */
+         $route->get('404', function () {
+            if (auth()->guard('mage')->check()) {
+                return response()->view('mage::errors.auth.404', [], 404);
+            }
+            return response()->view('mage::errors.404', [], 404);
+         })->name('error404');
 
-            Route::get('create', 'Omatech\Mage\App\Http\Controllers\UserController@create')
-                 ->name('mage.users.create');
-
-            Route::post('/', 'Omatech\Mage\App\Http\Controllers\UserController@store')
-                 ->name('mage.users.store');
-
-            Route::get('{id}', 'Omatech\Mage\App\Http\Controllers\UserController@show')
-                 ->name('mage.users.show');
-
-            Route::get('{id}/edit', 'Omatech\Mage\App\Http\Controllers\UserController@edit')
-                 ->name('mage.users.edit');
-
-            Route::put('{id}', 'Omatech\Mage\App\Http\Controllers\UserController@update')
-                 ->name('mage.users.update');
-
-            Route::delete('{id}', 'Omatech\Mage\App\Http\Controllers\UserController@destroy')
-                 ->name('mage.users.destroy');
-        });
-     
-        Route::group(['prefix' => 'roles', 'middleware' => ['checkForPermissions:mage-access-roles-zone']], function () {
-            Route::get('/', 'Omatech\Mage\App\Http\Controllers\RolController@index')
-                 ->name('mage.roles.index');
-
-            Route::get('list', 'Omatech\Mage\App\Http\Controllers\RolController@list')
-                 ->name('mage.roles.list');
-
-            Route::get('create', 'Omatech\Mage\App\Http\Controllers\RolController@create')
-                 ->name('mage.roles.create');
-
-            Route::post('/', 'Omatech\Mage\App\Http\Controllers\RolController@store')
-                 ->name('mage.roles.store');
-
-            Route::get('{id}', 'Omatech\Mage\App\Http\Controllers\RolController@show')
-                 ->name('mage.roles.show');
-
-            Route::get('{id}/edit', 'Omatech\Mage\App\Http\Controllers\RolController@edit')
-                 ->name('mage.roles.edit');
-
-            Route::put('{id}', 'Omatech\Mage\App\Http\Controllers\RolController@update')
-                 ->name('mage.roles.update');
-
-            Route::delete('{id}', 'Omatech\Mage\App\Http\Controllers\RolController@destroy')
-                 ->name('mage.roles.destroy');
-
-            Route::post('{id}/permissions', 'Omatech\Mage\App\Http\Controllers\RolController@assignPermissions')
-                 ->name('mage.roles.permissions.assign');
-        });
-
-        Route::group(['prefix' => 'permissions', 'middleware' => ['checkForPermissions:mage-access-permissions-zone']], function () {
-            Route::get('/', 'Omatech\Mage\App\Http\Controllers\PermissionController@index')
-                 ->name('mage.permissions.index');
-
-            Route::get('list', 'Omatech\Mage\App\Http\Controllers\PermissionController@list')
-                 ->name('mage.permissions.list');
-
-            Route::get('create', 'Omatech\Mage\App\Http\Controllers\PermissionController@create')
-                 ->name('mage.permissions.create');
-
-            Route::post('/', 'Omatech\Mage\App\Http\Controllers\PermissionController@store')
-                 ->name('mage.permissions.store');
-
-            Route::get('{id}', 'Omatech\Mage\App\Http\Controllers\PermissionController@show')
-                 ->name('mage.permissions.show');
-
-            Route::get('{id}/edit', 'Omatech\Mage\App\Http\Controllers\PermissionController@edit')
-                 ->name('mage.permissions.edit');
-
-            Route::put('{id}', 'Omatech\Mage\App\Http\Controllers\PermissionController@update')
-                 ->name('mage.permissions.update');
-
-            Route::delete('{id}', 'Omatech\Mage\App\Http\Controllers\PermissionController@destroy')
-                 ->name('mage.permissions.destroy');
-        });
-
-        Route::group(['prefix' => 'translations', 'middleware' => ['checkForPermissions:mage-access-translations-zone']], function () {
-            Route::get('/', 'Omatech\Mage\App\Http\Controllers\TranslationController@index')
-                 ->name('mage.translations.index');
-
-            Route::get('list', 'Omatech\Mage\App\Http\Controllers\TranslationController@list')
-                 ->name('mage.translations.list');
-
-            Route::get('create', 'Omatech\Mage\App\Http\Controllers\TranslationController@create')
-                 ->name('mage.translations.create');
-
-            Route::post('/', 'Omatech\Mage\App\Http\Controllers\TranslationController@store')
-                 ->name('mage.translations.store');
-
-            Route::put('{id}', 'Omatech\Mage\App\Http\Controllers\TranslationController@update')
-                 ->name('mage.translations.update');
-        });
-
-        Route::get('datatables/i18n', 'Omatech\Mage\App\Http\Controllers\DatatableController@i18n')
-             ->name('mage.datatables.i18n');
-    });
-
-    /**
-     * Exceptions
-     */
-    Route::get('404', function () {
-        if (auth()->guard('mage')->check()) {
-            return response()->view('mage::errors.auth.404', [], 404);
-        }
-        return response()->view('mage::errors.404', [], 404);
-    })->name('error404');
-
-    Route::get('403', function () {
-        if (auth()->guard('mage')->check()) {
-            return response()->view('mage::errors.auth.403', [], 403);
-        }
-    })->name('error403');
-});
+         $route->get('403', function () {
+            if (auth()->guard('mage')->check()) {
+                return response()->view('mage::errors.auth.403', [], 403);
+            }
+         })->name('error403');
+     });

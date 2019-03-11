@@ -44,7 +44,7 @@ class CustomHandler extends Handler
         return parent::render($request, $exception);
     }
 
-    private function exception($code, $request, Exception $exception)
+    private function exception($code, $request, $exception)
     {
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
@@ -53,6 +53,6 @@ class CustomHandler extends Handler
             ], $code);
         }
 
-        return Route::respondWithRoute("error$code", $request);
+        return Route::respondWithRoute("mage.error$code", $request);
     }
 }

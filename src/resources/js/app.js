@@ -20,6 +20,8 @@ require('datatables.net-bs4/js/dataTables.bootstrap4');
 require('feather-icons/dist/feather.js').replace();
 require('./vendor/admin-lte/AdminLTE.js');
 
+$.fn.DataTable.ext.pager.numbers_length = 6;
+
 window.sodium = require('libsodium-wrappers/dist/modules/libsodium-wrappers');
 window.base64 = require('./app/components/cipher/base64');
 
