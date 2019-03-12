@@ -6,6 +6,19 @@
             <i class="fa fa-unlock icon-login"></i>
         </div>
         <h3 class="mb-5">@lang('mage.auth.login.login')</h3>
+
+        @if(session()->has('status') && session()->get('status') == 'send')
+        <div class="alert alert-success">
+            @lang('mage.auth.login.send')
+        </div>
+        @endif
+
+        @if(session()->has('status') && session()->get('status') == 'unauthorized')
+        <div class="alert alert-error">
+            @lang('mage.auth.login.unauthorized')
+        </div>
+        @endif
+
         <form action="{{route('mage.auth.login')}}" method="POST" class="social-auth-links text-center mb-4">
             {{ csrf_field() }}
             @method('POST')

@@ -39,6 +39,14 @@ class CustomHandler extends Handler
             if ($exception instanceof ForbiddenException) {
                 return $this->exception(403, $request, $exception);
             }
+
+            if ($exception instanceof UnauthorizedException) {
+                if ($request->route()->getName() == 'mage.auth.login') {
+                    return redirect()->route('mage.auth.login')->with('status', 'unauthorized');
+                }
+                
+                return $this->exception(401, $request, $exception);
+            }
         }
 
         return parent::render($request, $exception);

@@ -11,32 +11,37 @@ class PermissionsTableSeeder extends Seeder
         \DB::table('permissions')->delete();
         
         \DB::table('permissions')->insert(array (
-            0 => 
+            0 =>
+            array (
+                'name' => 'mage-access',
+                'guard_name' => 'web',
+            ),
+            1 =>
             array (
                 'name' => 'mage-access-admin-zone',
                 'guard_name' => 'web',
             ),
-            1 => 
+            2 =>
             array (
                 'name' => 'mage-access-users-management-zone',
                 'guard_name' => 'web',
             ),
-            2 => 
+            3 =>
             array (
                 'name' => 'mage-access-users-zone',
                 'guard_name' => 'web',
             ),
-            3 => 
+            4 =>
             array (
                 'name' => 'mage-access-roles-zone',
                 'guard_name' => 'web',
             ),
-            4 => 
+            5 =>
             array (
                 'name' => 'mage-access-permissions-zone',
                 'guard_name' => 'web',
             ),
-            5 => 
+            6 =>
             array (
                 'name' => 'mage-access-translations-zone',
                 'guard_name' => 'web',

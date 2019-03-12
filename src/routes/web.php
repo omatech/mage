@@ -34,6 +34,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
           * LoggedIn Routes
           */
          $route->middleware('mageRedirectIfNotAuthenticated')
+               ->middleware('checkForPermissions:mage-access')
                ->group(function ($logged) {
 
                    /*
@@ -103,4 +104,8 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                 return response()->view('mage::errors.auth.403', [], 403);
             }
          })->name('error403');
+
+         $route->get('401', function () {
+            return response()->view('mage::errors.401', [], 401);
+         })->name('error401');
      });

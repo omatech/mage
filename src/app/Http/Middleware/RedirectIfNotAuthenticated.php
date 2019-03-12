@@ -3,6 +3,7 @@
 namespace Omatech\Mage\App\Http\Middleware;
 
 use Closure;
+use Omatech\Mage\App\Exceptions\UnauthorizedException;
 
 class RedirectIfNotAuthenticated
 {
@@ -16,6 +17,10 @@ class RedirectIfNotAuthenticated
      */
     public function handle($request, Closure $next)
     {
+        if (auth()->guard('mage')->check() && !auth()->guard('mage')->user()->can('mage-access')) {
+            throw new UnauthorizedException(auth()->guard('mage')->user());
+        }
+
         if (!auth()->guard('mage')->check()) {
             return redirect(route('mage.auth.login'));
         }
