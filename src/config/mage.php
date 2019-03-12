@@ -22,7 +22,7 @@ return [
             '__'
         ],
         'import_path' => [
-            resource_path('langs')
+            resource_path('lang')
         ]
     ]
 ];

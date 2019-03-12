@@ -10,7 +10,7 @@ class AddMissingLanguagesToTranslations
 
         foreach ($availableLanguages as $currentLanguage) {
             if (empty($translations[$currentLanguage])) {
-                $translations[$currentLanguage] = '__NOT TRANSLATED__';
+                $translations[$currentLanguage] = $key;
             }
         }
 

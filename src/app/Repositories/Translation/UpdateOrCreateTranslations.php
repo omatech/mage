@@ -49,21 +49,32 @@ class UpdateOrCreateTranslations extends TranslationBaseRepository
         $scannedTranslationsKeys = $this->parseTranslations($scannedTranslationsKeys);
 
         foreach ($scannedTranslationsKeys as $translationKey) {
+            $mergedTranslation = [];
+
             $currentTranslation = array_fill_keys(config('mage.translations.available_locales'), $translationKey['group'].'.'.$translationKey['key']);
-
             $currentTranslation[$translationKey['locale']] = $translationKey['text'];
+            $currentDatabaseTranslation = $this->getTranslationKey->make($translationKey['group'], $translationKey['key']);
+            
+            if ($currentDatabaseTranslation) {
+                foreach ($currentDatabaseTranslation->text as $locale => $value) {
+                    $mergedTranslation[$locale] = $value;
 
-            $currentTranslationKey = $this->getTranslationKey->make($translationKey['group'], $translationKey['key']);
-
-            if ($currentTranslationKey) {
-                $currentTranslation = $currentTranslationKey->text;
-                $currentTranslation = $this->addMissingLanguagesToTranslations->make($currentTranslation, $translationKey['key']);
+                    if (isset($currentTranslation[$locale])) {
+                        $key = $currentDatabaseTranslation->group.'.'.$currentDatabaseTranslation->key;
+                        
+                        if ($key == $value && $currentTranslation[$locale] != $key) {
+                            $mergedTranslation[$locale] = $currentTranslation[$locale];
+                        }
+                    }
+                }
+                
+                $currentTranslation = $this->addMissingLanguagesToTranslations->make($mergedTranslation, $key);
 
                 if ($deleteOrphans) {
-                    $currentTranslation = $this->removeOrphanLanguagesFromTranslations->make($currentTranslation, $translationKey['key']);
+                    $currentTranslation = $this->removeOrphanLanguagesFromTranslations->make($currentTranslation, $key);
                 }
             }
-            
+
             $this->query()->updateOrCreate([
                 'group' => $translationKey['group'],
                 'key' => $translationKey['key'],
