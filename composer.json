@@ -6,7 +6,8 @@
         "spatie/laravel-permission": "^2.31",
         "yajra/laravel-datatables-oracle": "^8.13|^9.0.0",
         "tightenco/ziggy": "^0.6.9",
-        "spatie/laravel-translation-loader": "^2.2"
+        "spatie/laravel-translation-loader": "^2.2",
+        "omatech/laravel-statusable": "v0.0.2-beta"
     },
     "authors": [
         {

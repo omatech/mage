@@ -11,9 +11,11 @@ class GetTranslations extends TranslationBaseRepository
     {
         $lang = app()->getLocale();
 
-        return $this->query()
-            ->select(DB::raw("CONCAT(`group`, '.', `key`) as 'key'"), "text->$lang as text")
+        $query = $this->query()
+            ->select(DB::raw("CONCAT(`group`, '.', `key`) as 'key'"), "text->$lang as value")
             ->get()
             ->toArray();
+
+        return $query;
     }
 }

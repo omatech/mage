@@ -15,10 +15,10 @@ class BladeTranslationsGenerator
     {
         $translations = $this->getTranslations->make();
 
-        $arr=[];
+        $arr = [];
 
-        foreach($translations as $translation) {
-            $arr[$translation['key']] = $translation['text'];
+        foreach ($translations as $translation) {
+            $arr[$translation['key']] = $translation['value'];
         }
 
         return $this->generateJS($arr);

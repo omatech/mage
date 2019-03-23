@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLanguageLinesTable extends Migration
+class CreateStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +13,13 @@ class CreateLanguageLinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('language_lines', function (Blueprint $table) {
+        Schema::create('status', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('group');
-            $table->index('group');
+            $table->string('name');
             $table->string('key');
-            $table->text('text');
+            $table->string('short_key');
             $table->timestamps();
         });
-
-        Artisan::call("db:seed", ["--class" => "\\Omatech\\Mage\\Database\\Seeds\\LanguageLinesTableSeeder"]);
     }
 
     /**
@@ -33,6 +29,6 @@ class CreateLanguageLinesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('language_lines');
+        Schema::dropIfExists('status');
     }
 }

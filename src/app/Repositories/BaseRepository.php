@@ -2,10 +2,11 @@
 
 namespace Omatech\Mage\App\Repositories;
 
+use RuntimeException;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
-use RuntimeException;
+use Omatech\LaravelStatusable\App\Models\StatusHistory;
 
 abstract class BaseRepository
 {
@@ -24,7 +25,7 @@ abstract class BaseRepository
     /**
      * @return mixed
      */
-    abstract public function model() : String;
+    abstract public function model(): String;
 
     /**
      *
@@ -48,9 +49,21 @@ abstract class BaseRepository
         return $model->newQuery();
     }
 
-    public function query() : Builder
+    public function query(): Builder
     {
         $this->model = $this->makeModel();
+
+        $this->model::macro('statusable', function ($status, Model $related = null) {
+
+            StatusHistory::add(
+                $status,
+                $this->model,
+                $related,
+                'mage'
+            );
+
+            return $this->model;
+        });
 
         $this->applyCriteria();
 
