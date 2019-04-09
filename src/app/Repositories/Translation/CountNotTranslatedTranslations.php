@@ -12,6 +12,7 @@ class CountNotTranslatedTranslations extends TranslationBaseRepository
         $query = $this->query();
 
         foreach(config('mage.translations.available_locales') as $lang) {
+            $lang = $lang['locale'];
             $query->orWhereColumn(DB::raw("CONCAT(`group`, '.', `key`)"), '=', "text->$lang");
         }
 

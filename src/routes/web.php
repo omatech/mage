@@ -33,8 +33,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
          /**
           * LoggedIn Routes
           */
-         $route->middleware('mageRedirectIfNotAuthenticated')
-               ->middleware('checkForPermissions:mage-access')
+         $route->middleware(['mageRedirectIfNotAuthenticated', 'checkForPermissions:mage-access'])
                ->group(function ($logged) {
 
                    /*
@@ -85,6 +84,12 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                                 $translations->get('translations/list', 'TranslationController@list')->name('translations.list');
                                 $translations->resource('translations', 'TranslationController');
                            });
+
+                    /**
+                     * Vault
+                     */
+                   $logged->get('vault/{id}', 'VaultController@get')->name('vault.get');
+                   $logged->post('vault', 'VaultController@upload')->name('vault.upload');
 
                     $logged->get('datatables/i18n', 'DatatableController@i18n')->name('datatables.i18n');
                });

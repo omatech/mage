@@ -5,7 +5,11 @@
 @import "~ionicons/dist/css/ionicons.css";
 @import "~select2/dist/css/select2.css";
 @import "~sweetalert2/dist/sweetalert2.css";
+@import "~flag-icon-css/css/flag-icon.css";
+@import "~overlayscrollbars/css/OverlayScrollbars.css";
+
 @import "vendor/admin-lte/AdminLTE";
+@import "vendor/dropzone/src_dropzone";
 
 @import "./custom/options.scss";
 @import "./custom/auth.scss";
@@ -19,3 +23,5 @@
 @import "./custom/sidebar.scss";
 @import "./custom/footer.scss";
 @import "./custom/datatables.scss";
+@import "./custom/timeline.scss";
+@import "./custom/annotation.scss";

@@ -38,6 +38,7 @@ class TranslationController extends Controller
         ];
 
         foreach (config('mage.translations.available_locales') as $lang) {
+            $lang = $lang['locale'];
             $fields["text->$lang"] = $data["translations_text-$lang"] ?? '';
         }
 

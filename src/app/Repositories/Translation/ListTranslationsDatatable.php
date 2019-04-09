@@ -15,12 +15,14 @@ class ListTranslationsDatatable extends TranslationBaseRepository
         $select = ['id','group','key'];
 
         foreach(config('mage.translations.available_locales') as $lang) {
+            $lang = $lang['locale'];
             $select[] = "text->$lang as $lang";
         }
 
         if($onlyNotTranslated) {
             $translations->where(function ($q) {
                 foreach (config('mage.translations.available_locales') as $lang) {
+                    $lang = $lang['locale'];
                     $q->orWhereColumn(DB::raw("CONCAT(`group`, '.', `key`)"), '=', "text->$lang");
                 }
             });

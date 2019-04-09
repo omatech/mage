@@ -10,7 +10,22 @@ return [
         'god_role' => 'God'
     ],
     'translations' => [
-        'available_locales' => ['es', 'ca', 'en'],
+        'available_locales' => [
+            [
+                'locale'   => 'es',
+                'flag'     => 'es',
+                'name_key' => 'mage.translations.language.es'
+            ], [
+                'locale'   => 'ca',
+                'flag'     => 'es-ca',
+                'name_key' => 'mage.translations.language.ca'
+            ], [
+                'locale'   => 'en',
+                'flag'     => 'gb',
+                'name_key' => 'mage.translations.language.en'
+            ],
+        ],
+        'show_select_switch' => false,
         'auto_scan_enable' => true,
         'scan_paths' => [
             resource_path('views'),

@@ -26,3 +26,7 @@
 .form-control.is-invalid, .was-validated .form-control:invalid {
   background-position: right 10px center;
 }
+
+input:focus {
+  outline: none;
+}

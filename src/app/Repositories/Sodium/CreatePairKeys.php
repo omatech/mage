@@ -1,6 +1,6 @@
 <?php
 
-namespace Omatech\Mage\App\Repositories\Vault;
+namespace Omatech\Mage\App\Repositories\Sodium;
 
 class CreatePairKeys
 {

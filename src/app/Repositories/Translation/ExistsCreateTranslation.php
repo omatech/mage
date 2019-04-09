@@ -21,6 +21,7 @@ class ExistsCreateTranslation
         if(!$exists) {
             $fields = $key;
             foreach (config('mage.translations.available_locales') as $lang) {
+                $lang = $lang['locale'];
                 $fields["text->$lang"] = $key['group'].'.'.$key['key'];
             }
 

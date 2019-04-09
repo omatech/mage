@@ -16,6 +16,7 @@ class PublishServiceProvider extends ServiceProvider
     {
         $this->configuration();
         $this->assets();
+        $this->images();
         $this->fonts();
         $this->views();
     }
@@ -61,6 +62,14 @@ class PublishServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../resources/dist/fonts' => public_path('fonts'),
         ], 'mage-assets');
+    }
+
+    private function images()
+    {
+        $this->publishes([
+            __DIR__.'/../../resources/dist/images' => public_path('images'),
+        ], 'mage-publish');
+
     }
 
     private function views()

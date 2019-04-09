@@ -1,0 +1,101 @@
+.timeline {
+    position: relative;
+    padding-bottom: 30px;
+    background-color: #ffffff;
+    color: #7a878e;
+    margin: 0;
+
+    &:before, &:after {
+        background-color: #bfc5c9;
+        bottom: 20px;
+        content: "";
+        display: block;
+        position: absolute;
+    }
+
+    &:after {
+        left: 46px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        border: 1px solid #bfc5c9;
+        background-color: #ecf0f5;
+    }
+    
+    &:before {
+        left: 49px;
+        top: 20px;
+        width: 1px;
+    }
+
+    .timeline-header {
+        border-radius: 3px;
+        clear: both;
+        margin-bottom: 30px;
+        margin-top: 0;
+        position: relative;
+
+        .timeline-header-title {
+            display: inline-block;
+            text-align: center;
+            padding: 7px 15px;
+            min-width: 100px;
+        }
+
+        &:first-child {
+            margin-bottom: 30px;
+            margin-top: 0;
+        }
+    }
+
+    .timeline-entry {
+        margin-bottom: 25px;
+        margin-top: 5px;
+        position: relative;
+        clear: both;
+
+        .timeline-stat {
+            width: 100px;
+            float: left;
+            text-align: center;
+            padding-bottom: 15px;
+
+            .timeline-icon {
+                border-radius: 50%;
+                display: block;
+                margin: 0 auto;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                width: 40px;
+                margin-top: 5px;
+                background-color: #ecf0f5;
+            }
+            
+            .timeline-time {
+                display: inline-block;
+                padding: 2px 3px;
+                background-color: #ffffff;
+                color: #7a878e;
+                font-size: .85em;
+                max-width: 80px;
+            }
+            
+            .timeline-icon:empty {
+                height: 12px;
+                width: 12px;
+                margin-top: 15px;
+                border: 2px solid #a3acb1;
+            }
+        }
+
+        .timeline-label {
+            background-color: #f4f6f9;
+            border-radius: 3px;
+            margin-left: 100px;
+            padding: 15px;
+            position: relative;
+            min-height: 50px;
+        }
+    }
+}

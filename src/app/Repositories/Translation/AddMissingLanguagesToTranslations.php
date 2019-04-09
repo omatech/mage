@@ -9,8 +9,8 @@ class AddMissingLanguagesToTranslations
         $availableLanguages = config('mage.translations.available_locales');
 
         foreach ($availableLanguages as $currentLanguage) {
-            if (empty($translations[$currentLanguage])) {
-                $translations[$currentLanguage] = $key;
+            if (empty($translations[$currentLanguage['locale']])) {
+                $translations[$currentLanguage['locale']] = $key;
             }
         }
 

@@ -29,6 +29,7 @@ class CreateRequest extends FormRequest
         ];
 
         foreach (config('mage.translations.available_locales') as $lang) {
+            $lang = $lang['locale'];
             $rules["translations_text-$lang"] = 'nullable|string';
         }
 

@@ -6,6 +6,7 @@ Nav- Main
 
   .nav-link {
     color: rgba(255, 255, 255, 80%);
+    padding: 0.35rem 1rem;
 
     &:hover {
       color: white
@@ -13,49 +14,175 @@ Nav- Main
   }
 }
 
-.img-avatar {
-  max-height: 28px;
-  margin-right: .7rem;
-  margin-top: -3px;
-}
+.main-header.navbar.navbar-expand {
+  height: 54px;
+  .navbar-nav {
+    height: 54px;
+    .nav-item {
+      line-height: 38px;
+      .nav-link {
+        height: 54px;
+        width: 54px;
+        text-align: center;
+        padding: 0.35rem;
 
-.navbar-nav .nav-item .dropdown-menu {
-  background: transparent;
-  .dropdown-header {
-    background: $gray-100;
-    border-radius: 0.25rem 0.25rem 0 0;
-    text-align: left;
-    padding: 0.5rem 0rem;
+        .img-avatar {
+          max-height: 28px;
+          margin-top: -3px;
+        }
 
-    .nav-link {
-      height: auto;
-      cursor: default;
-      color: $black;
-
-      &:hover {
-        color: $black;
+        &:hover {
+          background-color: rgba(0,0,0,0.4);
+        }
       }
-      .img-avatar {
-        max-height: 48px;
+      .nav-link.flag-menu {
+        font-size: 18px;
+        line-height:42px;
       }
 
-      .name-text {
-        font-size: 1rem;
-        vertical-align: middle;
+      .dropdown-menu {
+        background: $white;
+        border-radius: 0;
+        border: 0;
+        margin: 0.125rem 0 0;
+
+        @media (max-width: 575.98px) {
+          left: auto;
+          right: 0;
+        }
+
+        .flag-icon {
+          margin-right: 5px;
+        }
+
+        .dropdown-item {
+          padding: 0.25rem 1rem;
+
+          &:active {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #1e88e5;
+          }
+
+          .dropdown-item-option {
+            margin-left: 5px;
+            display: inline-block;
+            padding: 0;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .dropdown-menu.dropdown-user .dropdown-user-box {
+
+        padding: 10px 15px;
+
+        .user-img {
+          width: 60px;
+          display: inline-block;
+          vertical-align: top;
+
+          img {
+            width: 100%;
+            border-radius: 5px;
+          }
+        }
+
+        .user-text {
+          display: inline-block;
+          padding-left: 10px;
+          box-sizing: content-box;
+
+          h4 {
+            margin: 0px;
+            font-size: 18px;
+            padding-top: 10px;
+          }
+
+          .text-muted {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .dropdown-menu.dropdown-notification {
+        ul {
+          list-style: none;
+          padding: 0;
+        }
+        .notification-item {
+          &:hover {
+            background-color: #f8f9fa;
+          }
+        }
+        a {
+          border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+          display: block;
+          text-decoration: none;
+          padding: 9px 15px;
+
+          .notification-img {
+            width: 40px;
+            position: relative;
+            display: inline-block;
+            margin: 0 10px 15px 0;
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .notification-content {
+            display: inline-block;
+            width: 75%;
+            vertical-align: middle;
+
+            h5 {
+              margin: 5px 0px 0;
+              line-height: 18px;
+              font-size: 16px;
+              font-weight: 400;
+              color: #455a64;
+            }
+
+            .notification-description, .notification-time {
+              font-size: 12px;
+              display: block;
+              margin: 1px 0;
+              -o-text-overflow: ellipsis;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              color: #67757c;
+              white-space: nowrap;
+              line-height: 22px;
+            }
+          }
+        }
+        .notification-all {
+          padding: 0.25rem 1rem;
+        }
       }
     }
   }
-  .dropdown-footer {
-    background: white;
-    border-radius: 0 0 0.25rem 0.25rem;
-    padding: .75rem 2rem;
-    text-align: left;
-
-      &:hover {
-        color: $blue;
+  .navbar-nav.navbar-right {
+    
+    .nav-item.dropdown:nth-child(1) {
+      @media (max-width: 575.98px) {
+        .dropdown-menu {
+          left: auto;
+          right: -108px;
+        }
       }
-      &:active {
-        color:$black;
+    }
+    .nav-item.dropdown:nth-child(2) {
+      @media (max-width: 575.98px) {
+        .dropdown-menu {
+          left: auto;
+          right: -54px;
+        }
       }
+    }
+    .nav-item.dropdown:nth-child(3) {
+    }
   }
 }

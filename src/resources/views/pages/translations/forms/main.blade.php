@@ -9,6 +9,7 @@
         <input class="form-control" id="mage-translations-key" type="text" name="translations_key" placeholder="@lang('mage.translations.form.key')">
     </div>
     @foreach(config('mage.translations.available_locales') as $lang)
+        @php $lang = $lang['locale'] @endphp
     <div class="form-group">
         <label for="mage-translations-text-{{$lang}}">@lang("mage.translations.form.text-$lang")</label>
         <input class="form-control" id="mage-translations-text-{{$lang}}" type="text" name="translations_text-{{$lang}}" placeholder="@lang("mage.translations.form.text-$lang")">

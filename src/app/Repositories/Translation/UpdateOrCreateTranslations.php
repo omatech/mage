@@ -51,7 +51,12 @@ class UpdateOrCreateTranslations extends TranslationBaseRepository
         foreach ($scannedTranslationsKeys as $translationKey) {
             $mergedTranslation = [];
 
-            $currentTranslation = array_fill_keys(config('mage.translations.available_locales'), $translationKey['group'].'.'.$translationKey['key']);
+            $availableLanguages = [];
+            foreach(config('mage.translations.available_locales') as $lang) {
+                $availableLanguages[] = $lang['locale'];
+            }
+
+            $currentTranslation = array_fill_keys($availableLanguages, $translationKey['group'].'.'.$translationKey['key']);
             $currentTranslation[$translationKey['locale']] = $translationKey['text'];
             $currentDatabaseTranslation = $this->getTranslationKey->make($translationKey['group'], $translationKey['key']);
             
