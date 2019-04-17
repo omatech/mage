@@ -12,7 +12,7 @@ class GetFile extends VaultBaseRepository
         $vault = $this->query()
             ->find($id);
 
-        throw_if($vault == null, new ModelNotFoundException);
+        throw_if($vault == null || $vault->model == null, new ModelNotFoundException);
 
         $file = $filesystem->get($vault->filepath());
 

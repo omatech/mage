@@ -1,14 +1,13 @@
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">@lang('advancing.owner.show.annotations')</h3>
+        <h3 class="card-title">{{ $title ?? __('mage.annotations.title') }}</h3>
         <div class="card-tools">
-            <button class="btn btn-sm btn-success new-annotation" data-model-route="{{route('advancing.agency.annotation', $agency->id)}}" style="margin-right: 15px">Nueva </button>
-            <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa @if($agency->annotations->count()) fa-minus @else fa-plus @endif"></i></button>
+            <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa @if($annotations->count()) fa-minus @else fa-plus @endif"></i></button>
         </div>
     </div>
 
-    <div class="card-body" style="@if($agency->annotations->count()) display: block @else display: none @endif">
-        <div class="panel-body annotation-body media-block overlayscroll scrollDown" style="height: 150px; max-height: {{ $height }}px">
+    <div class="card-body" style="@if($annotations->count()) display: block @else display: none @endif">
+        <div class="panel-body annotation-body media-block overlayscroll scrollDown" style="height: 150px; max-height: {{ $height ?? 400}}px">
             @php $dates = []; @endphp
             @php $userType = null; @endphp
 
@@ -25,7 +24,7 @@
                     @if($userType != null) </div></div> @endif
                 <div class="annotation-me">
                     <div class="media-left">
-                        <img src="http://advancing.local/images/avatar.jpg" class="img-circle img-sm" alt="Profile Picture">
+                    <img src="{{ url('/images/avatar.jpg') }}" class="img-circle img-sm" alt="Profile Picture">
                     </div>
                     @php $userType = 'me' @endphp
                     <div class="media-body">
@@ -33,7 +32,7 @@
                             @if($userType != null) </div></div> @endif
                 <div class="annotation-user">
                     <div class="media-left">
-                        <img src="http://advancing.local/images/avatar.jpg" class="img-circle img-sm" alt="Profile Picture">
+                        <img src="{{ url('/images/avatar.jpg') }}" class="img-circle img-sm" alt="Profile Picture">
                     </div>
                     @php $userType = 'user' @endphp
                     <div class="media-body">

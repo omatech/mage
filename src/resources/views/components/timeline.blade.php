@@ -1,6 +1,6 @@
 <div class="card card-timeline @if(!$timeline->count()) collapsed-card @endif">
     <div class="card-header">
-        <h3 class="card-title">@lang('mage.timeline.title')</h3>
+        <h3 class="card-title">{{ $title ?? __('mage.timeline.title') }}</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa @if($timeline->count()) fa-minus @else fa-plus @endif"></i></button>
         </div>

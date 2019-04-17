@@ -4,9 +4,12 @@ namespace Omatech\Mage\App\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vault extends Model
 {
+    use SoftDeletes;
+    
     protected $table = 'vault';
     protected $casts = ['data' => 'collection'];
 

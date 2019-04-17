@@ -1,6 +1,6 @@
 # Mage
 
-## Not production
+## Not for Production
 
 ## Install
 

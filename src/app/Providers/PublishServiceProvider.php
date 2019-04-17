@@ -16,7 +16,6 @@ class PublishServiceProvider extends ServiceProvider
     {
         $this->configuration();
         $this->assets();
-        $this->images();
         $this->fonts();
         $this->views();
     }
@@ -43,13 +42,14 @@ class PublishServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/dist/mage.js' => public_path('vendor/mage/mage.js'),
             __DIR__.'/../../resources/dist/mage.css' => public_path('vendor/mage/mage.css'),
             __DIR__.'/../../resources/dist/mix-manifest.json' => public_path('vendor/mage/mix-manifest.json'),
-            __DIR__.'/../../resources/img/' => public_path('vendor/mage/img/'),
+            __DIR__.'/../../resources/images/' => public_path('vendor/mage/images/'),
         ], 'mage-publish');
 
         $this->publishes([
             __DIR__.'/../../resources/dist/mage.js' => public_path('vendor/mage/mage.js'),
             __DIR__.'/../../resources/dist/mage.css' => public_path('vendor/mage/mage.css'),
             __DIR__.'/../../resources/dist/mix-manifest.json' => public_path('vendor/mage/mix-manifest.json'),
+            __DIR__.'/../../resources/images/' => public_path('vendor/mage/images/'),
         ], 'mage-assets');
     }
 
@@ -64,14 +64,6 @@ class PublishServiceProvider extends ServiceProvider
         ], 'mage-assets');
     }
 
-    private function images()
-    {
-        $this->publishes([
-            __DIR__.'/../../resources/dist/images' => public_path('images'),
-        ], 'mage-publish');
-
-    }
-
     private function views()
     {
         $this->publishes([
@@ -80,6 +72,9 @@ class PublishServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/views/components/sidebar/logo.blade.php' => resource_path('views/vendor/mage/components/sidebar/logo.blade.php'),
             __DIR__.'/../../resources/views/components/favicon.blade.php' => resource_path('views/vendor/mage/components/favicon.blade.php'),
             __DIR__.'/../../resources/views/components/navbar/layout.blade.php' => resource_path('views/vendor/mage/components/navbar/layout.blade.php'),
+            __DIR__.'/../../resources/views/components/annotation.blade.php' => resource_path('views/vendor/mage/components/annotation.blade.php'),
+            __DIR__.'/../../resources/views/components/timeline.blade.php' => resource_path('views/vendor/mage/components/timeline.blade.php'),
+            __DIR__.'/../../resources/views/components/vault.blade.php' => resource_path('views/vendor/mage/components/vault.blade.php'),
             __DIR__.'/../../resources/views/pages/auth' => resource_path('views/vendor/mage/pages/auth'),
             __DIR__.'/../../resources/views/pages/dashboard' => resource_path('views/vendor/mage/pages/dashboard'),
             __DIR__.'/../../resources/views/layout/auth.blade.php' => resource_path('views/vendor/mage/layout/auth.blade.php'),
