@@ -18,7 +18,7 @@
 <div class="auth-wrapper align-items-stretch">
     <div class="row align-items-center w-100 align-items-stretch bg-white">
         <div class="d-none d-lg-flex col-lg-8 auth-bg-img align-items-center d-flex justify-content-center"
-             style="background-image: url('/vendor/mage/img/login.jpg');">
+             style="background-image: url('/vendor/mage/images/login.jpg');">
             <div class="col-md-8">
                 <h1 class="text-white mb-3">Login in Mage</h1>
                 <p class="text-white">Speak, friend and enter.</p>
