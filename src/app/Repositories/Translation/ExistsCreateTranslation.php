@@ -13,7 +13,7 @@ class ExistsCreateTranslation
         $this->create = $create;
     }
 
-    public function make($key)
+    public function make($key, $value = null)
     {
         $key = $this->parseKey($key);
         $exists = $this->exists->make($key);
@@ -25,8 +25,15 @@ class ExistsCreateTranslation
                 $fields["text->$lang"] = $key['group'].'.'.$key['key'];
             }
 
+            if($value) {
+                $lang = app()->getLocale();
+                $fields["text->$lang"] = $value;
+            }
+
             $this->create->make($fields);
         }
+
+        return $exists;
     }
 
     private function parseKey($key)

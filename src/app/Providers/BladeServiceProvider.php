@@ -18,6 +18,10 @@ class BladeServiceProvider extends ServiceProvider
             return "<?php echo app('" . BladeTranslationsGenerator::class . "')->make(); ?>";
         });
 
+        $this->app['blade.compiler']->directive('t', function ($expression) {
+            return "<?php echo app('translator')->insertTransValue({$expression}); ?>";
+        });
+
 
         $this->app['blade.compiler']->directive('can', function ($expression) {
             $segments = explode(',', preg_replace("/[\(\)\\\"\']/", '', $expression));

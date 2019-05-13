@@ -1,10 +1,12 @@
 <nav class="main-header navbar navbar-expand bg-custom elevation-1">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            <a class="nav-link" data-widget="pushmenu" href="#">
+                <i data-feather="grid" style="width:18px"></i>
+            </a>
         </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav navbar-right ml-auto">
         {{--<li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                 <i data-feather="bell" style="width:18px"></i>
@@ -59,23 +61,27 @@
             </div>
         </li>--}}
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#" style="padding: 0rem">
-                <span class="nav-link">
-                    <img src="{{ url('/vendor/mage/images/wizard.svg')}}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
-                    <span class="d-none d-sm-inline-block">{{auth()->guard('mage')->user()->name}}</span>
-                </span>
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <img src="{{ url('/images/avatar.jpg') }}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <div class="dropdown-item dropdown-header">
-                    <span class="nav-link">
-                        <img src="{{ url('/vendor/mage/images/wizard.svg')}}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
-                        <span class="d-sm-inline-block name-text">{{auth()->guard('mage')->user()->name}}</span>
-                    </span>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-user">
+                <div class="dropdown-user-box">
+                    <div class="user-img">
+                        <img src="{{ url('/images/avatar.jpg') }}" alt="user">
+                    </div>
+                    <div class="user-text">
+                        <h4>{{auth()->guard('mage')->user()->name}}</h4>
+                        <p class="text-muted">{{auth()->guard('mage')->user()->email}}</p>
+                    </div>
                 </div>
                 <div class="dropdown-divider"></div>
-                <a href="{{route('mage.auth.logout')}}" class="dropdown-item dropdown-footer">@lang('mage.auth.user.logout')</a>
+                <a href="{{route('mage.auth.logout')}}" class="dropdown-item">
+                    <i data-feather="power" style="width:16px"></i>
+                    <span class="dropdown-item-option">@lang('mage.auth.user.logout')</span>
+                </a>
             </div>
         </li>
+
         @if(config('mage.translations.show_select_switch'))
         <li class="nav-item dropdown">
             @php
