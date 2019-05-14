@@ -4,6 +4,7 @@ namespace Omatech\Mage\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Omatech\Mage\App\Http\Requests\Translations\CreateRequest;
+use Omatech\Mage\App\Repositories\Translation\ExistsCreateTranslation;
 use Omatech\Mage\App\Repositories\Translation\UpdateTranslation;
 use Omatech\Mage\App\Repositories\Translation\ListTranslationsDatatable;
 use Omatech\Mage\App\Repositories\Translation\CreateTranslation;
@@ -52,5 +53,15 @@ class TranslationController extends Controller
         $params = request('params');
 
         $update->make($id, $params['lang'], $params['value']);
+    }
+
+    public function add(ExistsCreateTranslation $existsCreateTranslation)
+    {
+        $key = request()->key;
+        $value = request()->value ?? null;
+
+        $existsCreateTranslation->make($key, $value);
+
+        return response()->json(['status' => 'OK']);
     }
 }

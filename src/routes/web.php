@@ -82,6 +82,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                     $logged->middleware('checkForPermissions:mage-access-translations-zone')
                            ->group(function ($translations) {
                                 $translations->get('translations/list', 'TranslationController@list')->name('translations.list');
+                                $translations->post('translations/add', 'TranslationController@add')->name('translations.add');
                                 $translations->resource('translations', 'TranslationController');
                            });
 
