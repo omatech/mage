@@ -62,12 +62,12 @@
         </li>--}}
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <img src="{{ url('/images/avatar.jpg') }}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
+                <img src="{{ url('/vendor/mage/images/wizard.svg') }}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-user">
                 <div class="dropdown-user-box">
                     <div class="user-img">
-                        <img src="{{ url('/images/avatar.jpg') }}" alt="user">
+                        <img src="{{ url('/vendor/mage/images/wizard.svg') }}" alt="user">
                     </div>
                     <div class="user-text">
                         <h4>{{auth()->guard('mage')->user()->name}}</h4>

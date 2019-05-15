@@ -7,13 +7,18 @@ use Omatech\Mage\App\Repositories\TranslationBaseRepository;
 
 class GetTranslations extends TranslationBaseRepository
 {
-    public function make()
+    public function make($group = null)
     {
         $lang = app()->getLocale();
 
         $query = $this->query()
-            ->select(DB::raw("CONCAT(`group`, '.', `key`) as 'key'"), "text->$lang as value")
-            ->get()
+            ->select(DB::raw("CONCAT(`group`, '.', `key`) as 'key'"), "text->$lang as value");
+
+        if ($group) {
+            $query = $query->where('group', $group);
+        }
+
+        $query = $query->get()
             ->toArray();
 
         return $query;

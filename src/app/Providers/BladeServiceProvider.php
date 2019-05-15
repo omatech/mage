@@ -14,14 +14,13 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['blade.compiler']->directive('translations', function () {
-            return "<?php echo app('" . BladeTranslationsGenerator::class . "')->make(); ?>";
+        $this->app['blade.compiler']->directive('translations', function ($expression) {
+            return "<?php echo app('" . BladeTranslationsGenerator::class . "')->make({$expression}); ?>";
         });
 
         $this->app['blade.compiler']->directive('t', function ($expression) {
             return "<?php echo app('translator')->insertTransValue({$expression}); ?>";
         });
-
 
         $this->app['blade.compiler']->directive('can', function ($expression) {
             $segments = explode(',', preg_replace("/[\(\)\\\"\']/", '', $expression));
