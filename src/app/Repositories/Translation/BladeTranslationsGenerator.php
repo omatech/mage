@@ -36,7 +36,7 @@ class BladeTranslationsGenerator
             window.Translations = $trans;
         </script>";
 
-        $isMageRoute = config('prefix').'*';
+        $isMageRoute = config('mage.prefix').'*';
         $isMageRoute = isRoute($isMageRoute);
 
         if (!$isMageRoute) {
