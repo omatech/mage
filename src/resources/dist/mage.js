@@ -79894,7 +79894,7 @@ jQ(document).ready(function () {
       }
     }]
   });
-  jQadminRolesDatatable.on('click', '.mage-roles-delete-btn', function (e) {
+  adminRolesDatatable.on('click', '.mage-roles-delete-btn', function (e) {
     var id = jQ(e.target).attr('data-id');
     var locale = adminRolesDatatable.dataTableSettings[0].oLanguage.sweetAlert.roles;
     mage.deleteAlert(id, adminRolesDatatable, 'mage.roles.destroy', locale);

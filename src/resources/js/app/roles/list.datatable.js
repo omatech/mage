@@ -43,7 +43,7 @@ jQ(document).ready(function () {
         ]
     });
 
-    jQadminRolesDatatable.on('click', '.mage-roles-delete-btn', function(e) {
+    adminRolesDatatable.on('click', '.mage-roles-delete-btn', function(e) {
         let id = jQ(e.target).attr('data-id');
         let locale = adminRolesDatatable.dataTableSettings[0].oLanguage.sweetAlert.roles;
 
