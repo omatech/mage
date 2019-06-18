@@ -1,9 +1,9 @@
-$(document).ready(function () {
-    $('.new-annotation').on('click', function() {
-        let route = $(this).attr('data-model-route');
-        let annotation = $(this).parent().parent().find('.annotation-text').val();
+jQ(document).ready(function () {
+    jQ('.new-annotation').on('click', function() {
+        let route = jQ(this).attr('data-model-route');
+        let annotation = jQ(this).parent().parent().find('.annotation-text').val();
 
-        $(this).attr('disabled', true);
+        jQ(this).attr('disabled', true);
 
         if (annotation !== "") {
             addAnnotation(route, annotation).then(() => {

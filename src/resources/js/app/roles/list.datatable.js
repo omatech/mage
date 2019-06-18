@@ -1,6 +1,6 @@
-$(document).ready(function () {
-    let $adminRolesDatatable = $('#mage-roles-datatable');
-    $adminRolesDatatable.DataTable({
+jQ(document).ready(function () {
+    let adminRolesDatatable = jQ('#mage-roles-datatable');
+    adminRolesDatatable.DataTable({
         processing: true,
         serverSide: true,
         ajax: route('mage.roles.list').url(),
@@ -43,10 +43,10 @@ $(document).ready(function () {
         ]
     });
 
-    $adminRolesDatatable.on('click', '.mage-roles-delete-btn', function(e) {
-        let id = $(e.target).attr('data-id');
-        let locale = $adminRolesDatatable.dataTableSettings[0].oLanguage.sweetAlert.roles;
+    jQadminRolesDatatable.on('click', '.mage-roles-delete-btn', function(e) {
+        let id = jQ(e.target).attr('data-id');
+        let locale = adminRolesDatatable.dataTableSettings[0].oLanguage.sweetAlert.roles;
 
-        mage.deleteAlert(id, $adminRolesDatatable, 'mage.roles.destroy', locale);
+        mage.deleteAlert(id, adminRolesDatatable, 'mage.roles.destroy', locale);
     });
 });

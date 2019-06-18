@@ -1,8 +1,8 @@
-$(document).ready(function () {
-    let $adminTranslationsDatatable = $('#mage-translations-datatable');
+jQ(document).ready(function () {
+    let adminTranslationsDatatable = jQ('#mage-translations-datatable');
 
-    if($adminTranslationsDatatable.length > 0) {
-        let langs = JSON.parse($adminTranslationsDatatable.attr('data-langs'));
+    if(adminTranslationsDatatable.length > 0) {
+        let langs = JSON.parse(adminTranslationsDatatable.attr('data-langs'));
    
         let columns = [
             { data: 'id', name: 'id' },
@@ -18,7 +18,7 @@ $(document).ready(function () {
                         if(data == null) value = '__NOT TRANSLATED__';
                         else {
                             value = data.replace(/&quot;/g, '"');
-                            value = value.replace(/^"(.*)"$/, '$1');
+                            value = value.replace(/^"(.*)"jQ/, 'jQ1');
 
                             let key = row.group+'.'+row.key;
                             if(value === key) value = '__NOT TRANSLATED__';
@@ -31,13 +31,13 @@ $(document).ready(function () {
             );
         });
     
-        $adminTranslationsDatatable.DataTable({
+        adminTranslationsDatatable.DataTable({
             processing: true,
             serverSide: true,
             ajax: {
                 url: route('mage.translations.list').url(),
                 data: function (d) {
-                    d.notTranslated = $('#translations-not-translated').is(':checked');
+                    d.notTranslated = jQ('#translations-not-translated').is(':checked');
                 }
             },
             deferRender: true,
@@ -55,18 +55,18 @@ $(document).ready(function () {
             columns: columns
         });
 
-        $('#translations-not-translated').on('change', function() {
-            $adminTranslationsDatatable.DataTable().ajax.reload(null, false);
+        jQ('#translations-not-translated').on('change', function() {
+            adminTranslationsDatatable.DataTable().ajax.reload(null, false);
         });
 
-        $adminTranslationsDatatable.on('click', '.mage-translations-edit-btn', function(e) {
+        adminTranslationsDatatable.on('click', '.mage-translations-edit-btn', function(e) {
             e.preventDefault();
-            let id = $(e.target).attr('data-id');
-            let value = $(e.target).attr('data-value');
-            let lang = $(e.target).attr('data-lang');
-            let key = $(e.target).attr('data-key');
+            let id = jQ(e.target).attr('data-id');
+            let value = jQ(e.target).attr('data-value');
+            let lang = jQ(e.target).attr('data-lang');
+            let key = jQ(e.target).attr('data-key');
 
-            mage.translations.editAlert(id, value, lang, key, $adminTranslationsDatatable, 'mage.translations.update');
+            mage.translations.editAlert(id, value, lang, key, adminTranslationsDatatable, 'mage.translations.update');
         });
     }
 });

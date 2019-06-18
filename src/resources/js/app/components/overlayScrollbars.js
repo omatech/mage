@@ -1,4 +1,4 @@
-$(document).ready(function () {
+jQ(document).ready(function () {
     let options = {
         className            : "os-theme-dark",
         resize               : "none",
@@ -26,11 +26,20 @@ $(document).ready(function () {
         }
     };
 
-    if( $('.overlayscroll').not('.scrollDown').length ) {
-        $('.overlayscroll').not('.scrollDown').overlayScrollbars(options);
+    if( jQ('.overlayscroll').not('.scrollDown').length ) {
+        jQ('.overlayscroll').not('.scrollDown').overlayScrollbars(options);
     }
 
-    if( $('.overlayscroll.scrollDown').length ) {
-        $('.overlayscroll.scrollDown').overlayScrollbars(options).overlayScrollbars().scroll({ y : "100%" });
+    if( jQ('.overlayscroll.scrollDown').length ) {
+        jQ('.overlayscroll.scrollDown').overlayScrollbars(options).overlayScrollbars().scroll({ y : "100%" });
     }
+
+    OverlayScrollbars(document.querySelectorAll('body'), options);
+    OverlayScrollbars(document.querySelectorAll('.sidebar'), options);
+
+    jQ('#nav-toggle').on('click', function(e) {
+        setTimeout(() => {
+            jQ(jQ.fn.dataTable.tables()).DataTable().draw('page')
+        }, 100)
+    });
 });

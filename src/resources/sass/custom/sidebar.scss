@@ -6,6 +6,10 @@ Nav - sidebar
   padding: 0;
 }
 
+.main-sidebar {
+  overflow-x: hidden;
+}
+
 [class*=sidebar-dark] .brand-link {
   border-bottom: 0;
 }
@@ -87,9 +91,8 @@ li.nav-item.has-treeview.menu-open > a:after {
     opacity: 1 !important;
   }
   .nav-text {
-    transition: margin-left 0.3s linear, opacity 0.5s ease;
     opacity: 1;
-    top: 11px !important;
+    top: 9px !important;
   }
   .nav-treeview > li > a, li > a {
     .nav-text {
@@ -151,4 +154,10 @@ li.nav-item.has-treeview.menu-open > a:after {
 
 .nav-sidebar:hover {
   overflow: hidden;
+}
+
+.sidebar .nav-link p,
+.main-sidebar .brand-text,
+.sidebar .user-panel .info {
+  transition: none;
 }

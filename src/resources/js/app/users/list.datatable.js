@@ -1,6 +1,6 @@
-$(document).ready(function () {
-    let $adminUsersDatatable = $('#mage-users-datatable');
-    $adminUsersDatatable.DataTable({
+jQ(document).ready(function () {
+    let adminUsersDatatable = jQ('#mage-users-datatable');
+    adminUsersDatatable.DataTable({
         processing: true,
         serverSide: true,
         ajax: route('mage.users.list').url(),
@@ -56,10 +56,10 @@ $(document).ready(function () {
         }]
     });
 
-    $adminUsersDatatable.on('click', '.mage-users-delete-btn', function(e) {
-        let id = $(e.target).attr('data-id');
-        let locale = $adminUsersDatatable.dataTableSettings[0].oLanguage.sweetAlert.users;
+    adminUsersDatatable.on('click', '.mage-users-delete-btn', function(e) {
+        let id = jQ(e.target).attr('data-id');
+        let locale = adminUsersDatatable.dataTableSettings[0].oLanguage.sweetAlert.users;
 
-        mage.deleteAlert(id, $adminUsersDatatable, 'mage.users.destroy', locale);
+        mage.deleteAlert(id, adminUsersDatatable, 'mage.users.destroy', locale);
     });
 });

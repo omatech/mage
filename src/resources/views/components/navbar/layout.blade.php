@@ -1,7 +1,7 @@
 <nav class="main-header navbar navbar-expand bg-custom elevation-1">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#">
+            <a class="nav-link" id="nav-toggle" data-widget="pushmenu" href="#">
                 <i data-feather="grid" style="width:18px"></i>
             </a>
         </li>

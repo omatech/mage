@@ -1,6 +1,6 @@
-$(document).ready(function () {
-    let $adminPermissionsDatatable = $('#mage-permissions-datatable');
-    $adminPermissionsDatatable.DataTable({
+jQ(document).ready(function () {
+    let adminPermissionsDatatable = jQ('#mage-permissions-datatable');
+    adminPermissionsDatatable.DataTable({
         processing: true,
         serverSide: true,
         ajax: route('mage.permissions.list').url(),
@@ -43,10 +43,10 @@ $(document).ready(function () {
         ]
     });
 
-    $adminPermissionsDatatable.on('click', '.mage-permissions-delete-btn', function(e) {
-        let id = $(e.target).attr('data-id');
-        let locale = $adminPermissionsDatatable.dataTableSettings[0].oLanguage.sweetAlert.permissions;
+    adminPermissionsDatatable.on('click', '.mage-permissions-delete-btn', function(e) {
+        let id = jQ(e.target).attr('data-id');
+        let locale = adminPermissionsDatatable.dataTableSettings[0].oLanguage.sweetAlert.permissions;
 
-        mage.deleteAlert(id, $adminPermissionsDatatable, 'mage.permissions.destroy', locale);
+        mage.deleteAlert(id, adminPermissionsDatatable, 'mage.permissions.destroy', locale);
     });
 });

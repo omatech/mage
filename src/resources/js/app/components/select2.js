@@ -1,3 +1,3 @@
-$(document).ready(function () {
-    $('.select2').select2();
+jQ(document).ready(function () {
+    jQ('.select2').select2();
 });

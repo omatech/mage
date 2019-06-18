@@ -6,7 +6,10 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 }
-window.$ = window.jQuery = require('jquery');
+
+window.jQ = window.jQuery = require('jquery');
+jQ.noConflict();
+
 window.Swal = require('sweetalert2/dist/sweetalert2.all');
 window.Toast = require('./app/components/alerts/toast').Toast;
 window.Dropzone = require('./vendor/dropzone/src_dropzone');
