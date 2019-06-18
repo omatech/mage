@@ -55,18 +55,10 @@ function () {
       catch(e) {}
 
       if (text === undefined) {
-        this.createTranslation(key);
         return key;
       }
 
       return text;
-    }
-  }, {
-    key: "createTranslation",
-    value: function createTranslation(key) {
-      axios.post('###ROUTE###', {
-        key: key
-      });
     }
   }, {
     key: "get",

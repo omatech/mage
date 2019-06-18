@@ -30,25 +30,26 @@ class BladeTranslationsGenerator
     private function generateJS($trans)
     {
         $trans = json_encode($trans);
-        $debug = env('APP_ENV') == 'local';
+        $debug = env('APP_ENV') == 'prod';
 
-        $script = "<script type=\"text/javascript\">
-            window.Translations = $trans;
-        </script>";
+        $script = null;
+        $scriptTrans = "window.Translations = $trans;";
 
-        $isMageRoute = config('mage.prefix').'*';
-        $isMageRoute = isRoute($isMageRoute);
+        if (!$debug) {
+            $route = url(route('mage.translations.add'));
 
-        if (!$isMageRoute) {
-            if ($debug) {
-                $script .= "<script src=\"/vendor/mage/mage.js\"></script>";
-                $script .= $this->routerGenerator->generate();
-            } else {
-                $script .= "<script type=\"text/javascript\">
-                    function normalizeParams(r){if(void 0===r)return{};if(\"object\"!=typeof r)throw new Error(\"Translator Error: Invalid parameters format\");return r}function replaceParams(r,a){return Object.keys(a).forEach(function(n){r=r.replace(\":\"+n,a[n])}),r}window.t=function(r,a=null,n={}){if(null==a)return r;var e=Translations[a];return void 0===e?r:e=replaceParams(e,n=normalizeParams(n))};
-                    window.trans=function(a,b={}){if(null==a)return a;var c=Translations[a];return void 0===c?a:(b=normalizeParams(b),c=replaceParams(c),c)};function normalizeParams(a){if(\"undefined\"==typeof a)return{};if(\"object\"!=typeof a)throw new Error(\"Translator Error: Invalid parameters format\");return a}function replaceParams(a,b){return Object.keys(b).forEach(function(c){a=a.replace(\":\"+c,b[c])}),a}
-                </script>";
-            }
+            $script = file_get_contents(__DIR__.'/../../../resources/js/app/translations/t.js');
+            $script2 = file_get_contents(__DIR__.'/../../../resources/js/app/translations/trans.js');
+
+            $script = str_replace('###ROUTE###', $route, $script);
+            $script2 = str_replace('###ROUTE###', $route, $script2);
+
+            $script = "<script type=\"text/javascript\">\n$scriptTrans\n$script\n$script2\n</script>";
+        } else {
+            $script = file_get_contents(__DIR__.'/../../../resources/js/app/translations/t.public.js');
+            $script2 = file_get_contents(__DIR__.'/../../../resources/js/app/translations/trans.public.js');
+
+            $script = "<script type=\"text/javascript\">\n$scriptTrans\n$script\n$script2\n</script>";
         }
 
         return $script;

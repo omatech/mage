@@ -32,19 +32,10 @@ function () {
       catch(e) {}
 
       if (text === undefined) {
-        this.createTranslationWithValue(this.value, key);
         return this.value;
       }
 
       return trans(this.key, this.params);
-    }
-  }, {
-    key: "createTranslationWithValue",
-    value: function createTranslationWithValue(value, key) {
-      axios.post('###ROUTE###', {
-        value: value,
-        key: key
-      });
     }
   }, {
     key: "t",

@@ -31,8 +31,8 @@ window.mage = {
     'translations': { 'editAlert': require('./app/translations/edit.alert').call }
 };
 
-window.trans = require('./app/translations/trans').default;
-window.t = require('./app/translations/t').default;
+//window.trans = require('./app/translations/trans').default;
+//window.t = require('./app/translations/t').default;
 
 require('./app/components/overlayScrollbars');
 
