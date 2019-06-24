@@ -8,6 +8,7 @@ use Omatech\Mage\App\Repositories\Translation\ExistsCreateTranslation;
 use Omatech\Mage\App\Repositories\Translation\UpdateTranslation;
 use Omatech\Mage\App\Repositories\Translation\ListTranslationsDatatable;
 use Omatech\Mage\App\Repositories\Translation\CreateTranslation;
+use Omatech\Mage\App\Repositories\Translation\DeleteTranslation;
 
 class TranslationController extends Controller
 {
@@ -55,6 +56,13 @@ class TranslationController extends Controller
         $update->make($id, $params['lang'], $params['value']);
     }
 
+    public function destroy(DeleteTranslation $translation, $id)
+    {
+        $translation = $translation->make($id);
+
+        return response()->json(['status' => 'success']);
+    }
+
     public function add(ExistsCreateTranslation $existsCreateTranslation)
     {
         $key = request()->key;
@@ -63,5 +71,12 @@ class TranslationController extends Controller
         $existsCreateTranslation->make($key, $value);
 
         return response()->json(['status' => 'OK']);
+    }
+
+    public function set($lang)
+    {
+        session(['locale' =>  $lang]);
+
+        return redirect()->back();
     }
 }

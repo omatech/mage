@@ -6,7 +6,7 @@ jQ(document).ready(function () {
         ajax: route('mage.users.list').url(),
         deferRender: true,
         rowId: 'id',
-        language: { 'url': route('mage.datatables.i18n') },
+        language: window.dataTablesLocales(),
         paging: true,
         lengthChange: true,
         lengthMenu: [10, 25, 50, 100],
@@ -25,11 +25,6 @@ jQ(document).ready(function () {
             { data: null, searchable: false, orderable: false, render: function(data, type, row) {
                 return "" +
                 "<div class=\"btn-group\" role=\"group\">" +
-                /*  "<a href=\"" + route('mage.users.show', { id: data.id }) + "\">" +
-                    "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
-                      "<i class=\"fa fa-eye\"></i>" +
-                    "</button>" +
-                  "</a>" +*/
                   "<a href=\"" + route('mage.users.edit', { id: data.id }) + "\">" +
                     "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
                       "<i class=\"fa fa-pen\"></i>" +
@@ -58,8 +53,13 @@ jQ(document).ready(function () {
 
     adminUsersDatatable.on('click', '.mage-users-delete-btn', function(e) {
         let id = jQ(e.target).attr('data-id');
-        let locale = adminUsersDatatable.dataTableSettings[0].oLanguage.sweetAlert.users;
+        let locale = {
+          "title"   : trans('mage.datatable.sweetalert.users.title'),
+          "text"    : trans('mage.datatable.sweetalert.users.text'),
+          "success" : trans('mage.datatable.sweetalert.users.success'),
+          "error"   : trans('mage.datatable.sweetalert.users.error'),
+        }
 
-        mage.deleteAlert(id, adminUsersDatatable, 'mage.users.destroy', locale);
+        window.deleteAlert(id, adminUsersDatatable, 'mage.users.destroy', locale);
     });
 });

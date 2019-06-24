@@ -1,12 +1,16 @@
 @extends('mage::layout.auth')
-@section('web-title', __('mage.auth.reset-password'))
+@section('web-title', __('mage.auth.reset-password.web-title'))
+@section('page-title', __('mage.auth.reset-password.page-title'))
+@section('page-description', __('mage.auth.reset-password.page-description'))
+@section('page-subdescription', __('mage.auth.reset-password.page-subdescription'))
+
 @section('content')
     <div class=" auth-content">
         <div class="mb-4 text-center">
             <i class="fa fa-key icon-login"></i>
         </div>
         <h3 class="mb-5 text-center">@lang('mage.auth.reset-password')</h3>
-        <form method="POST" action="{{ route('mage.auth.password.update') }}">
+        <form method="POST" action="{{ route('mage.auth.password.update') }}" class="mb-4">
             {{ csrf_field() }}
             @if($errors->count())
                 <div class="input-group mb-3">
@@ -38,5 +42,7 @@
                 </div>
             </div>
         </form>
+        <hr />
+        <p class="mb-2 text-center"><a href="{{ route('mage.auth.login.index') }}">@lang('mage.auth.forgot-password.login')</a></p>
     </div>
 @endsection

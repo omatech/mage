@@ -21,7 +21,7 @@ class UpdateUserAssignRoles
             $this->user->make($id, [
                 'name'     => $data['name'],
                 'email'    => $data['email'],
-                //'language' => $data['language']
+                'language' => $data['language']
             ]);
 
             return $this->roles->make($id, $data['roles']);

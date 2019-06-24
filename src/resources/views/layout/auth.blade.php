@@ -16,15 +16,17 @@
 </head>
 <body>
 <div class="auth-wrapper align-items-stretch">
-    <div class="row align-items-center w-100 align-items-stretch bg-white">
-        <div class="d-none d-lg-flex col-lg-8 auth-bg-img align-items-center d-flex justify-content-center"
-             style="background-image: url('/vendor/mage/images/login.jpg');">
-            <div class="col-md-8">
-                <h1 class="text-white mb-3">Login in Mage</h1>
-                <p class="text-white">Speak, friend and enter.</p>
+    <div class="row align-items-center w-100 align-items-stretch">
+        <div class="col-12 col-lg-7 register-bg" style="background-position:center; background-image: url('/vendor/mage/images/login.jpg')">
+            <div class="row justify-content-md-center align-items-md-center">             
+                <div class="col-12 col-md-7 col-lg-9 register-text">
+                    <h1 class="register-title">@yield('page-title')</h1>
+                    <p class="epi">@yield('page-description')</p>
+                    <p class="op-50">@yield('page-subdescription')</p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-4 align-items-stret h-100 align-items-center d-flex justify-content-center">
+        <div class="col-12 col-lg-5 align-items-stret h-100 align-items-center d-flex justify-content-center">
             @yield('content')
         </div>
     </div>

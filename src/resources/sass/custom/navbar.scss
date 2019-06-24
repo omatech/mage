@@ -8,7 +8,7 @@ Nav- Main
     color: rgba(255, 255, 255, 80%);
     padding: 0.35rem 1rem;
 
-    &:hover {
+    &:hover, &[aria-expanded="true"] {
       color: white
     }
   }
@@ -16,6 +16,8 @@ Nav- Main
 
 .main-header.navbar.navbar-expand {
   height: 54px;
+  padding-left: 0;
+  
   .navbar-nav {
     height: 54px;
     .nav-item {
@@ -31,13 +33,17 @@ Nav- Main
           margin-top: -3px;
         }
 
-        &:hover {
+        &:hover, &[aria-expanded="true"] {
           background-color: rgba(0,0,0,0.4);
         }
       }
       .nav-link.flag-menu {
         font-size: 18px;
         line-height:42px;
+
+        .flag-icon {
+          border-radius: 50%;
+        }
       }
 
       .dropdown-menu {
@@ -53,6 +59,7 @@ Nav- Main
 
         .flag-icon {
           margin-right: 5px;
+          border-radius: 50%;
         }
 
         .dropdown-item {
@@ -162,27 +169,6 @@ Nav- Main
           padding: 0.25rem 1rem;
         }
       }
-    }
-  }
-  .navbar-nav.navbar-right {
-    
-    .nav-item.dropdown:nth-child(1) {
-      @media (max-width: 575.98px) {
-        .dropdown-menu {
-          left: auto;
-          right: -108px;
-        }
-      }
-    }
-    .nav-item.dropdown:nth-child(2) {
-      @media (max-width: 575.98px) {
-        .dropdown-menu {
-          left: auto;
-          right: -54px;
-        }
-      }
-    }
-    .nav-item.dropdown:nth-child(3) {
     }
   }
 }

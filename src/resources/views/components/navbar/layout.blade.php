@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand bg-custom elevation-1">
+<nav class="main-header navbar navbar-expand bg-custom">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" id="nav-toggle" data-widget="pushmenu" href="#">
@@ -59,29 +59,36 @@
                     </li>
                 </ul>
             </div>
-        </li>--}}
+        </li>  --}}
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <img src="{{ url('/vendor/mage/images/wizard.svg') }}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
+                <img src="{{ url('vendor/mage/images/profile.png') }}" alt="Mage Logo" class="img-circle elevation-3 img-avatar">
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-user">
                 <div class="dropdown-user-box">
                     <div class="user-img">
-                        <img src="{{ url('/vendor/mage/images/wizard.svg') }}" alt="user">
+                        <img src="{{ url('vendor/mage/images/profile.png') }}" alt="user">
                     </div>
                     <div class="user-text">
-                        <h4>{{auth()->guard('mage')->user()->name}}</h4>
+                        <h4>{{ auth()->guard('mage')->user()->name }}</h4>
                         <p class="text-muted">{{auth()->guard('mage')->user()->email}}</p>
                     </div>
                 </div>
                 <div class="dropdown-divider"></div>
+                <a href="{{route('mage.auth.logout')}}" class="dropdown-item">
+                    <i data-feather="clipboard" style="width:16px"></i>
+                    <span class="dropdown-item-option">@lang('mage.auth.user.profile')</span>
+                </a>
+                <a href="{{route('mage.auth.logout')}}" class="dropdown-item">
+                    <i data-feather="key" style="width:16px"></i>
+                    <span class="dropdown-item-option">@lang('mage.auth.user.password')</span>
+                </a>
                 <a href="{{route('mage.auth.logout')}}" class="dropdown-item">
                     <i data-feather="power" style="width:16px"></i>
                     <span class="dropdown-item-option">@lang('mage.auth.user.logout')</span>
                 </a>
             </div>
         </li>
-
         @if(config('mage.translations.show_select_switch'))
         <li class="nav-item dropdown">
             @php
@@ -94,7 +101,7 @@
             <div class="dropdown-menu">
                 @foreach($locales as $locale)
                     @if($locale != $locales[$key])
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('mage.translations.set', $locale['locale']) }}">
                             <i class="flag-icon flag-icon-{{$locale['flag']}}"></i> {{ __($locale['name_key'])}}
                         </a>
                     @endif

@@ -36,10 +36,4 @@ jQ(document).ready(function () {
 
     OverlayScrollbars(document.querySelectorAll('body'), options);
     OverlayScrollbars(document.querySelectorAll('.sidebar'), options);
-
-    jQ('#nav-toggle').on('click', function(e) {
-        setTimeout(() => {
-            jQ(jQ.fn.dataTable.tables()).DataTable().draw('page')
-        }, 100)
-    });
 });

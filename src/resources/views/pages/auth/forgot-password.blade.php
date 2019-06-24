@@ -1,7 +1,11 @@
 @extends('mage::layout.auth')
-@section('web-title', __('mage.auth.forgot-password'))
+@section('web-title', __('mage.auth.forgot-password.web-title'))
+@section('page-title', __('mage.auth.forgot-password.page-title'))
+@section('page-description', __('mage.auth.forgot-password.page-description'))
+@section('page-subdescription', __('mage.auth.forgot-password.page-subdescription'))
+
 @section('content')
-    <div class=" auth-content text-center">
+    <div class="auth-content text-center">
         <div class="mb-4">
             <i class="fa fa-key icon-login"></i>
         </div>
@@ -32,8 +36,10 @@
                 <i class="far fa-check-circle icon-reset-success" style="font-size: 7rem"></i>
             </div>
 
-            {{ session('status') }}
+            <p>{{ session('status') }}</p>
 
         @endif
+        <hr />
+        <p class="mb-2 text-center"><a href="{{ route('mage.auth.login.index') }}">@lang('mage.auth.forgot-password.login')</a></p>
     </div>
 @endsection

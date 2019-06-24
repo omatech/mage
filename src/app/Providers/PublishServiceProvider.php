@@ -43,6 +43,7 @@ class PublishServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/dist/mage.css' => public_path('vendor/mage/mage.css'),
             __DIR__.'/../../resources/dist/mix-manifest.json' => public_path('vendor/mage/mix-manifest.json'),
             __DIR__.'/../../resources/images/' => public_path('vendor/mage/images/'),
+            __DIR__.'/../../resources/dist/images/' => public_path('images/'),
         ], 'mage-publish');
 
         $this->publishes([
@@ -50,6 +51,7 @@ class PublishServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/dist/mage.css' => public_path('vendor/mage/mage.css'),
             __DIR__.'/../../resources/dist/mix-manifest.json' => public_path('vendor/mage/mix-manifest.json'),
             __DIR__.'/../../resources/images/' => public_path('vendor/mage/images/'),
+            __DIR__.'/../../resources/dist/images/' => public_path('images/'),
         ], 'mage-assets');
     }
 

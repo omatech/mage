@@ -7,7 +7,7 @@ use Omatech\Mage\App\Repositories\UserBaseRepository;
 
 class GetUser extends UserBaseRepository
 {
-    public function make($id, $columns = ['id', 'name', 'email'])
+    public function make($id, $columns = ['id', 'name', 'email', 'language'])
     {
         $users = $this->query()
             ->with(['roles'])

@@ -8,20 +8,68 @@ Nav - sidebar
 
 .main-sidebar {
   overflow-x: hidden;
-}
 
+  .sidebar-profile {
+    padding: 20px 20px 12px;
+    background-color: #fff;
+    color: #4d627b;
+    opacity: 1;
+    margin-bottom: 7px;
+    max-height: 350px;
+    overflow: hidden;
+    border-right: 1px solid #f1f1f1;
+
+    .pad-btm {
+      padding-bottom: 15px;
+
+      .img-md {
+        float: none;
+      }
+    }
+
+    .box-block {
+      display: block;     
+      text-decoration: none;
+      color: #7a878e;
+      outline: 0;
+
+      .user-name {
+        color: #4d627b;
+        margin: 0;
+        font-size: 1em;
+        font-weight: 700;
+      }
+
+      .user-email {
+        font-size: .9em;
+        color: #4d627b;
+        opacity: 0.75;
+      }
+    }
+  }
+}
+.sidebar-collapse .sidebar-profile {
+  display: none;
+}
 [class*=sidebar-dark] .brand-link {
   border-bottom: 0;
 }
 
-.brand-image {
-  float: left;
-  line-height: 0.8;
-  max-height: 34px;
-  width: auto;
-  margin-left: 0.8rem;
+.sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-image {
   margin-right: 0.8rem;
-  margin-top: -4px;
+}
+
+.brand-link { 
+  background: #1e88e5;
+  .brand-image {
+    float: left;
+    line-height: 0.8;
+    max-height: 34px;
+    width: auto;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+    margin-top: -4px;
+  }
 }
 
 .sidebar-dark-primary {
@@ -44,21 +92,10 @@ Nav - sidebar
   text-transform: uppercase;
   font-size: .7rem;
   font-weight: 600;
+  padding-bottom: .8rem;
 }
 
-li.nav-item.has-treeview > a:after {
-  content: "\F104";
-  font-family: 'Font Awesome\ 5 Free';
-  font-size: 15px;
-  font-weight: 600;
-  border: none;
-  position: absolute;
-  top: 11px;
-  right: 20px;
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
-}
-
+li.nav-item.has-treeview > a:after,
 .sidebar-collapse .nav-sidebar li.nav-item.has-treeview > a:after {
   content: "\F104";
   font-family: 'Font Awesome\ 5 Free';
@@ -160,4 +197,20 @@ li.nav-item.has-treeview.menu-open > a:after {
 .main-sidebar .brand-text,
 .sidebar .user-panel .info {
   transition: none;
+}
+
+.sidebar-dark-primary .nav-treeview > .nav-item > .nav-link {
+  color: #C2C7D0;
+
+  &:first-child {
+    margin-top: 0px;
+  } 
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-treeview {
+  background: #47494b;
+}
+
+.nav-sidebar .nav-header:not(:first-of-type) {
+  padding: 1rem 1rem 0.8rem 1rem;
 }

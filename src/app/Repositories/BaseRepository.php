@@ -96,6 +96,17 @@ abstract class BaseRepository
         return $this;
     }
 
+    /**
+     * Reset all Criterias
+     *
+     * @return $this
+     */
+    public function resetCriteria()
+    {
+        $this->criteria = new Collection();
+        return $this;
+    }
+
     public function applyCriteria()
     {
         $criterias = $this->getCriterias() ?? [];

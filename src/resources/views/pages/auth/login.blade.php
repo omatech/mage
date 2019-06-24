@@ -1,5 +1,9 @@
 @extends('mage::layout.auth')
-@section('web-title', __('mage.auth.login.login'))
+@section('web-title', __('mage.auth.login.web-title'))
+@section('page-title', __('mage.auth.login.page-title'))
+@section('page-description', __('mage.auth.login.page-description'))
+@section('page-subdescription', __('mage.auth.login.page-subdescription'))
+
 @section('content')
     <div class=" auth-content text-center">
         <div class="mb-4">
@@ -46,5 +50,9 @@
             </div>
         </form>
         <p class="mb-2 text-muted"><a href="{{ route('mage.auth.password.request') }}">@lang('mage.auth.login.forgot-password')</a></p>
+        @if(config('mage.enable_register_route'))
+        <hr />
+        <p class="mb-2 text-muted"><a href="{{ route('mage.auth.register.index') }}">@lang('mage.auth.login.register')</a></p>
+        @endif
     </div>
 @endsection

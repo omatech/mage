@@ -7,25 +7,17 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MailResetPasswordNotification extends Notification implements ShouldQueue
+class MailRegisteredWelcomeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-
-    /**
-     * The password reset token.
-     *
-     * @var string
-     */
-    public $token;
 
     /**
      * Create a new notification instance.
      *
      * @param $token
      */
-    public function __construct($token)
+    public function __construct()
     {
-        $this->token = $token;
         $this->queue = 'mail';
     }
 
@@ -52,7 +44,7 @@ class MailResetPasswordNotification extends Notification implements ShouldQueue
             ->from(env('MAIL_USERNAME'), 'Omatech')
             ->subject(__('mage.auth.reset-password.email.subject'))
             ->view('mage::pages.auth.reset-email', [
-                "token" => $this->token
+                "token" => 'abc'
             ]);
     }
 }

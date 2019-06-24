@@ -7,11 +7,16 @@ jQ(document).ready(function () {
             ids.push(item.value);
         });
 
-        setPermissions(ids);
+        setPermissions(ids).then(function() {
+            Toast.fire({
+                type: 'success',
+                title: trans('mage.permissions.toggle')
+            });
+        });
     });
 
     function setPermissions(permissions) {
         let id = jQ('#rol-id').val();
-        axios.post(route('mage.roles.permissions.assign', id), {permissions: permissions});
+        return axios.post(route('mage.roles.permissions.assign', id), {permissions: permissions});
     }
 });

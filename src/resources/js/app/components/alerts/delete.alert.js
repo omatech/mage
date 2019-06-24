@@ -1,13 +1,11 @@
-export function call(id, dataTable, deleteRoute, model) {
-    let locale = dataTable.dataTableSettings[0].oLanguage.sweetAlert;
-    
+window.deleteAlert = function(id, dataTable, deleteRoute, locale) {    
     Swal.fire({
-        title: model.title,
-        text: model.text,
+        title: locale.title,
+        html: locale.text,
         type: 'error', 
         showCancelButton: true,
-        confirmButtonText: locale.buttons.confirm,
-        cancelButtonText: locale.buttons.cancel,
+        confirmButtonText: trans('mage.datatables.sweetalert.buttons.confirm'),
+        cancelButtonText: trans('mage.datatables.sweetalert.buttons.cancel'),
         reverseButtons: true,
         focusCancel: true
     }).then(result => {
@@ -15,16 +13,16 @@ export function call(id, dataTable, deleteRoute, model) {
             deleteResource(route(deleteRoute, id)).then(() => {
                 Toast.fire({
                     type: 'success',
-                    title: model.success
+                    title: locale.success
                 });
                 dataTable.DataTable().ajax.reload(null, false);
             })
             .catch((error) => {
                 Toast.fire({
                     type: 'error',
-                    title: model.error
+                    title: locale.error
                 });
-                console.log(error);
+                console.error(error);
             });
         }
     });

@@ -17,6 +17,7 @@
             @foreach($availableLanguages as $language)
                 <th>@lang('mage.translations.datatable.field.'.$language)</th>
             @endforeach
+            <th>@lang('mage.translations.datatable.field.actions')</th>
         </tr>
     </thead>
     <tbody>

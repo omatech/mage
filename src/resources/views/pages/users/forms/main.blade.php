@@ -9,7 +9,11 @@
     </div>
     <div class="form-group">
         <label for="mage-users-language">@lang('mage.users.form.language')</label>
-        <input name="users_language" type="text" class="form-control @if($errors->has('users_language')) is-invalid @endif" id="mage-users-language" placeholder="@lang('mage.users.form.language.placeholder')" value="{{ old('users_language', $user->language ?? '') }}">
+        <select name="users_language" class="form-control select2 @if($errors->has('users_language')) is-invalid @endif" id="mage-users-language" placeholder="@lang('mage.users.form.language.placeholder')">
+            @foreach(config('mage.translations.available_locales') as $locale)
+                <option value="{{ $locale['locale'] }}" @if(isset($user) && $user->language == $locale['locale'] || $locale['locale'] == old('users_language')) selected @endif>@lang($locale['name_key'])</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group @if($errors->has('users_roles')) is-invalid @endif">
         <label for="mage-users-roles">@lang('mage.users.form.roles')</label>

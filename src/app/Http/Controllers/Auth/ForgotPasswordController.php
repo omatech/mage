@@ -30,7 +30,7 @@ class ForgotPasswordController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email'
-        ],[
+        ], [
             'email.required' => __('mage.auth.validations.email.required'),
             'email.string' => __('mage.auth.validations.email.string'),
             'email.email' => __('mage.auth.validations.email.email'),

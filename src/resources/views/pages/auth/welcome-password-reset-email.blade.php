@@ -1,0 +1,1 @@
+{{url(config('app.url').route('mage.auth.password.reset', $token, false))}}

@@ -9,7 +9,7 @@
 
 Route::namespace('Omatech\Mage\App\Http\Controllers')
      ->prefix(config('mage.prefix'))
-     ->middleware('web')
+     ->middleware(['web', 'setLocale'])
      ->name('mage.')
      ->group(function ($route) {
 
@@ -22,8 +22,12 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                ->group(function ($auth) {
                     $auth->get('login', 'LoginController@showLoginForm')->name('login.index');
                     $auth->post('login', 'LoginController@login')->name('login');
+
+                if (config('mage.enable_register_route')) {
                     $auth->get('register', 'RegisterController@showRegistrationForm')->name('register.index');
                     $auth->post('register', 'RegisterController@register')->name('register');
+                }
+
                     $auth->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
                     $auth->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
                     $auth->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
@@ -86,6 +90,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                     $logged->middleware('checkForPermissions:mage-access-translations-zone')
                            ->group(function ($translations) {
                                 $translations->get('translations/list', 'TranslationController@list')->name('translations.list');
+                                $translations->get('translations/set/{lang}', 'TranslationController@set')->name('translations.set');
                                 $translations->resource('translations', 'TranslationController');
                            });
 
@@ -94,8 +99,6 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                      */
                    $logged->get('vault/{id}', 'VaultController@get')->name('vault.get');
                    $logged->post('vault', 'VaultController@upload')->name('vault.upload');
-
-                   $logged->get('datatables/i18n', 'DatatableController@i18n')->name('datatables.i18n');
                });
 
         /**

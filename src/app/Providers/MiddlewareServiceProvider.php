@@ -3,10 +3,10 @@
 namespace Omatech\Mage\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Omatech\Mage\App\Http\Middleware\CheckForPermissions;
 use Omatech\Mage\App\Http\Middleware\RedirectIfAuthenticated;
 use Omatech\Mage\App\Http\Middleware\RedirectIfNotAuthenticated;
+use Omatech\Mage\App\Http\Middleware\SetLocale;
 
 class MiddlewareServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,7 @@ class MiddlewareServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(HttpKernel $kernel)
+    public function boot()
     {
         $this->middlewares();
     }
@@ -30,5 +30,6 @@ class MiddlewareServiceProvider extends ServiceProvider
         $this->app['router']->aliasMiddleware('mageRedirectIfAuthenticated', RedirectIfAuthenticated::class);
         $this->app['router']->aliasMiddleware('mageRedirectIfNotAuthenticated', RedirectIfNotAuthenticated::class);
         $this->app['router']->aliasMiddleware('checkForPermissions', CheckForPermissions::class);
+        $this->app['router']->aliasMiddleware('setLocale', SetLocale::class);
     }
 }

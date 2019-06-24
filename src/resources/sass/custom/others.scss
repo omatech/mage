@@ -30,3 +30,136 @@
 input:focus {
   outline: none;
 }
+
+.bg-advancing-blue {
+
+  background-color: #02005C;
+
+  .register-title {
+      color: #F75F5F;
+  }
+}
+
+.bg-advancing-orange {
+
+  background-color: #F75F5F;
+
+  .register-title {
+      color: #02005C;
+  }
+}
+
+.btn-input-file-remove {
+  background-color: #dc3545 !important;
+  font-weight: 500 !important;
+  color: white;
+  padding: 5px;
+  padding-left: 10px;
+  width: 40px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.alert.alert-info {
+  border-color: #207ae9;
+  background-color: #2092e9 !important;
+  border-radius: 0;
+}
+
+h6 {
+  font-weight: 600
+}
+
+.register-bg {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: white;
+  text-align: center;
+}
+.register-form {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+
+  .form-control {
+      border-radius: 20px;
+  }
+}
+.register-illust {
+  margin-bottom: 3rem;
+}
+.register-illust img {
+  max-width: 100%;
+}
+.register-text img {
+  margin-bottom: 2rem;
+}
+.register-title {
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+.epi {
+  font-size: 1.4rem;
+  line-height: 1.24;
+  margin-bottom: 2rem;
+}
+.op-50 {
+  opacity: .5;
+}
+.locker-title h2 {
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+.locker-title p {
+  font-size: 1.2rem;
+}
+
+.btn-submit {
+  padding: 5px 60px;
+  color: #00015b;
+  background-color: #6cf0b9;
+  border-color: #66e2b3;
+  font-weight: 600;
+  border-radius: 20px;
+
+  &:hover {
+      color: #00015b;
+      background-color: #6adaab;
+      border-color: #6cf0b9;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .register-text {
+      text-align: left;
+  }
+  .register-illust {
+      margin-bottom: 0;
+  }
+  .locker-title h2 {
+      font-size: 1.8rem;
+  }
+  .locker-title p {
+      font-size: 1.4rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-bg > .row {
+      height: 100%;
+  }
+  .register-text {
+      padding-right: 6rem;
+  }
+  .register-title {
+      font-size: 3.4rem;
+  }
+  .epi {
+      font-size: 2rem;
+  }
+  .register-form {
+      padding-left: 2rem;
+      padding-right: 2rem;
+  }
+}

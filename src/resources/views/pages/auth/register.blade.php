@@ -1,18 +1,28 @@
 @extends('mage::layout.auth')
-@section('web-title', __('mage.auth.register'))
+@section('web-title', __('mage.auth.register.web-title'))
+@section('page-title', __('mage.auth.register.page-title'))
+@section('page-description', __('mage.auth.register.page-description'))
+@section('page-subdescription', __('mage.auth.register.page-subdescription'))
+
 @section('content')
     <div class=" auth-content">
         <div class="mb-4 text-center">
             <i class="fa fa-key icon-login"></i>
         </div>
         <h3 class="mb-5 text-center">@lang('mage.auth.register')</h3>
-        <form method="POST" action="{{ route('mage.auth.register') }}">
+        <form method="POST" action="{{ route('mage.auth.register') }}" class="mb-4">
             {{ csrf_field() }}
             @if($errors->count())
                 <div class="input-group mb-3">
                     <p class="text-danger" style="margin:0 auto;"><span>{{ $errors->first() }}</span></p>
                 </div>
             @endif
+            <div class="input-group mb-3">
+                <input type="text" name="name" class="form-control @if($errors->count()) is-invalid @endif" placeholder="@lang('mage.auth.register.name')">
+                <div class="input-group-append">
+                    <span class="fa fa-user input-group-text"></span>
+                </div>
+            </div>
             <div class="input-group mb-3">
                 <input type="email" name="email" class="form-control @if($errors->count()) is-invalid @endif" placeholder="@lang('mage.auth.register.email')">
                 <div class="input-group-append">
@@ -37,5 +47,7 @@
                 </div>
             </div>
         </form>
+        <hr />
+        <p class="mb-2 text-center"><a href="{{ route('mage.auth.login.index') }}">@lang('mage.auth.register.login')</a></p>
     </div>
 @endsection

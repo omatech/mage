@@ -6,7 +6,7 @@ jQ(document).ready(function () {
         ajax: route('mage.permissions.list').url(),
         deferRender: true,
         rowId: 'id',
-        language: { 'url': route('mage.datatables.i18n') },
+        language: window.dataTablesLocales(),
         paging: true,
         lengthChange: true,
         lengthMenu: [10, 25, 50, 100],
@@ -22,11 +22,6 @@ jQ(document).ready(function () {
             { data: null, searchable: false, orderable: false, render: function(data, type, row) {
                 return "" +
                 "<div class=\"btn-group\" role=\"group\">" +
-                  /*"<a href=\"" + route('mage.permissions.show', { id: data.id }) + "\">" +
-                    "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
-                      "<i class=\"fa fa-eye\"></i>" +
-                    "</button>" +
-                  "</a>" +*/
                   "<a href=\"" + route('mage.permissions.edit', { id: data.id }) + "\">" +
                     "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
                       "<i class=\"fa fa-pen\"></i>" +
@@ -45,8 +40,13 @@ jQ(document).ready(function () {
 
     adminPermissionsDatatable.on('click', '.mage-permissions-delete-btn', function(e) {
         let id = jQ(e.target).attr('data-id');
-        let locale = adminPermissionsDatatable.dataTableSettings[0].oLanguage.sweetAlert.permissions;
+        let locale = {
+          "title"   : trans('mage.datatable.sweetalert.permissions.title'),
+          "text"    : trans('mage.datatable.sweetalert.permissions.text'),
+          "success" : trans('mage.datatable.sweetalert.permissions.success'),
+          "error"   : trans('mage.datatable.sweetalert.permissions.error'),
+        }
 
-        mage.deleteAlert(id, adminPermissionsDatatable, 'mage.permissions.destroy', locale);
+        window.deleteAlert(id, adminPermissionsDatatable, 'mage.permissions.destroy', locale);
     });
 });

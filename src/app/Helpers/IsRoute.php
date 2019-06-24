@@ -3,7 +3,9 @@
 if (!function_exists('isRoute')) {
     function isRoute($routes)
     {
-        if(!is_array($routes)) $routes = [$routes];
+        if (!is_array($routes)) {
+            $routes = [$routes];
+        }
         
         $checkedRoutes = [];
 

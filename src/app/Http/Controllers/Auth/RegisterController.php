@@ -2,7 +2,8 @@
 
 namespace Omatech\Mage\App\Http\Controllers\Auth;
 
-use App\User;
+use Illuminate\Http\Request;
+use Omatech\Mage\App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -62,6 +63,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'name.required' => __('mage.auth.validations.name.required'),
+            'email.required' => __('mage.auth.validations.email.required'),
+            'email.email' => __('mage.auth.validations.email.email'),
+            'email.unique' => __('mage.auth.validations.email.unique'),
+            'password.required' => __('mage.auth.validations.password.required'),
+            'password.confirmed' => __('mage.auth.validations.password.confirmed'),
+            'password.min' => __('mage.auth.validations.password.min'),
         ]);
     }
 
@@ -78,5 +87,18 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        $user->assignRole(config('mage.authentication.default_role_on_register'));
+        $user->sendRegisteredWelcomeNotification();
     }
 }
