@@ -72,6 +72,7 @@ class PublishServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/views/assets' => resource_path('views/vendor/mage/assets'),
             __DIR__.'/../../resources/views/components/sidebar/sections/extends' => resource_path('views/vendor/mage/components/sidebar/sections/extends'),
             __DIR__.'/../../resources/views/components/sidebar/logo.blade.php' => resource_path('views/vendor/mage/components/sidebar/logo.blade.php'),
+            __DIR__.'/../../resources/views/components/sidebar/profile.blade.php' => resource_path('views/vendor/mage/components/sidebar/profile.blade.php'),
             __DIR__.'/../../resources/views/components/favicon.blade.php' => resource_path('views/vendor/mage/components/favicon.blade.php'),
             __DIR__.'/../../resources/views/components/navbar/layout.blade.php' => resource_path('views/vendor/mage/components/navbar/layout.blade.php'),
             __DIR__.'/../../resources/views/components/annotation.blade.php' => resource_path('views/vendor/mage/components/annotation.blade.php'),
@@ -80,6 +81,8 @@ class PublishServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/views/pages/auth' => resource_path('views/vendor/mage/pages/auth'),
             __DIR__.'/../../resources/views/pages/dashboard' => resource_path('views/vendor/mage/pages/dashboard'),
             __DIR__.'/../../resources/views/layout/auth.blade.php' => resource_path('views/vendor/mage/layout/auth.blade.php'),
+            __DIR__.'/../../resources/views/errors' => resource_path('views/vendor/mage/errors'),
+
         ], 'mage-publish');
     }
 }

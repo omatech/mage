@@ -52,3 +52,37 @@
 .card .nav.flex-column>li {
   border-bottom: 1px solid #f1f1f1;
 }
+
+.card-profile-image {
+  text-align: center;
+
+  img {
+    padding: 15px;
+  }
+  .card-title {
+    margin-bottom: 10px;
+  }
+}
+
+.profile-tab {
+  .nav-item .nav-link {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0;
+    border: 0px;
+
+    &:hover {
+      border: 0;
+      background-color: #0e5592;
+      color: #fff;
+    }
+  }
+  .nav-item .nav-link.active {
+    border-radius: 0;
+    border: 0px;
+
+    background-color: #1e88e5;
+    color: #fff;
+  }
+}

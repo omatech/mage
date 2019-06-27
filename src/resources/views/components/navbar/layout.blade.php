@@ -75,11 +75,11 @@
                     </div>
                 </div>
                 <div class="dropdown-divider"></div>
-                <a href="{{route('mage.auth.logout')}}" class="dropdown-item">
+                <a href="{{route('mage.profile.show')}}" class="dropdown-item">
                     <i data-feather="clipboard" style="width:16px"></i>
                     <span class="dropdown-item-option">@lang('mage.auth.user.profile')</span>
                 </a>
-                <a href="{{route('mage.auth.logout')}}" class="dropdown-item">
+                <a href="{{route('mage.profile.change-password.index')}}" class="dropdown-item">
                     <i data-feather="key" style="width:16px"></i>
                     <span class="dropdown-item-option">@lang('mage.auth.user.password')</span>
                 </a>

@@ -14,8 +14,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-
+                <div class="@yield('page-classes', 'col-12')">
                     @component('mage::components.alerts.main', [
                         'type'    => 'success', 
                         'status'  => 'created'])

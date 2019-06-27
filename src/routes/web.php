@@ -56,6 +56,14 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                     */
                     $logged->get('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
+                    /*
+                     * Profile
+                     */
+                    $logged->get('profile', 'ProfileController@index')->name('profile.show');
+                    $logged->get('profile/change-password', 'ProfileController@changePasswordShow')->name('profile.change-password.index');
+                    $logged->post('profile/change-password', 'ProfileController@changePassword')->name('profile.change-password.post');
+                    $logged->put('profile', 'ProfileController@update')->name('profile.update');
+
                    /**
                     * Users
                     */
