@@ -2,7 +2,9 @@
 
 namespace Omatech\Mage\App\Criterias;
 
-abstract class BaseCriteria
+use Omatech\Lars\Contracts\CriteriaInterface;
+
+abstract class BaseCriteria implements CriteriaInterface
 {
     protected function godRole()
     {
