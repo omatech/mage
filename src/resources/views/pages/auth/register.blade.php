@@ -18,13 +18,13 @@
                 </div>
             @endif
             <div class="input-group mb-3">
-                <input type="text" name="name" class="form-control @if($errors->count()) is-invalid @endif" placeholder="@lang('mage.auth.register.name')">
+                <input type="text" name="name" class="form-control @if($errors->count()) is-invalid @endif" placeholder="@lang('mage.auth.register.name')" value="{{ old('name') }}">
                 <div class="input-group-append">
                     <span class="fa fa-user input-group-text"></span>
                 </div>
             </div>
             <div class="input-group mb-3">
-                <input type="email" name="email" class="form-control @if($errors->count()) is-invalid @endif" placeholder="@lang('mage.auth.register.email')">
+                <input type="email" name="email" class="form-control @if($errors->count()) is-invalid @endif" placeholder="@lang('mage.auth.register.email')" value="{{ old('email') }}">
                 <div class="input-group-append">
                     <span class="fa fa-envelope input-group-text"></span>
                 </div>
