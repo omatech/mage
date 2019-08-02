@@ -34,6 +34,6 @@ jQ(document).ready(function () {
         jQ('.overlayscroll.scrollDown').overlayScrollbars(options).overlayScrollbars().scroll({ y : "100%" });
     }
 
-    OverlayScrollbars(document.querySelectorAll('body'), options);
+    OverlayScrollbars(document.querySelectorAll('.wrapper'), options);
     OverlayScrollbars(document.querySelectorAll('.sidebar'), options);
 });
