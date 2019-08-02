@@ -26,9 +26,6 @@ class MigrationServiceProvider extends ServiceProvider
             $language_lines => $this->getMigrationFileName(new Filesystem(), 'create_language_lines_table'),
             $permissions => $this->getMigrationFileName(new Filesystem(), 'create_permission_tables'),
             $language => $this->getMigrationFileName(new Filesystem(), 'add_language_to_users_table'),
-            //$vault => $this->getMigrationFileName(new Filesystem(), 'create_vault_table'),
-            $status => $this->getMigrationFileName(new Filesystem(), 'create_status_table'),
-            $statusHistory => $this->getMigrationFileName(new Filesystem(), 'create_status_history_table'),
         ], 'mage-publish');
     }
 
@@ -38,7 +35,7 @@ class MigrationServiceProvider extends ServiceProvider
      * @param Filesystem $filesystem
      * @return string
      */
-    private function getMigrationFileName(Filesystem $filesystem, string $fileName): string
+    protected function getMigrationFileName(Filesystem $filesystem, string $fileName): string
     {
         $timestamp = date('Y_m_d_His');
 
