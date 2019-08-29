@@ -15,13 +15,13 @@ class CheckForPermissions
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $permission = null)
+    public function handle($request, Closure $next, ...$permission)
     {
         if (auth()->guard('mage')->user()->hasRole(config('mage.authentication.god_role'))) {
             return $next($request);
         }
-
-        if (auth()->guard('mage')->user()->hasPermissionTo($permission)) {
+    
+        if (auth()->guard('mage')->user()->hasAnyPermission($permission)) {
             return $next($request);
         }
 
