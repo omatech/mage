@@ -11,6 +11,7 @@ use Omatech\Mage\App\Repositories\User\GetUser;
 use Omatech\Mage\App\Repositories\User\ListUserDatatable;
 use Omatech\Mage\App\Http\Requests\Users\UpdateRequest;
 use Omatech\Mage\App\Repositories\User\UpdateUserAssignRoles;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -35,13 +36,15 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        $user->make([
+        $user = $user->make([
             'name'     => $data['users_name'],
             'email'    => $data['users_email'],
             'language' => $data['users_language'],
-            'password' => bcrypt(str_random()),
+            'password' => bcrypt(Str::random()),
             'roles'    => $data['users_roles']
         ]);
+
+        $user->sendMailWelcomeWithoutPasswordNotification();
 
         return redirect(route('mage.users.index'))->with('status', 'created');
     }

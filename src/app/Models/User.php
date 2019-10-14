@@ -6,8 +6,9 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Omatech\Mage\App\Events\UserCreated;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Omatech\Mage\App\Notifications\MailWelcomeNotification;
 use Omatech\Mage\App\Notifications\MailResetPasswordNotification;
-use Omatech\Mage\App\Notifications\MailRegisteredWelcomeNotification;
+use Omatech\Mage\App\Notifications\MailWelcomeWithoutPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -46,12 +47,23 @@ class User extends Authenticatable
     /**
      * Send the registered welcome notification.
      *
-     * @param  string  $token
      * @return void
      */
-    public function sendRegisteredWelcomeNotification()
+    public function sendMailWelcomeNotification()
     {
-        $this->notify(new MailRegisteredWelcomeNotification());
+        $this->notify(new MailWelcomeNotification());
+    }
+
+    /**
+     * Send the registered welcome notification with reset link.
+     *
+     * @return void
+     */
+    public function sendMailWelcomeWithoutPasswordNotification()
+    {
+        $token = app(\Illuminate\Auth\Passwords\PasswordBroker::class)->createToken($this);
+        
+        $this->notify(new MailWelcomeWithoutPasswordNotification($token));
     }
 
     /**

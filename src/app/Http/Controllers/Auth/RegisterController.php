@@ -99,6 +99,6 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         $user->assignRole(config('mage.authentication.default_role_on_register'));
-        $user->sendRegisteredWelcomeNotification();
+        $user->sendMailWelcomeNotification();
     }
 }

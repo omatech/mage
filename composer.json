@@ -3,11 +3,12 @@
     "license": "MIT",
     "description": "",
     "require": {
-        "spatie/laravel-permission": "^2.37",
+        "spatie/laravel-permission": "^2.37|^3.0",
         "yajra/laravel-datatables-oracle": "^8.13|^9.0.0",
-        "tightenco/ziggy": "^0.7",
-        "spatie/laravel-translation-loader": "^2.2",
-        "omatech/lars": "^1.0"
+        "tightenco/ziggy": "^0.7|^0.8",
+        "spatie/laravel-translation-loader": "^2.2|^2.4",
+        "omatech/lars": "^1.0|^1.0.1",
+        "maatwebsite/excel": "^3.1"
     },
     "authors": [
         {

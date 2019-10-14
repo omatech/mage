@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MailRegisteredWelcomeNotification extends Notification implements ShouldQueue
+class MailWelcomeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -41,10 +41,8 @@ class MailRegisteredWelcomeNotification extends Notification implements ShouldQu
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->from(env('MAIL_USERNAME'), 'Omatech')
-            ->subject(__('mage.auth.reset-password.email.subject'))
-            ->view('mage::pages.auth.reset-email', [
-                "token" => 'abc'
-            ]);
+            ->from(env('MAIL_USERNAME'), env('APP_NAME'))
+            ->subject(__('mage.auth.welcome-email.email.subject'))
+            ->view('mage::pages.auth.welcome-email');
     }
 }

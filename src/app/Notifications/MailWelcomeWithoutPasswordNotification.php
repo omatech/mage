@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MailResetPasswordNotification extends Notification implements ShouldQueue
+class MailWelcomeWithoutPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -50,8 +50,8 @@ class MailResetPasswordNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->from(env('MAIL_USERNAME'), env('APP_NAME'))
-            ->subject(__('mage.auth.reset-password.email.subject'))
-            ->view('mage::pages.auth.reset-email', [
+            ->subject(__('mage.auth.welcome-password-reset-email.email.subject'))
+            ->view('mage::pages.auth.welcome-password-reset-email', [
                 "token" => $this->token
             ]);
     }

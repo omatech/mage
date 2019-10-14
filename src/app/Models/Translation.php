@@ -19,7 +19,7 @@ class Translation extends LanguageLine
                 ->reduce(function ($lines, LanguageLine $languageLine) use ($locale) {
                     $translation = $languageLine->getTranslation($locale);
                     if ($translation !== null) {
-                        array_set($lines, $languageLine->key, $translation);
+                        Arr::set($lines, $languageLine->key, $translation);
                         if ($lines !== null) {
                             $lines = Arr::dot($lines);
                         }
