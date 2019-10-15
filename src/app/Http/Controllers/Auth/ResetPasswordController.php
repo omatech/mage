@@ -58,4 +58,14 @@ class ResetPasswordController extends Controller
             'password.min' => __('mage.auth.validations.password.min'),
         ];
     }
+
+    /**
+     * Get the guard to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('mage');
+    }
 }

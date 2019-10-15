@@ -47,5 +47,10 @@ class ConfigurationServiceProvider extends ServiceProvider
             __DIR__.'/../../config/auth.guards.php',
             'auth.guards'
         );
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/auth.passwords.php',
+            'auth.passwords'
+        );
     }
 }

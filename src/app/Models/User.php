@@ -62,7 +62,7 @@ class User extends Authenticatable
     public function sendMailWelcomeWithoutPasswordNotification()
     {
         $token = app(\Illuminate\Auth\Passwords\PasswordBroker::class)->createToken($this);
-        
+
         $this->notify(new MailWelcomeWithoutPasswordNotification($token));
     }
 

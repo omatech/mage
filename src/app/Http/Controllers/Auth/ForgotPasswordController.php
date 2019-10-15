@@ -4,6 +4,7 @@ namespace Omatech\Mage\App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
@@ -35,5 +36,15 @@ class ForgotPasswordController extends Controller
             'email.string' => __('mage.auth.validations.email.string'),
             'email.email' => __('mage.auth.validations.email.email'),
         ]);
+    }
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker('mage');
     }
 }
