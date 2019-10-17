@@ -3,6 +3,7 @@
 namespace Omatech\Mage\App\Http\Controllers\Auth;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 
