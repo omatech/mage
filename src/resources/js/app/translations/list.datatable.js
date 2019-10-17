@@ -97,6 +97,29 @@ jQ(document).ready(function () {
         });
     }
 
+    jQ('body').on('click', '.trans-toggle-input', function(evt) {
+
+        let target = jQ(evt.target).parent().parent();
+
+        if(jQ(evt.target).is('i')) {
+            target = target.parent();
+        }
+
+        let textArea = target.find('.swal2-textarea')[0];
+        let input = target.find('.swal2-input')[0];
+
+        if(jQ(textArea).is(':hidden')) {
+            jQ(input).css('display', 'none');
+            jQ(textArea).css('display', 'flex');
+        } else if(jQ(input).is(':hidden')) {
+            jQ(textArea).css('display', 'none');
+            jQ(input).css('display', 'flex');
+        } else {
+            jQ(textArea).css('display', 'none');
+            jQ(input).css('display', 'flex');
+        };
+    });
+
     let editAlert = function(id, value, lang, key) {
         let locale = {
             "title" : trans('mage.datatable.sweetalert.translations.title'),
@@ -109,18 +132,25 @@ jQ(document).ready(function () {
 
         Swal.fire({
             title: locale.title+' ['+lang+']',
-            html: locale.text +' '+'<b>'+ key+'</b>',
+            html: 
+                locale.text +' '+'<b>'+ key+'</b>'+
+                '<br /><br />' +
+                '<div style="text-align: right" class="btn-wrapper"><button type="button" class="trans-toggle-input swal2-confirm swal2-styled" style="font-size: .7em; padding: .9em; margin: 0; line-height: 0;"><i class="fa fa-bars"></i></button></div>' +
+                '<hr />' +
+                '<textarea class="swal2-textarea" style="display: none">'+value+'</textarea>' +
+                '<input autofocus class="swal2-input" type="text" style="display: flex" value="'+value+'">',
             type: 'info', 
             showCancelButton: true,
-            input: 'text',
             inputValue: value,
             confirmButtonText: locale.confirm,
             cancelButtonText: locale.cancel,
             reverseButtons: true
         }).then(result => {
             if (result.value === "" || result.value) {
+                let value = jQ('.swal2-textarea').is(':visible') ? jQ('.swal2-textarea').val() : jQ('.swal2-input').val();
+
                 saveTranslation(route('mage.translations.update', id), {
-                    'value': result.value,
+                    'value': value,
                     'lang': lang
                 }).then(() => {
                     Toast.fire({
