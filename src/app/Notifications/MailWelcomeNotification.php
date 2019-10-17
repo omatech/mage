@@ -41,7 +41,7 @@ class MailWelcomeNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->from(env('MAIL_USERNAME'), env('APP_NAME'))
+            ->from(config('mail.from.address'), config('mail.from.name'))
             ->subject(__('mage.auth.welcome-email.email.subject'))
             ->view('mage::pages.auth.welcome-email');
     }
