@@ -45,9 +45,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
         $route->middleware(['mageRedirectIfNotAuthenticated', 'checkForPermissions:mage-access'])
         
             ->group(function ($logged) {
-
-                Route::post('sidebar/toggle', 'SidebarController@toggle')->name('sidebarToggle');
-                
+              
                 /*
                  * Dashboard
                  */
@@ -104,6 +102,11 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                         $translations->resource('translations', 'TranslationController');
                     });
 
+                /*
+                 * Sidebar
+                 */
+                $logged->post('sidebar/toggle', 'SidebarController@toggle')->name('sidebarToggle');
+                
                 /**
                  * Vault
                  */
