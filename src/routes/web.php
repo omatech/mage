@@ -105,7 +105,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                 /*
                  * Sidebar
                  */
-                $logged->post('sidebar/toggle', 'SidebarController@toggle')->name('sidebarToggle');
+                $logged->post('sidebar/toggle', 'SidebarController@toggle')->name('sidebar.toggle');
                 
                 /**
                  * Vault
@@ -121,4 +121,3 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
         $route->get('403', 'ErrorController@error403')->name('error403');
         $route->get('401', 'ErrorController@error401')->name('error401');
     });
-

@@ -82,9 +82,8 @@ const PushMenu = (($) => {
       } else {
         this.show()
       }
-      axios.post(route('mage.sidebarToggle'), {isShown:""+isShown+""}).then(function(response){
-        let results = response.data.results;
-      }).catch(function(error){
+      axios.post(route('mage.sidebar.toggle'), { isShown: "" + isShown + "" })
+      .catch(function (error) {
         console.error(error);
       });
     }
