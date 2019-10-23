@@ -11,14 +11,14 @@ const PushMenu = (($) => {
    * ====================================================
    */
 
-  const NAME               = 'PushMenu'
-  const DATA_KEY           = 'lte.pushmenu'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'PushMenu'
+  const DATA_KEY = 'lte.pushmenu'
+  const EVENT_KEY = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
     COLLAPSED: `collapsed${EVENT_KEY}`,
-    SHOWN    : `shown${EVENT_KEY}`
+    SHOWN: `shown${EVENT_KEY}`
   }
 
   const Default = {
@@ -26,18 +26,18 @@ const PushMenu = (($) => {
   }
 
   const Selector = {
-    TOGGLE_BUTTON    : '[data-widget="pushmenu"]',
-    SIDEBAR_MINI     : '.sidebar-mini',
+    TOGGLE_BUTTON: '[data-widget="pushmenu"]',
+    SIDEBAR_MINI: '.sidebar-mini',
     SIDEBAR_COLLAPSED: '.sidebar-collapse',
-    BODY             : 'body',
-    OVERLAY          : '#sidebar-overlay',
-    WRAPPER          : '.wrapper'
+    BODY: 'body',
+    OVERLAY: '#sidebar-overlay',
+    WRAPPER: '.wrapper'
   }
 
   const ClassName = {
     SIDEBAR_OPEN: 'sidebar-open',
-    COLLAPSED   : 'sidebar-collapse',
-    OPEN        : 'sidebar-open',
+    COLLAPSED: 'sidebar-collapse',
+    OPEN: 'sidebar-open',
     SIDEBAR_MINI: 'sidebar-mini'
   }
 
@@ -60,14 +60,12 @@ const PushMenu = (($) => {
 
     show() {
       $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED)
-
       const shownEvent = $.Event(Event.SHOWN)
       $(this._element).trigger(shownEvent)
     }
 
     collapse() {
       $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED)
-
       const collapsedEvent = $.Event(Event.COLLAPSED)
       $(this._element).trigger(collapsedEvent)
     }
@@ -79,12 +77,16 @@ const PushMenu = (($) => {
       } else {
         isShown = $(Selector.BODY).hasClass(ClassName.OPEN)
       }
-
       if (isShown) {
         this.collapse()
       } else {
         this.show()
       }
+      axios.post(route('mage.sidebarToggle'), {isShown:""+isShown+""}).then(function(response){
+        let results = response.data.results;
+      }).catch(function(error){
+        console.error(error);
+      });
     }
 
     // Private
@@ -142,7 +144,7 @@ const PushMenu = (($) => {
 
   $.fn[NAME] = PushMenu._jQueryInterface
   $.fn[NAME].Constructor = PushMenu
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return PushMenu._jQueryInterface
   }

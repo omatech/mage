@@ -7,9 +7,10 @@
 |
 */
 
+
 Route::namespace('Omatech\Mage\App\Http\Controllers')
     ->prefix(config('mage.prefix'))
-    ->middleware(['web', 'setLocale'])
+    ->middleware(['web', 'setLocale', 'sidebarToggle'])
     ->name('mage.')
     ->group(function ($route) {
 
@@ -42,8 +43,11 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
          * LoggedIn Routes
          */
         $route->middleware(['mageRedirectIfNotAuthenticated', 'checkForPermissions:mage-access'])
+        
             ->group(function ($logged) {
 
+                Route::post('sidebar/toggle', 'SidebarController@toggle')->name('sidebarToggle');
+                
                 /*
                  * Dashboard
                  */
@@ -114,3 +118,4 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
         $route->get('403', 'ErrorController@error403')->name('error403');
         $route->get('401', 'ErrorController@error401')->name('error401');
     });
+

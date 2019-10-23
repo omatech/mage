@@ -7,6 +7,7 @@ use Omatech\Mage\App\Http\Middleware\CheckForPermissions;
 use Omatech\Mage\App\Http\Middleware\RedirectIfAuthenticated;
 use Omatech\Mage\App\Http\Middleware\RedirectIfNotAuthenticated;
 use Omatech\Mage\App\Http\Middleware\SetLocale;
+use Omatech\Mage\App\Http\Middleware\SidebarToggle;
 
 class MiddlewareServiceProvider extends ServiceProvider
 {
@@ -31,5 +32,6 @@ class MiddlewareServiceProvider extends ServiceProvider
         $this->app['router']->aliasMiddleware('mageRedirectIfNotAuthenticated', RedirectIfNotAuthenticated::class);
         $this->app['router']->aliasMiddleware('checkForPermissions', CheckForPermissions::class);
         $this->app['router']->aliasMiddleware('setLocale', SetLocale::class);
+        $this->app['router']->aliasMiddleware('sidebarToggle', SidebarToggle::class);
     }
 }
