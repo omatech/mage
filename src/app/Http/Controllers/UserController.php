@@ -2,16 +2,17 @@
 
 namespace Omatech\Mage\App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
-use Omatech\Mage\App\Http\Requests\Users\CreateRequest;
+use Omatech\Mage\App\Repositories\User\GetUser;
 use Omatech\Mage\App\Repositories\Role\GetRoles;
 use Omatech\Mage\App\Repositories\User\CreateUser;
 use Omatech\Mage\App\Repositories\User\DeleteUser;
-use Omatech\Mage\App\Repositories\User\GetUser;
-use Omatech\Mage\App\Repositories\User\ListUserDatatable;
+use Omatech\Mage\App\Http\Requests\Users\CreateRequest;
 use Omatech\Mage\App\Http\Requests\Users\UpdateRequest;
+use Omatech\Mage\App\Repositories\User\ListUserDatatable;
 use Omatech\Mage\App\Repositories\User\UpdateUserAssignRoles;
-use Illuminate\Support\Str;
+use Omatech\Mage\App\Contracts\Users\UpdateUserAssignRolesInterface;
 
 class UserController extends Controller
 {
@@ -62,7 +63,7 @@ class UserController extends Controller
         return view('mage::pages.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
-    public function update(UpdateRequest $request, UpdateUserAssignRoles $user, $id)
+    public function update(UpdateRequest $request, UpdateUserAssignRolesInterface $user, $id)
     {
         $data = $request->validated();
 
