@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Omatech\Mage\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Omatech\Mage\App\Repositories\User\UpdateUserAssignRoles;
