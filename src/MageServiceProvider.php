@@ -3,10 +3,11 @@
 namespace Omatech\Mage;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\BindingServiceProvider;
+
 use Omatech\Mage\App\Providers\ViewServiceProvider;
 use Omatech\Mage\App\Providers\BladeServiceProvider;
 use Omatech\Mage\App\Providers\HelperServiceProvider;
+use Omatech\Mage\App\Providers\BindingServiceProvider;
 use Omatech\Mage\App\Providers\CommandServiceProvider;
 use Omatech\Mage\App\Providers\PublishServiceProvider;
 use Omatech\Mage\App\Providers\RoutingServiceProvider;
