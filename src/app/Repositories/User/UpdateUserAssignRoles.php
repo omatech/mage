@@ -3,8 +3,10 @@
 namespace Omatech\Mage\App\Repositories\User;
 
 use Illuminate\Support\Facades\DB;
+use Omatech\Mage\App\Repositories\UserBaseRepository;
+use Omatech\Mage\App\Contracts\Users\UpdateUserAssignRolesInterface;
 
-class UpdateUserAssignRoles
+class UpdateUserAssignRoles extends UserBaseRepository implements UpdateUserAssignRolesInterface
 {
     private $user;
     private $roles;
