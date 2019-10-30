@@ -5,9 +5,10 @@ namespace Omatech\Mage\App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Omatech\Mage\App\Http\Requests\Users\CreateRequest;
 use Omatech\Mage\App\Repositories\Role\GetRoles;
-use Omatech\Mage\App\Repositories\User\CreateUser;
 use Omatech\Mage\App\Repositories\User\DeleteUser;
-use Omatech\Mage\App\Repositories\User\GetUser;
+use Omatech\Mage\App\Http\Requests\Users\CreateRequest;
+use Omatech\Mage\App\Http\Requests\Users\UpdateRequest;
+use Omatech\Mage\App\Contracts\Users\CreateUserInterface;
 use Omatech\Mage\App\Repositories\User\ListUserDatatable;
 use Omatech\Mage\App\Http\Requests\Users\UpdateRequest;
 use Omatech\Mage\App\Repositories\User\UpdateUserAssignRoles;
@@ -32,7 +33,7 @@ class UserController extends Controller
         return view('mage::pages.users.create', ['roles' => $roles]);
     }
 
-    public function store(CreateRequest $request, CreateUser $user)
+    public function store(CreateRequest $request, CreateUserInterface $user)
     {
         $data = $request->validated();
 
