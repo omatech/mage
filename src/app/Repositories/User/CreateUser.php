@@ -4,8 +4,9 @@ namespace Omatech\Mage\App\Repositories\User;
 
 use Illuminate\Support\Facades\DB;
 use Omatech\Mage\App\Repositories\UserBaseRepository;
+use Omatech\Mage\App\Contracts\Users\CreateUserInterface;
 
-class CreateUser extends UserBaseRepository
+class CreateUser extends UserBaseRepository implements CreateUserInterface
 {
     public function make($data)
     {
