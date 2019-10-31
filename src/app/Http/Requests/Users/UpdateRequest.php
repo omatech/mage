@@ -2,10 +2,11 @@
 
 namespace Omatech\Mage\App\Http\Requests\Users;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
+use Omatech\Mage\App\Contracts\Users\UpdateRequestInterface;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends FormRequest implements UpdateRequestInterface
 {
     /**
      * Determine if the user is authorized to make this request.
