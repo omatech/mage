@@ -5,7 +5,9 @@ namespace Omatech\Mage\App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Omatech\Mage\App\Repositories\User\UpdateUser;
 use Omatech\Mage\App\Http\Requests\Profile\UpdateRequest;
+use Omatech\Mage\App\Contracts\Profile\UpdateProfileInterface;
 use Omatech\Mage\App\Http\Requests\Profile\ChangePasswordRequest;
+use Omatech\Mage\App\Contracts\Profile\UpdateProfileRequestInterface;
 
 class ProfileController extends Controller
 {
