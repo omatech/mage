@@ -30,7 +30,7 @@ class ProfileController extends Controller
         return redirect(route('mage.profile.change-password.index'))->with('status', 'updated');
     }
 
-    public function update(UpdateRequest $request, UpdateUser $user)
+    public function update(UpdateProfileRequestInterface $request, UpdateProfileInterface $user)
     {
         $data = $request->validated();
 
