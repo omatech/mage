@@ -7,10 +7,10 @@ use App\Http\Controllers\Controller;
 use Omatech\Mage\App\Repositories\User\GetUser;
 use Omatech\Mage\App\Repositories\Role\GetRoles;
 use Omatech\Mage\App\Repositories\User\DeleteUser;
-use Omatech\Mage\App\Http\Requests\Users\CreateRequest;
-use Omatech\Mage\App\Http\Requests\Users\UpdateRequest;
 use Omatech\Mage\App\Contracts\Users\CreateUserInterface;
 use Omatech\Mage\App\Repositories\User\ListUserDatatable;
+use Omatech\Mage\App\Contracts\Users\CreateRequestInterface;
+use Omatech\Mage\App\Contracts\Users\UpdateRequestInterface;
 use Omatech\Mage\App\Repositories\User\UpdateUserAssignRoles;
 use Omatech\Mage\App\Contracts\Users\UpdateUserAssignRolesInterface;
 
@@ -33,7 +33,7 @@ class UserController extends Controller
         return view('mage::pages.users.create', ['roles' => $roles]);
     }
 
-    public function store(CreateRequest $request, CreateUserInterface $user)
+    public function store(CreateRequestInterface $request, CreateUserInterface $user)
     {
         $data = $request->validated();
 
@@ -63,7 +63,7 @@ class UserController extends Controller
         return view('mage::pages.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
-    public function update(UpdateRequest $request, UpdateUserAssignRolesInterface $user, $id)
+    public function update(UpdateRequestInterface $request, UpdateUserAssignRolesInterface $user, $id)
     {
         $data = $request->validated();
 
