@@ -34,6 +34,19 @@ jQ(document).ready(function () {
         jQ('.overlayscroll.scrollDown').overlayScrollbars(options).overlayScrollbars().scroll({ y : "100%" });
     }
 
-    OverlayScrollbars(document.querySelectorAll('.wrapper'), options);
+    OverlayScrollbars(document.querySelectorAll('.sidebar-mini'), options);
     OverlayScrollbars(document.querySelectorAll('.sidebar'), options);
+
+    if(jQ("body").hasClass("sidebar-open")){
+        jQ('.wrapper').append('<div id="sidebar-overlay"></div>')
+ 
+        jQ("#sidebar-overlay").on("click", function () {
+            jQ("body").removeClass("sidebar-open")
+            jQ("body").addClass("sidebar-collapse")
+            axios.post(route('mage.sidebar.toggle'), { isShown: "true" })
+            .catch(function (error) {
+                console.error(error);
+            });
+        });
+    }
 });
