@@ -28,7 +28,7 @@ Nav - sidebar
     }
 
     .box-block {
-      display: block;     
+      display: block;
       text-decoration: none;
       color: #7a878e;
       outline: 0;
@@ -59,8 +59,10 @@ Nav - sidebar
   margin-right: 0.8rem;
 }
 
-.brand-link { 
+.brand-link {
   background: #1e88e5;
+  height:54px;
+
   .brand-image {
     float: left;
     line-height: 0.8;
@@ -204,7 +206,7 @@ li.nav-item.has-treeview.menu-open > a:after {
 
   &:first-child {
     margin-top: 0px;
-  } 
+  }
 }
 
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-treeview {
