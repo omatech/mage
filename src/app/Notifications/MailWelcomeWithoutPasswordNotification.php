@@ -51,7 +51,7 @@ class MailWelcomeWithoutPasswordNotification extends Notification implements Sho
         return (new MailMessage)
             ->from(config('mail.from.address'), config('mail.from.name'))
             ->subject(__('mage.auth.welcome-password-reset-email.email.subject'))
-            ->markdown('mage::pages.auth.welcome-password-reset-email', [
+            ->view('mage::pages.auth.welcome-password-reset-email', [
                 "token" => $this->token
             ]);
     }
