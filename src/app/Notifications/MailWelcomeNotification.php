@@ -43,6 +43,6 @@ class MailWelcomeNotification extends Notification implements ShouldQueue
         return (new MailMessage)
             ->from(config('mail.from.address'), config('mail.from.name'))
             ->subject(__('mage.auth.welcome-email.email.subject'))
-            ->view('mage::pages.auth.welcome-email');
+            ->markdown('mage::pages.auth.welcome-email');
     }
 }
