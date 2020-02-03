@@ -40,7 +40,7 @@ class ResetPasswordController extends Controller
 
     public function redirectTo()
     {
-        return route(config('mage.on_login_to_route'));
+        return route(config('mage.on_reset_to_route'));
     }
 
     /**
