@@ -22,6 +22,8 @@ const Layout = (($) => {
 
   const Selector = {
     SIDEBAR        : '.main-sidebar',
+    SIDEBARSCROLL  : '.sidebar',
+    SIDEBARHEADER  : '.sidebar-header',
     HEADER         : '.main-header',
     CONTENT        : '.content-wrapper',
     CONTENT_HEADER : '.content-header',
@@ -56,12 +58,14 @@ const Layout = (($) => {
         window : $(window).height(),
         header : $(Selector.HEADER).outerHeight(),
         footer : $(Selector.FOOTER).outerHeight(),
-        sidebar: $(Selector.SIDEBAR).height()
+        sidebar: $(Selector.SIDEBAR).height(),
       }
       const max     = this._max(heights)
 
-      $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
-      $(Selector.SIDEBAR).css('min-height', max - heights.header)
+      $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+      $(Selector.SIDEBAR).css('min-height', max - heights.header);
+      $(Selector.SIDEBARSCROLL).css('height',  max - $(Selector.SIDEBARHEADER).height());
+
     }
 
     // Private

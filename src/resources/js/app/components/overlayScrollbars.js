@@ -5,7 +5,7 @@ jQ(document).ready(function () {
         sizeAutoCapable: true,
         clipAlways: true,
         normalizeRTL: true,
-        paddingAbsolute: false,
+        paddingAbsolute: true,
         autoUpdate: null,
         autoUpdateInterval: 33,
         nativeScrollbarsOverlaid: {
@@ -35,7 +35,7 @@ jQ(document).ready(function () {
     }
 
     OverlayScrollbars(document.querySelectorAll('.sidebar-mini'), options);
-    OverlayScrollbars(document.querySelectorAll('.sidebar'), options);
+    OverlayScrollbars(document.querySelectorAll('.sidebar-wrapper'), options);
 
     if (jQ("body").hasClass("sidebar-open")) {
         jQ('.wrapper').append('<div id="sidebar-overlay"></div>')
