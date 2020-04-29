@@ -22,6 +22,7 @@ class RedirectIfNotAuthenticated
         }
 
         if (!auth()->guard('mage')->check()) {
+            session(['previous' => request()->getUri()]);          
             return redirect(route('mage.auth.login'));
         }
 
