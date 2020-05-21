@@ -96,5 +96,13 @@ class LoginController extends Controller
         if ($hasPermission == false) {
             throw new UnauthorizedException($user);
         }
+        
+        if (auth()->check() == true || auth()->guard('mage')->check() == true) {
+            $user = auth()->user() ?? auth()->guard('mage')->user();
+        }
+
+        if (isset($user->language)) {
+            session(['locale' =>  $user->language]);
+        }
     }
 }

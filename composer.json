@@ -18,7 +18,9 @@
     ],
     "autoload": {
         "psr-4": {
-            "Omatech\\Mage\\": "src"
+            "Omatech\\Mage\\": "src",
+            "Omatech\\Mage\\App\\": "src/app",
+            "Omatech\\Mage\\Database\\Seeds\\": "src/database/seeds"
         }
     },
     "extra": {

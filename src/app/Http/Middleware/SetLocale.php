@@ -16,6 +16,8 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
+        $locale = null;
+
         foreach (config('mage.translations.available_locales') as $locale) {
             if ($locale['locale'] == session('locale')) {
                 $locale = session('locale');
