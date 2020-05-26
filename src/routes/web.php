@@ -52,6 +52,33 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                 $logged->get('/', 'DashboardController@index')->name('dashboard');
 
                 /*
+                 * Jobs
+                 */
+                Route::prefix('jobs')
+                ->group(function ($route) {
+                    // $route->middleware('checkForPermissions:backend-access-jobs')->group(function ($route) {
+                        $route->get('/', 'Mage\JobsController@index')->name('backend.jobs.index');
+                        $route->get('/done', 'Mage\JobsController@indexJobsDone')->name('backend.jobs.index-jobs-done');
+                        $route->get('/failed', 'Mage\JobsController@indexJobsFailed')->name('backend.jobs.index-jobs-failed');
+
+                        $route->get('/list', 'Mage\JobsController@list')->name('backend.jobs.list');
+                        $route->get('/listDone', 'Mage\JobsController@listDone')->name('backend.jobs-done.list');
+                        $route->get('/listFailed', 'Mage\JobsController@listFailed')->name('backend.jobs-failed.list');
+                    // });
+                });
+
+                /*
+                 * Activity-Logs
+                 */
+                Route::prefix('activity-logs')
+                ->group(function ($route) {
+                    // $route->middleware('checkForPermissions:backend-access-activity-logs')->group(function ($route) {
+                        $route->get('/', 'Mage\ActivityLogsController@index')->name('backend.activity-logs.index');
+                        $route->get('/list', 'Mage\ActivityLogsController@list')->name('backend.activity-logs.list');
+                    // });
+                });
+
+                /*
                  * Logout
                  */
                 $logged->get('logout', 'Auth\LoginController@logout')->name('auth.logout');

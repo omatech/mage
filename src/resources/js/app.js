@@ -42,7 +42,10 @@ require('./app/permissions/list.datatable');
 require('./app/permissions/toggle.permissions');
 require('./app/translations/list.datatable');
 require('./app/components/select2');
-
+require('./app/activitylogs/activitylogs.datatable');
+require('./app/jobs/jobs.datatable');
+require('./app/jobs/jobs.done.datatable');
+require('./app/jobs/jobs.failed.datatable');
 /**
  * To remove
  */
