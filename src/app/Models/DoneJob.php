@@ -4,7 +4,7 @@ namespace Omatech\Mage\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class JobFailed extends Model
+class DoneJob extends Model
 {
-    protected $table = 'failed_jobs';
+    protected $table = 'done_jobs';
 }

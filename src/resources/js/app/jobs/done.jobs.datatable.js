@@ -1,11 +1,11 @@
 jQ(document).ready(function () {
-    let $mageJobsDoneDatatable = jQ('#mage-jobs-done-datatable');
+    let $mageDoneJobsDatatable = jQ('#mage-done-jobs-datatable');
 
-    $mageJobsDoneDatatable.DataTable({
+    $mageDoneJobsDatatable.DataTable({
         processing: true,
         serverSide: true,
         ajax: {
-          url: route('backend.jobs-done.list').url(),
+          url: route('backend.done-jobs.list').url(),
         },
         deferRender: true,
         rowId: 'id',
@@ -28,6 +28,17 @@ jQ(document).ready(function () {
             { data: 'done_at', name: 'done_at' },
             { data: 'created_at', name: 'created_at' },
             { data: 'updated_at', name: 'updated_at' },
+            { data: null, searchable: false, orderable: false, render: function(data, type, row) {
+                return "" +
+                "<div class=\"btn-group\" role=\"group\">" +
+                  "<a href=\"" + route('backend.jobs.show.done', { id: data.id }) + "\">" +
+                    "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
+                      "<i class=\"fa fa-eye\"></i>" +
+                    "</button>" +
+                  "</a>" +
+                "</div>";
+                }
+            }
         ],
 
     });

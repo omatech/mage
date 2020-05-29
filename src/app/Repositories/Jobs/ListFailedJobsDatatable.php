@@ -3,9 +3,9 @@
 namespace Omatech\Mage\App\Repositories\Jobs;
 
 use Yajra\DataTables\DataTables;
-use Omatech\Mage\App\Repositories\JobFailedBaseRepository;
+use Omatech\Mage\App\Repositories\FailedJobBaseRepository;
 
-class ListJobsFailedDatatable extends JobFailedBaseRepository
+class ListFailedJobsDatatable extends FailedJobBaseRepository
 {
     public function make()
     {

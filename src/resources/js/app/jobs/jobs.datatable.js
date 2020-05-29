@@ -27,6 +27,17 @@ jQ(document).ready(function () {
             { data: 'reserved_at', name: 'reserved_at' },
             { data: 'available_at', name: 'available_at' },
             { data: 'created_at', name: 'created_at' },
+            { data: null, searchable: false, orderable: false, render: function(data, type, row) {
+                return "" +
+                "<div class=\"btn-group\" role=\"group\">" +
+                  "<a href=\"" + route('backend.jobs.show', { id: data.id }) + "\">" +
+                    "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
+                      "<i class=\"fa fa-eye\"></i>" +
+                    "</button>" +
+                  "</a>" +
+                "</div>";
+                }
+            }
         ],
 
     });

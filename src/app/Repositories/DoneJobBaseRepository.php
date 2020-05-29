@@ -2,15 +2,15 @@
 namespace Omatech\Mage\App\Repositories;
 
 use Omatech\Lars\BaseRepository;
-use Omatech\Mage\App\Models\JobDone;
+use Omatech\Mage\App\Models\DoneJob;
 
-class JobDoneBaseRepository extends BaseRepository
+class DoneJobBaseRepository extends BaseRepository
 {
     /**
      * @return string
      */
     public function model(): string
     {
-        return JobDone::class;
+        return DoneJob::class;
     }
 }

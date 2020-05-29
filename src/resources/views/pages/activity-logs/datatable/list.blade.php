@@ -13,6 +13,7 @@
             <th>@lang('backend.activity-logs.datatable.field.user_agent')</th>
             <th>@lang('backend.activity-logs.datatable.field.ip_address')</th>
             <th>@lang('backend.activity-logs.datatable.field.created_at')</th>
+            <th>@lang('backend.activity-logs.datatable.field.actions')</th>
         </tr>
     </thead>
     <tbody>

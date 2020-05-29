@@ -3,9 +3,9 @@
 namespace Omatech\Mage\App\Repositories\Jobs;
 
 use Yajra\DataTables\DataTables;
-use Omatech\Mage\App\Repositories\JobDoneBaseRepository;
+use Omatech\Mage\App\Repositories\DoneJobBaseRepository;
 
-class ListJobsDoneDatatable extends JobDoneBaseRepository
+class ListDoneJobsDatatable extends DoneJobBaseRepository
 {
     public function make()
     {

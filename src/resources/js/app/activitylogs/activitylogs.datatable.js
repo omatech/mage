@@ -32,6 +32,17 @@ jQ(document).ready(function () {
             { data: 'user_agent', name: 'user_agent' },
             { data: 'ip_address', name: 'ip_address' },
             { data: 'created_at', name: 'created_at' },
+            { data: null, searchable: false, orderable: false, render: function(data, type, row) {
+                return "" +
+                "<div class=\"btn-group\" role=\"group\">" +
+                  "<a href=\"" + route('backend.activity-logs.show', { id: data.id }) + "\">" +
+                    "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
+                      "<i class=\"fa fa-eye\"></i>" +
+                    "</button>" +
+                  "</a>" +
+                "</div>";
+                }
+            }
         ],
     });
 });

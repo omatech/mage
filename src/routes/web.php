@@ -54,29 +54,38 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                 /*
                  * Jobs
                  */
-                Route::prefix('jobs')
-                ->group(function ($route) {
-                    // $route->middleware('checkForPermissions:backend-access-jobs')->group(function ($route) {
-                        $route->get('/', 'Mage\JobsController@index')->name('backend.jobs.index');
-                        $route->get('/done', 'Mage\JobsController@indexJobsDone')->name('backend.jobs.index-jobs-done');
-                        $route->get('/failed', 'Mage\JobsController@indexJobsFailed')->name('backend.jobs.index-jobs-failed');
+                if(config('mage.enable_jobs')){                
+                    Route::prefix('jobs')
+                    ->group(function ($route) {
+                        // $route->middleware('checkForPermissions:backend-access-jobs')->group(function ($route) {
+                            $route->get('/', 'Mage\JobsController@index')->name('backend.jobs.index');
+                            $route->get('/done', 'Mage\JobsController@indexDoneJobs')->name('backend.jobs.index-done-jobs');
+                            $route->get('/failed', 'Mage\JobsController@indexFailedJobs')->name('backend.jobs.index-failed-jobs');
+                            
+                            $route->get('/show/{id}', 'Mage\JobsController@show')->name('backend.jobs.show');
+                            $route->get('/show-done/{id}', 'Mage\JobsController@showDone')->name('backend.jobs.show.done');
+                            $route->get('/show-failed/{id}', 'Mage\JobsController@showFailed')->name('backend.jobs.show.failed');
 
-                        $route->get('/list', 'Mage\JobsController@list')->name('backend.jobs.list');
-                        $route->get('/listDone', 'Mage\JobsController@listDone')->name('backend.jobs-done.list');
-                        $route->get('/listFailed', 'Mage\JobsController@listFailed')->name('backend.jobs-failed.list');
-                    // });
-                });
+                            $route->get('/list/jobs', 'Mage\JobsController@list')->name('backend.jobs.list');
+                            $route->get('/list/done', 'Mage\JobsController@doneList')->name('backend.done-jobs.list');
+                            $route->get('/list/failed', 'Mage\JobsController@failedList')->name('backend.failed-jobs.list');
+                        // });
+                    });
+                }
 
                 /*
                  * Activity-Logs
                  */
-                Route::prefix('activity-logs')
-                ->group(function ($route) {
-                    // $route->middleware('checkForPermissions:backend-access-activity-logs')->group(function ($route) {
-                        $route->get('/', 'Mage\ActivityLogsController@index')->name('backend.activity-logs.index');
-                        $route->get('/list', 'Mage\ActivityLogsController@list')->name('backend.activity-logs.list');
-                    // });
-                });
+                if(config('mage.enable_activity_logs')){
+                    Route::prefix('activity-logs')
+                    ->group(function ($route) {
+                        // $route->middleware('checkForPermissions:backend-access-activity-logs')->group(function ($route) {
+                            $route->get('/', 'Mage\ActivityLogsController@index')->name('backend.activity-logs.index');
+                            $route->get('/show/{id}', 'Mage\ActivityLogsController@show')->name('backend.activity-logs.show');
+                            $route->get('/list', 'Mage\ActivityLogsController@list')->name('backend.activity-logs.list');
+                        // });
+                    });
+                }
 
                 /*
                  * Logout

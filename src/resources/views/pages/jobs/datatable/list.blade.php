@@ -8,6 +8,7 @@
             <th>@lang('backend.jobs.datatable.field.reserved_at')</th>
             <th>@lang('backend.jobs.datatable.field.available_at')</th>
             <th>@lang('backend.jobs.datatable.field.created_at')</th>
+            <th>@lang('backend.jobs.datatable.field.actions')</th>
         </tr>
     </thead>
     <tbody>

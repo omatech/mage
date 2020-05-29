@@ -1,11 +1,11 @@
 jQ(document).ready(function () {
-    let $mageJobsFailedDatatable = jQ('#mage-jobs-failed-datatable');
+    let $mageFailedJobsDatatable = jQ('#mage-failed-jobs-datatable');
 
-    $mageJobsFailedDatatable.DataTable({
+    $mageFailedJobsDatatable.DataTable({
         processing: true,
         serverSide: true,
         ajax: {
-          url: route('backend.jobs-failed.list').url(),
+          url: route('backend.failed-jobs.list').url(),
         },
         deferRender: true,
         rowId: 'id',
@@ -26,6 +26,17 @@ jQ(document).ready(function () {
             { data: 'payload', name: 'payload' },
             { data: 'exception', name: 'exception' },
             { data: 'failed_at', name: 'failed_at' },
+            { data: null, searchable: false, orderable: false, render: function(data, type, row) {
+                return "" +
+                "<div class=\"btn-group\" role=\"group\">" +
+                  "<a href=\"" + route('backend.jobs.show.failed', { id: data.id }) + "\">" +
+                    "<button type=\"button\" class=\"btn btn-default btn-sm\" data-toggle=\"tooltip\">\n" +
+                      "<i class=\"fa fa-eye\"></i>" +
+                    "</button>" +
+                  "</a>" +
+                "</div>";
+                }
+            }
         ],
 
     });

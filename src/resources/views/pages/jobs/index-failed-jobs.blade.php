@@ -20,11 +20,11 @@
                         <li class="mr-0 px-4 border-right" style="padding: 0.8rem;">
                             <a class="nav-tab-link" href="{{route('backend.jobs.index')}}" style="color:#354657">@lang('mage.backend.jobs.all.tab')</a>
                         </li>
-                        <li class="mr-0 px-4 border-right" style="padding: 0.8rem; border-bottom: 0.3rem solid #B48B44">
-                            <a class="nav-tab-link active" href="{{route('backend.jobs.index-jobs-done')}}" style="color:#354657">@lang('mage.backend.jobs.done.tab')</a>
-                        </li>
                         <li class="mr-0 px-4 border-right" style="padding: 0.8rem;">
-                            <a class="nav-tab-link" href="{{route('backend.jobs.index-jobs-failed')}}" style="color:#354657">@lang('mage.backend.jobs.failed.tab')</a>
+                            <a class="nav-tab-link active" href="{{route('backend.jobs.index-done-jobs')}}" style="color:#354657">@lang('mage.backend.jobs.done.tab')</a>
+                        </li>
+                        <li class="mr-0 px-4 border-right" style="padding: 0.8rem;  border-bottom: 0.3rem solid #B48B44">
+                            <a class="nav-tab-link" href="{{route('backend.jobs.index-failed-jobs')}}" style="color:#354657">@lang('mage.backend.jobs.failed.tab')</a>
                         </li>
                     </ul>
                 </div>
@@ -34,7 +34,7 @@
 
     <div class="card">
         <div class="card-body">
-            @include('pages.jobs.datatable.list-jobs-done')
+            @include('pages.jobs.datatable.list-failed-jobs')
         </div>
     </div>
 @endsection

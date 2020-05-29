@@ -1,4 +1,4 @@
-<table id="mage-jobs-failed-datatable" class="table table-bordered table-hover display" style="width:100%">
+<table id="mage-failed-jobs-datatable" class="table table-bordered table-hover display" style="width:100%">
     <thead>
         <tr>
             <th>@lang('backend.jobs-failed.datatable.field.id')</th>
@@ -7,6 +7,7 @@
             <th>@lang('backend.jobs-failed.datatable.field.payload')</th>
             <th>@lang('backend.jobs-failed.datatable.field.exception')</th>
             <th>@lang('backend.jobs-failed.datatable.field.failed_at')</th>
+            <th>@lang('backend.jobs-failed.datatable.field.actions')</th>
         </tr>
     </thead>
     <tbody>
