@@ -23,7 +23,6 @@ jQ(document).ready(function () {
             { data: 'id', name: 'id' },
             { data: 'connection', name: 'connection' },
             { data: 'queue', name: 'queue' },
-            { data: 'payload', name: 'payload' },
             { data: 'attempts', name: 'attempts' },
             { data: 'done_at', name: 'done_at' },
             { data: 'created_at', name: 'created_at' },

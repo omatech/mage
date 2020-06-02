@@ -39,10 +39,21 @@
                         </div>
                     </div>
     
-                    <div class="col-6 mb-5">
+                    <div class="col-12 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.jobs.show.payload')}}</div>
-                        <div>
-                            {{$job['payload'] ?? '-'}}
+                        <div>   
+                            @if(isset($job['payload']))
+                                <div class="row">
+                                    @foreach ($payload as $item)
+                                        <div class="col-12">
+                                            {{$item}}
+                                            <br><br>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <p>-</p>
+                            @endif
                         </div>
                     </div>
     
@@ -53,21 +64,21 @@
                         </div>
                     </div>
     
-                    <div class="col-4 mb-5">
+                    <div class="col-6 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.jobs.show.reserved_at')}}</div>
                         <div>
                             {{$job['reserved_at'] ?? '-'}}
                         </div>
                     </div>
 
-                    <div class="col-4 mb-5">
+                    <div class="col-6 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.jobs.show.avaiable_at')}}</div>
                         <div>
                             {{$job['available_at'] ?? '-'}}
                         </div>
                     </div>
     
-                    <div class="col-4 mb-5">
+                    <div class="col-6 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.jobs.show.created_at')}}</div>
                         <div>
                             {{$job['created_at'] ?? '-'}}

@@ -4,8 +4,6 @@
             <th>@lang('backend.jobs-failed.datatable.field.id')</th>
             <th>@lang('backend.jobs-failed.datatable.field.connection')</th>
             <th>@lang('backend.jobs-failed.datatable.field.queue')</th>
-            <th>@lang('backend.jobs-failed.datatable.field.payload')</th>
-            <th>@lang('backend.jobs-failed.datatable.field.exception')</th>
             <th>@lang('backend.jobs-failed.datatable.field.failed_at')</th>
             <th>@lang('backend.jobs-failed.datatable.field.actions')</th>
         </tr>

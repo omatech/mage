@@ -23,14 +23,11 @@ jQ(document).ready(function () {
             { data: 'id', name: 'id' }, 
             { data: 'user_id', name: 'user_id' },
             { data: 'email', name: 'email' },
-            { data: 'model_type', name: 'model_type' },
             { data: 'model_id', name: 'model_id' },
             { data: 'uri', name: 'uri' },
             { data: 'action', name: 'action' },
             { data: 'alias', name: 'alias' },
             { data: 'method', name: 'method' },
-            { data: 'user_agent', name: 'user_agent' },
-            { data: 'ip_address', name: 'ip_address' },
             { data: 'created_at', name: 'created_at' },
             { data: null, searchable: false, orderable: false, render: function(data, type, row) {
                 return "" +

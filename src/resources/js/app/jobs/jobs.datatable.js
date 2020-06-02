@@ -22,7 +22,6 @@ jQ(document).ready(function () {
         columns: [
             { data: 'id', name: 'id' },
             { data: 'queue', name: 'queue' },
-            { data: 'payload', name: 'payload' },
             { data: 'attempts', name: 'attempts' },
             { data: 'reserved_at', name: 'reserved_at' },
             { data: 'available_at', name: 'available_at' },

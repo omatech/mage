@@ -46,21 +46,33 @@ class JobsController extends Controller
     public function show(GetJob $job, $id)
     {
         $job = $job->make($id);
+        $job['payload'] = substr($job['payload'], 0, -1);
+        $job['payload'] = substr($job['payload'], 1);
+        $payload = explode(",", $job['payload']);
 
-        return view('pages.jobs.show', ['job' => $job]);
+        return view('pages.jobs.show', ['job' => $job, 'payload' => $payload]);
     }
 
     public function showDone(GetDoneJob $job, $id)
     {
         $job = $job->make($id);
+        $job['payload'] = substr($job['payload'], 0, -1);
+        $job['payload'] = substr($job['payload'], 1);
+        $payload = explode(",", $job['payload']);
 
-        return view('pages.jobs.show-done', ['job' => $job]);
+        return view('pages.jobs.show-done', ['job' => $job, 'payload' => $payload]);
     }
 
     public function showFailed(GetFailedJob $job, $id)
     {
         $job = $job->make($id);
 
-        return view('pages.jobs.show-failed', ['job' => $job]);
+        $job['payload'] = substr($job['payload'], 0, -1);
+        $job['payload'] = substr($job['payload'], 1);
+        $payload = explode(",", $job['payload']);
+
+        $exceptions = explode("#", $job['exception']);
+
+        return view('pages.jobs.show-failed', ['job' => $job, 'payload' => $payload, 'exceptions' => $exceptions]);
     }
 }

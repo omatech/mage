@@ -45,25 +45,47 @@
                             {{$job['queue'] ?? '-'}}
                         </div>
                     </div>
-    
-                    <div class="col-6 mb-5">
-                        <div class="mb-2 font-weight-bold">{{__('backend.failed-jobs.show.payload')}}</div>
-                        <div>
-                            {{$job['payload'] ?? '-'}}
-                        </div>
-                    </div>
-    
-                    <div class="col-6 mb-5">
-                        <div class="mb-2 font-weight-bold">{{__('backend.failed-jobs.show.exception')}}</div>
-                        <div>
-                            {{$job['exception'] ?? '-'}}
-                        </div>
-                    </div>
 
                     <div class="col-6 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.failed-jobs.show.failed_at')}}</div>
                         <div>
                             {{$job['failed_at'] ?? '-'}}
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-5">
+                        <div class="mb-2 font-weight-bold">{{__('backend.failed-jobs.show.payload')}}</div>
+                        <div>
+                            @if(isset($job['payload']))
+                                <div class="row">
+                                    @foreach ($payload as $item)
+                                        <div class="col-12">
+                                            {{$item}}
+                                            <br><br>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <p>-</p>
+                            @endif
+                        </div>
+                    </div>
+    
+                    <div class="col-12 mb-5">
+                        <div class="mb-2 font-weight-bold">{{__('backend.failed-jobs.show.exception')}}</div>
+                        <div>
+                            @if(isset($job['exception']))
+                                <div class="row">
+                                    @foreach ($exceptions as $item)
+                                        <div class="col-12">
+                                            #{{$item}}
+                                            <br><br>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <p>-</p>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -23,8 +23,6 @@ jQ(document).ready(function () {
             { data: 'id', name: 'id' },
             { data: 'connection', name: 'connection' },
             { data: 'queue', name: 'queue' },
-            { data: 'payload', name: 'payload' },
-            { data: 'exception', name: 'exception' },
             { data: 'failed_at', name: 'failed_at' },
             { data: null, searchable: false, orderable: false, render: function(data, type, row) {
                 return "" +

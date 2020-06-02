@@ -53,28 +53,39 @@
                         </div>
                     </div>
     
-                    <div class="col-6 mb-5">
+                    <div class="col-12 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.done-jobs.show.payload')}}</div>
                         <div>
-                            {{$job['payload'] ?? '-'}}
+                            @if(isset($job['payload']))
+                                <div class="row">
+                                    @foreach ($payload as $item)
+                                        <div class="col-12">
+                                            {{$item}}
+                                            <br><br>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <p>-</p>
+                            @endif
                         </div>
                     </div>
 
-                    <div class="col-6 mb-5">
+                    <div class="col-4 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.done-jobs.show.attempts')}}</div>
                         <div>
                             {{$job['attempts'] ?? '-'}}
                         </div>
                     </div>
     
-                    <div class="col-6 mb-5">
+                    <div class="col-4 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.done-jobs.show.done_at')}}</div>
                         <div>
                             {{$job['done_at'] ?? '-'}}
                         </div>
                     </div>
 
-                    <div class="col-6 mb-5">
+                    <div class="col-4 mb-5">
                         <div class="mb-2 font-weight-bold">{{__('backend.done-jobs.show.created_at')}}</div>
                         <div>
                             {{$job['created_at'] ?? '-'}}
