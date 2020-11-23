@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules\Translations;
+namespace Omatech\Mage\App\Rules\Translations;
 
 use Illuminate\Contracts\Validation\Rule;
 use Omatech\Mage\App\Repositories\Translation\ExistsTranslation;
