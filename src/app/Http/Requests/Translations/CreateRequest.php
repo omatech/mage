@@ -2,7 +2,7 @@
 
 namespace Omatech\Mage\App\Http\Requests\Translations;
 
-use App\Rules\Translations\ExistsTranslationInGroupRule;
+use Omatech\Mage\App\Rules\Translations\ExistsTranslationInGroupRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest
@@ -27,7 +27,7 @@ class CreateRequest extends FormRequest
         $rules = [
             'translations_key'   => 'required',
             'translations_group' => 'required',
-	    'translations_key' => new ExistsTranslationInGroupRole()
+	    'translations_key' => new ExistsTranslationInGroupRule()
         ];
 
         foreach (config('mage.translations.available_locales') as $lang) {
