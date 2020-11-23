@@ -27,7 +27,7 @@ class CreateRequest extends FormRequest
         $rules = [
             'translations_key'   => 'required',
             'translations_group' => 'required',
-	    'translations_key' => new ExistsTranslationInGroupRule()
+	          'translations_key' => new ExistsTranslationInGroupRule()
         ];
 
         foreach (config('mage.translations.available_locales') as $lang) {
