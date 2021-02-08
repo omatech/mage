@@ -42,7 +42,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
         /**
          * LoggedIn Routes
          */
-        $route->middleware(['mageRedirectIfNotAuthenticated', 'checkForPermissions:mage-access'])
+        $route->middleware(['mageRedirectIfNotAuthenticated', 'checkForPermissions:'.config('mage.authentication.mage_permission_access')])
         
             ->group(function ($logged) {
               
