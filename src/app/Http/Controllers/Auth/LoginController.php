@@ -91,7 +91,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $hasPermission = $user->can('mage-access');
+        $hasPermission = $user->can(config('mage.authentication.mage_permission_access'));
 
         if ($hasPermission == false) {
             throw new UnauthorizedException($user);
