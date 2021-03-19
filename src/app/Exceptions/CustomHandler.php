@@ -2,7 +2,7 @@
 
 namespace Omatech\Mage\App\Exceptions;
 
-use Exception;
+use Throwable;
 use App\Exceptions\Handler;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,7 +17,7 @@ class CustomHandler extends Handler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
         $url = null;
 
