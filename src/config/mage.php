@@ -15,7 +15,7 @@ return [
     'on_login_to_route' => 'mage.dashboard',
     'on_reset_to_route' => 'mage.dashboard',
     'on_logout_to_route' => 'mage.auth.login.index',
-    'enable_register_route' => true,
+    'enable_register_route' => false,
 
     /**
      * Authentication configuration
