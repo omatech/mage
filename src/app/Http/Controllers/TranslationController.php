@@ -3,12 +3,15 @@
 namespace Omatech\Mage\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Omatech\Mage\App\Http\Requests\Translations\CreateRequest;
-use Omatech\Mage\App\Repositories\Translation\ExistsCreateTranslation;
-use Omatech\Mage\App\Repositories\Translation\UpdateTranslation;
-use Omatech\Mage\App\Repositories\Translation\ListTranslationsDatatable;
 use Omatech\Mage\App\Repositories\Translation\CreateTranslation;
 use Omatech\Mage\App\Repositories\Translation\DeleteTranslation;
+use Omatech\Mage\App\Repositories\Translation\ExistsCreateTranslation;
+use Omatech\Mage\App\Repositories\Translation\ExportTranslations;
+use Omatech\Mage\App\Repositories\Translation\ImportTranslation;
+use Omatech\Mage\App\Repositories\Translation\ListTranslationsDatatable;
+use Omatech\Mage\App\Repositories\Translation\UpdateTranslation;
 
 class TranslationController extends Controller
 {
@@ -75,8 +78,27 @@ class TranslationController extends Controller
 
     public function set($lang)
     {
-        session(['locale' =>  $lang]);
+        session(['locale' => $lang]);
 
         return redirect()->back();
+    }
+
+    public function export(ExportTranslations $exportTranslations)
+    {
+        return response()->download($exportTranslations->make())->deleteFileAfterSend(true);
+    }
+
+    public function import(ImportTranslation $importTranslation)
+    {
+        $file = request()->file('excel');
+        $file = Storage::disk('local')
+            ->putFileAs('translations', $file, 'excel_translations.xlsx');
+
+        $importTranslation->make(storage_path('app/'.$file));
+
+        Storage::disk('local')
+            ->delete(storage_path('app/translation/excel_translations.xlsx'));
+
+        return redirect()->back()->with('status', 'created');
     }
 }

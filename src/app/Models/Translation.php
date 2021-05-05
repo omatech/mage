@@ -3,14 +3,14 @@
 namespace Omatech\Mage\App\Models;
 
 use Illuminate\Support\Arr;
-use Spatie\TranslationLoader\LanguageLine;
 use Illuminate\Support\Facades\Cache;
+use Spatie\TranslationLoader\LanguageLine;
 
 class Translation extends LanguageLine
 {
     protected $table = 'language_lines';
 
-    public static function getTranslationsForGroup(string $locale, string $group): array
+    public static function getTranslationsForGroup(string $locale, string $group) : array
     {
         return Cache::rememberForever(static::getCacheKey($group, $locale), function () use ($group, $locale) {
             return static::query()
