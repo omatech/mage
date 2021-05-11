@@ -17,10 +17,9 @@ class ExportTranslations implements ExportTranslationInterface
         $this->getAllTranslations = $getAllTranslations;
     }
 
-    public function make() : string
+    public function make(): string
     {
         $translations = $this->getAllTranslations->get($this->getLocales());
-
         $parsedTranslations = [];
 
         foreach ($translations as $values) {
@@ -28,8 +27,9 @@ class ExportTranslations implements ExportTranslationInterface
                 if (array_key_exists($key, array_flip($this->getLocales()))) {
                     $parsedTranslations[$key][] = [
                         'group' => $values['group'],
-                        'key' => $values['group'].'.'.$values['key'],
+                        'key' => $values['group'] . '.' . $values['key'],
                         'value' => $value,
+                        'reference_value' => $values[app()->getLocale()],
                     ];
                 }
             }
@@ -42,30 +42,31 @@ class ExportTranslations implements ExportTranslationInterface
         return $this->toFile($parsedTranslations);
     }
 
-    private function toFile(array $translations) : string
+    private function toFile(array $translations): string
     {
         $path = base_path('storage/app/translations');
         File::makeDirectory($path, 0777, true, true);
 
         $date = Carbon::now('Europe/Madrid')->format('dmY_His');
-        $path = storage_path('app/translations/'.$date.'_excel.xlsx');
+        $path = storage_path('app/translations/' . $date . '_excel.xlsx');
 
         return (new FastExcel(new SheetCollection($translations)))->export($path, function ($sheets) {
             return [
                 'key1' => 'mage',
                 'key2' => $sheets['key'],
                 'value' => $sheets['value'],
+                'reference_value' => $sheets['reference_value'],
             ];
         });
     }
 
-    private function getLocales() : array
+    private function getLocales(): array
     {
         $availableLocales = config('mage.translations.available_locales');
         $locales = [];
 
         foreach ($availableLocales as $locale) {
-            if (! array_key_exists($locale['locale'], $locales)) {
+            if (!array_key_exists($locale['locale'], $locales)) {
                 $locales[] = $locale['locale'];
             }
         }
