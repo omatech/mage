@@ -28,7 +28,7 @@ class ImportTranslation
             $translation['id'] = $current['id'];
 
             foreach ($current['value'] as $locale => $value) {
-                if (! in_array($locale, $translation['value'])) {
+                if (in_array($locale, $translation['value'])) {
                     $translation['value'][$locale] = $value;
                 }
             }
