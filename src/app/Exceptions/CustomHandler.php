@@ -17,7 +17,7 @@ class CustomHandler extends Handler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Throwable $exception)
+    public function render($request, \Exception $exception)
     {
         $url = null;
 
@@ -44,7 +44,7 @@ class CustomHandler extends Handler
                 if ($request->route()->getName() == 'mage.auth.login') {
                     return redirect()->route('mage.auth.login')->with('status', 'unauthorized');
                 }
-                
+
                 return $this->exception(401, $request, $exception);
             }
         }
