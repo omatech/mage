@@ -48,7 +48,7 @@ jQ(document).ready(function () {
             processing: true,
             serverSide: true,
             ajax: {
-                url: route('mage.translations.list').url(),
+                url: route('mage.translations.list'),
                 data: function (d) {
                     d.notTranslated = jQ('#translations-not-translated').is(':checked');
                 }
