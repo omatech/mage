@@ -3,7 +3,7 @@
 namespace Omatech\Mage\App\Repositories\Translation;
 
 use Box\Spout\Common\Type;
-use Box\Spout\Reader\ReaderFactory;
+use Box\Spout\Reader\Common\Creator\ReaderFactory;
 use Rap2hpoutre\FastExcel\FastExcel;
 
 class ImportTranslation
@@ -27,13 +27,15 @@ class ImportTranslation
             $current = $this->findTranslation->find(['key' => $translation['key']]);
             $translation['id'] = $current['id'];
 
-            foreach ($current['value'] as $locale => $value) {
-                if (in_array($locale, $translation['value'])) {
-                    $translation['value'][$locale] = $value;
+            if(isset($current['value'])){
+                foreach ($current['value'] as $locale => $value) {
+                    if (in_array($locale, $translation['value'])) {
+                        $translation['value'][$locale] = $value;
+                    }
                 }
+                $translation = $this->setMissingTranslations($translation);
+                $this->saveTranslation->make($translation);
             }
-            $translation = $this->setMissingTranslations($translation);
-            $this->saveTranslation->make($translation);
         }, $translations);
     }
 
@@ -58,7 +60,7 @@ class ImportTranslation
     {
         $sheetNames = [];
 
-        $reader = ReaderFactory::create(Type::XLSX);
+        $reader = ReaderFactory::createFromType(Type::XLSX);
         $reader->open($path);
 
         foreach ($reader->getSheetIterator() as $sheet) {
