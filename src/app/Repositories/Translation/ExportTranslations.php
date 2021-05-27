@@ -25,6 +25,7 @@ class ExportTranslations implements ExportTranslationInterface
         foreach ($translations as $values) {
             foreach ($values as $key => $value) {
                 if (array_key_exists($key, array_flip($this->getLocales()))) {
+                    $value = (!empty($value)) ? $value : $values['group'] . '.' . $values['key'];
                     $parsedTranslations[$key][] = [
                         'group' => $values['group'],
                         'key' => $values['group'] . '.' . $values['key'],
