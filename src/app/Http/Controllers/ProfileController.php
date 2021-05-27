@@ -5,7 +5,9 @@ namespace Omatech\Mage\App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Omatech\Mage\App\Repositories\User\UpdateUser;
 use Omatech\Mage\App\Http\Requests\Profile\UpdateRequest;
+use Omatech\Mage\App\Contracts\Profile\UpdateProfileInterface;
 use Omatech\Mage\App\Http\Requests\Profile\ChangePasswordRequest;
+use Omatech\Mage\App\Contracts\Profile\UpdateProfileRequestInterface;
 
 class ProfileController extends Controller
 {
@@ -30,7 +32,7 @@ class ProfileController extends Controller
         return redirect(route('mage.profile.change-password.index'))->with('status', 'updated');
     }
 
-    public function update(UpdateRequest $request, UpdateUser $user)
+    public function update(UpdateProfileRequestInterface $request, UpdateProfileInterface $user)
     {
         $data = $request->validated();
 

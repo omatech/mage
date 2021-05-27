@@ -3,6 +3,7 @@
 namespace Omatech\Mage\App\Http\Controllers\Auth;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class ResetPasswordController extends Controller
 
     public function redirectTo()
     {
-        return route(config('mage.on_login_to_route'));
+        return route(config('mage.on_reset_to_route'));
     }
 
     /**
@@ -57,5 +58,15 @@ class ResetPasswordController extends Controller
             'password.confirmed' => __('mage.auth.validations.password.confirmed'),
             'password.min' => __('mage.auth.validations.password.min'),
         ];
+    }
+
+    /**
+     * Get the guard to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('mage');
     }
 }

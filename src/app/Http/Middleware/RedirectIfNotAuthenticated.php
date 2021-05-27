@@ -17,11 +17,12 @@ class RedirectIfNotAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->guard('mage')->check() && !auth()->guard('mage')->user()->can('mage-access')) {
+        if (auth()->guard('mage')->check() && !auth()->guard('mage')->user()->can(config('mage.authentication.mage_permission_access'))) {
             throw new UnauthorizedException(auth()->guard('mage')->user());
         }
 
         if (!auth()->guard('mage')->check()) {
+            session(['previous' => request()->getUri()]);          
             return redirect(route('mage.auth.login'));
         }
 

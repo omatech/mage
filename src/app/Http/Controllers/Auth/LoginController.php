@@ -32,6 +32,11 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
+        if (session('previous') != null) {
+            $goTo = session('previous');
+            session(['previous' => null]);
+            return $goTo;
+        }
         return route(config('mage.on_login_to_route'));
     }
 
@@ -86,10 +91,18 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $hasPermission = $user->can('mage-access');
+        $hasPermission = $user->can(config('mage.authentication.mage_permission_access'));
 
         if ($hasPermission == false) {
             throw new UnauthorizedException($user);
+        }
+        
+        if (auth()->check() == true || auth()->guard('mage')->check() == true) {
+            $user = auth()->user() ?? auth()->guard('mage')->user();
+        }
+
+        if (isset($user->language)) {
+            session(['locale' =>  $user->language]);
         }
     }
 }

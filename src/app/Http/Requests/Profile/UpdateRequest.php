@@ -3,8 +3,9 @@
 namespace Omatech\Mage\App\Http\Requests\Profile;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Omatech\Mage\App\Contracts\Profile\UpdateProfileRequestInterface;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends FormRequest implements UpdateProfileRequestInterface
 {
     /**
      * Determine if the user is authorized to make this request.

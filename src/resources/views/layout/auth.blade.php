@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-5 align-items-stret h-100 align-items-center d-flex justify-content-center">
+        <div class="col-12 col-lg-5 align-items-stret pt-5 align-items-center d-flex justify-content-center">
             @yield('content')
         </div>
     </div>

@@ -14,7 +14,7 @@
         @include('mage::assets.styles')
     @show
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini {{session('sidebar')}}">
     <div class="wrapper">
         @include('mage::components.navbar.layout')
 

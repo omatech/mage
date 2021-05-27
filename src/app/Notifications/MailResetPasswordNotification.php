@@ -49,9 +49,9 @@ class MailResetPasswordNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->from(env('MAIL_USERNAME'), 'Omatech')
+            ->from(config('mail.from.address'), config('mail.from.name'))
             ->subject(__('mage.auth.reset-password.email.subject'))
-            ->view('mage::pages.auth.reset-email', [
+            ->markdown('mage::pages.auth.reset-email', [
                 "token" => $this->token
             ]);
     }

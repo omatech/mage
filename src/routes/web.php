@@ -9,12 +9,11 @@
 
 Route::namespace('Omatech\Mage\App\Http\Controllers')
     ->prefix(config('mage.prefix'))
-    ->middleware(['web', 'setLocale'])
+    ->middleware(['web', 'setLocale', 'sidebarToggle'])
     ->name('mage.')
     ->group(function ($route) {
-
         /**
-         * Auth
+         * Auth.
          */
         $route->namespace('Auth')
             ->middleware('mageRedirectIfAuthenticated')
@@ -39,11 +38,11 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
         }
 
         /**
-         * LoggedIn Routes
+         * LoggedIn Routes.
          */
-        $route->middleware(['mageRedirectIfNotAuthenticated', 'checkForPermissions:mage-access'])
-            ->group(function ($logged) {
+        $route->middleware(['mageRedirectIfNotAuthenticated', 'checkForPermissions:'.config('mage.authentication.mage_permission_access')])
 
+            ->group(function ($logged) {
                 /*
                  * Dashboard
                  */
@@ -63,7 +62,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                 $logged->put('profile', 'ProfileController@update')->name('profile.update');
 
                 /**
-                 * Users
+                 * Users.
                  */
                 $logged->middleware('checkForPermissions:mage-access-users-zone')
                     ->group(function ($users) {
@@ -72,7 +71,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                     });
 
                 /**
-                 * Roles
+                 * Roles.
                  */
                 $logged->middleware('checkForPermissions:mage-access-roles-zone')
                     ->group(function ($roles) {
@@ -82,7 +81,7 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                     });
 
                 /**
-                 * Permissions
+                 * Permissions.
                  */
                 $logged->middleware('checkForPermissions:mage-access-permissions-zone')
                     ->group(function ($permissions) {
@@ -91,24 +90,31 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                     });
 
                 /**
-                 * Translations
+                 * Translations.
                  */
                 $logged->middleware('checkForPermissions:mage-access-translations-zone')
                     ->group(function ($translations) {
                         $translations->get('translations/list', 'TranslationController@list')->name('translations.list');
                         $translations->get('translations/set/{lang}', 'TranslationController@set')->name('translations.set');
+                        $translations->post('translations/export', 'TranslationController@export')->name('translations.export');
+                        $translations->post('translations/import', 'TranslationController@import')->name('translations.import');
                         $translations->resource('translations', 'TranslationController');
                     });
 
+                /*
+                 * Sidebar
+                 */
+                $logged->post('sidebar/toggle', 'SidebarController@toggle')->name('sidebar.toggle');
+
                 /**
-                 * Vault
+                 * Vault.
                  */
                 $logged->get('vault/{id}', 'VaultController@get')->name('vault.get');
                 $logged->post('vault', 'VaultController@upload')->name('vault.upload');
             });
 
         /**
-         * Exceptions
+         * Exceptions.
          */
         $route->get('404', 'ErrorController@error404')->name('error404');
         $route->get('403', 'ErrorController@error403')->name('error403');

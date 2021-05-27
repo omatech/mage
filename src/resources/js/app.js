@@ -51,9 +51,10 @@ window.sodium = require('libsodium-wrappers/dist/modules/libsodium-wrappers');
 window.base64 = require('./app/components/cipher/base64');
 
 window.mage = {
-    'encrypt' : require('./app/components/cipher/encrypt').encrypt
+    'encrypt': require('./app/components/cipher/encrypt').encrypt
 };
 
 require('./app/components/encrypted-dropzone');
 
 require('./app/components/annotation');
+require('./vendor/filestyle/bootstrap-filestyle.min');

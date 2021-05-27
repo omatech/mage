@@ -7,17 +7,25 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MailRegisteredWelcomeNotification extends Notification implements ShouldQueue
+class MailWelcomeWithoutPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    /**
+     * The password reset token.
+     *
+     * @var string
+     */
+    public $token;
 
     /**
      * Create a new notification instance.
      *
      * @param $token
      */
-    public function __construct()
+    public function __construct($token)
     {
+        $this->token = $token;
         $this->queue = 'mail';
     }
 
@@ -41,10 +49,10 @@ class MailRegisteredWelcomeNotification extends Notification implements ShouldQu
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->from(env('MAIL_USERNAME'), 'Omatech')
-            ->subject(__('mage.auth.reset-password.email.subject'))
-            ->view('mage::pages.auth.reset-email', [
-                "token" => 'abc'
+            ->from(config('mail.from.address'), config('mail.from.name'))
+            ->subject(__('mage.auth.welcome-password-reset-email.email.subject'))
+            ->markdown('mage::pages.auth.welcome-password-reset-email', [
+                "token" => $this->token
             ]);
     }
 }
