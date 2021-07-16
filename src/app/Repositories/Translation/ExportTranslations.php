@@ -44,11 +44,11 @@ class ExportTranslations implements ExportTranslationInterface
 
     private function toFile(array $translations): string
     {
-        $path = base_path('storage/app/translations');
+        $path = storage_path('app/translations');
         File::makeDirectory($path, 0777, true, true);
 
         $date = Carbon::now('Europe/Madrid')->format('dmY_His');
-        $path = storage_path('app/translations/' . $date . '_excel.xlsx');
+        $path = storage_path("app/translations/{$date}_excel.xlsx");
 
         return (new FastExcel(new SheetCollection($translations)))->export($path, function ($sheets) {
             return [
