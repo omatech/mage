@@ -14,7 +14,8 @@ class ImportTranslation
     public function __construct(
         FindTranslation $findTranslation,
         SaveTranslation $saveTranslation
-    ) {
+    )
+    {
         $this->findTranslation = $findTranslation;
         $this->saveTranslation = $saveTranslation;
     }
@@ -23,16 +24,15 @@ class ImportTranslation
     {
         $translations = $this->import($path, $locale);
 
-        foreach($translations as $translation) {
+        foreach ($translations as $translation) {
             $current = $this->findTranslation->find(['key' => $translation['key']]);
             $translation['id'] = $current['id'] ?? null;
-
-            $translation = $this->setMissingTranslations($translation);
+            $translation = $this->setMissingTranslations($translation, $current['value']);
             $this->saveTranslation->make($translation);
         }
     }
 
-    public function import(string $path, string $locale = '') : array
+    public function import(string $path, string $locale = ''): array
     {
         $sheetNames = $this->getSheets($path, $locale);
         $sheets = $this->importSheets($path, $sheetNames);
@@ -49,7 +49,7 @@ class ImportTranslation
      * @param string $locale
      * @return array
      */
-    private function getSheets(string $path, string $locale = '') : array
+    private function getSheets(string $path, string $locale = ''): array
     {
         $sheetNames = [];
 
@@ -62,7 +62,7 @@ class ImportTranslation
 
         if ('' != $locale && in_array($locale, $sheetNames)) {
             $sheetNames = [0 => $locale];
-        } elseif ('' != $locale && ! in_array($locale, $sheetNames)) {
+        } elseif ('' != $locale && !in_array($locale, $sheetNames)) {
             $sheetNames = [];
         }
 
@@ -74,7 +74,7 @@ class ImportTranslation
      * @param array $sheetNames
      * @return array
      */
-    private function importSheets(string $path, array $sheetNames) : array
+    private function importSheets(string $path, array $sheetNames): array
     {
         $sheets = new FastExcel;
 
@@ -85,7 +85,7 @@ class ImportTranslation
         return [$sheets->sheet(key($sheetNames) + 1)->import($path)->toArray()];
     }
 
-    private function parseTranslations(array $sheetNames, array $sheets) : array
+    private function parseTranslations(array $sheetNames, array $sheets): array
     {
         $translations = [];
         $parsedKeys = [];
@@ -106,13 +106,13 @@ class ImportTranslation
         return array_values($parsedKeys);
     }
 
-    private function getLocales() : array
+    private function getLocales(): array
     {
         $availableLocales = config('mage.translations.available_locales');
         $locales = [];
 
         foreach ($availableLocales as $locale) {
-            if (! array_key_exists($locale['locale'], $locales)) {
+            if (!array_key_exists($locale['locale'], $locales)) {
                 $locales[] = $locale['locale'];
             }
         }
@@ -123,13 +123,18 @@ class ImportTranslation
     /**
      * @return void
      */
-    private function setMissingTranslations($translation) : array
+    private function setMissingTranslations($translation, array $defaultValues = []): array
     {
         foreach ($this->getLocales() as $locale) {
-            if (! array_key_exists($locale, $translation['value'])) {
-                $translation['value'][$locale] = $translation['key'];
+            if (!array_key_exists($locale, $translation['value'])) {
+                if (!empty($defaultValues) && array_key_exists($locale, $defaultValues)) {
+                    $translation['value'][$locale] = $defaultValues[$locale];
+                } else {
+                    $translation['value'][$locale] = $translation['key'];
+                }
             }
         }
+
         return $translation;
     }
 }
