@@ -27,7 +27,7 @@ class ImportTranslation
         foreach ($translations as $translation) {
             $current = $this->findTranslation->find(['key' => $translation['key']]);
             $translation['id'] = $current['id'] ?? null;
-            $translation = $this->setMissingTranslations($translation, $current['value']);
+            $translation = $this->setMissingTranslations($translation, optional($current)['value'] ?? []);
             $this->saveTranslation->make($translation);
         }
     }
