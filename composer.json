@@ -9,7 +9,7 @@
         "spatie/laravel-translation-loader": "^2.2|^2.4",
         "omatech/lars": "^1.0",
         "maatwebsite/excel": "^3.1",
-        "rap2hpoutre/fast-excel": "^1.7"
+        "rap2hpoutre/fast-excel": "^1.7|^2.0|^3.0"
     },
     "authors": [
         {
