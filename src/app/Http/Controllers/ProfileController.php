@@ -2,7 +2,7 @@
 
 namespace Omatech\Mage\App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Omatech\Mage\App\Repositories\User\UpdateUser;
 use Omatech\Mage\App\Http\Requests\Profile\UpdateRequest;
 use Omatech\Mage\App\Contracts\Profile\UpdateProfileInterface;

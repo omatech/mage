@@ -2,7 +2,7 @@
 
 namespace Omatech\Mage\App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 use Omatech\Mage\App\Repositories\Vault\GetFile;
 

@@ -2,7 +2,7 @@
 
 namespace Omatech\Mage\App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 
 class ErrorController extends Controller
 {

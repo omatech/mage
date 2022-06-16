@@ -3,7 +3,7 @@
 namespace Omatech\Mage\App\Exceptions;
 
 use Throwable;
-use App\Exceptions\Handler;
+use Illuminate\Foundation\Exceptions\Handler;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

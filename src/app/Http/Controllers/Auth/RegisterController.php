@@ -4,7 +4,7 @@ namespace Omatech\Mage\App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Omatech\Mage\App\Models\User;
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

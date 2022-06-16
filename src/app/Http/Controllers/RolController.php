@@ -2,7 +2,7 @@
 
 namespace Omatech\Mage\App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Omatech\Mage\App\Http\Requests\Roles\CreateRequest;
 use Omatech\Mage\App\Http\Requests\Roles\UpdateRequest;
 use Omatech\Mage\App\Repositories\Permission\GetPermissions;
