@@ -2,15 +2,21 @@
 
 namespace Omatech\Mage\App\Providers;
 
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Contracts\Debug\ExceptionHandler as ExceptionHandlerContract;
 use Illuminate\Support\ServiceProvider;
 use Omatech\Mage\App\Exceptions\CustomHandler;
-use Illuminate\Contracts\Debug\ExceptionHandler;
 
 class ExceptionServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind(ExceptionHandler::class, CustomHandler::class);
+        $appExceptionHandler = $this->app->make(ExceptionHandlerContract::class);
+
+        $this->app->singleton(
+            ExceptionHandlerContract::class,
+            function ($app) use ($appExceptionHandler) {
+                return new CustomHandler($app, $appExceptionHandler);
+            }
+        );
     }
 }

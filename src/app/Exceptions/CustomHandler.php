@@ -2,14 +2,21 @@
 
 namespace Omatech\Mage\App\Exceptions;
 
+use Illuminate\Contracts\Container\Container;
 use Throwable;
-use Illuminate\Foundation\Exceptions\Handler;
+use Illuminate\Contracts\Debug\ExceptionHandler as ExceptionHandlerContract;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class CustomHandler extends Handler
+class CustomHandler implements ExceptionHandlerContract
 {
+    public function __construct(Container $container, ExceptionHandlerContract $appExceptionHandler)
+    {
+        $this->container = $container;
+        $this->appExceptionHandler = $appExceptionHandler;
+    }
+
     /**
      * Render an exception into an HTTP response.
      *
@@ -44,12 +51,12 @@ class CustomHandler extends Handler
                 if ($request->route()->getName() == 'mage.auth.login') {
                     return redirect()->route('mage.auth.login')->with('status', 'unauthorized');
                 }
-                
+
                 return $this->exception(401, $request, $exception);
             }
         }
 
-        return parent::render($request, $exception);
+        return $this->appExceptionHandler->render($request, $e);
     }
 
     private function exception($code, $request, $exception)
@@ -62,5 +69,20 @@ class CustomHandler extends Handler
         }
 
         return Route::respondWithRoute("mage.error$code", $request);
+    }
+
+    public function report(Throwable $e)
+    {
+        $this->appExceptionHandler->report($e);
+    }
+
+    public function renderForConsole($output, Throwable $e)
+    {
+        $this->appExceptionHandler->renderForConsole($output, $e);
+    }
+
+    public function shouldReport(Throwable $e)
+    {
+        return $this->appExceptionHandler->shouldReport($e);
     }
 }
