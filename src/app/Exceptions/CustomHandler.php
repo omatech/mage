@@ -28,19 +28,19 @@ class CustomHandler implements ExceptionHandlerContract
         }
 
         if ($request->is($url)) {
-            if ($exception instanceof NotFoundHttpException) {
+            if ($e instanceof NotFoundHttpException) {
                 return $this->exception(404, $request, $e);
             }
 
-            if ($exception instanceof ModelNotFoundException) {
+            if ($e instanceof ModelNotFoundException) {
                 return $this->exception(404, $request, $e);
             }
 
-            if ($exception instanceof ForbiddenException) {
+            if ($e instanceof ForbiddenException) {
                 return $this->exception(403, $request, $e);
             }
 
-            if ($exception instanceof UnauthorizedException) {
+            if ($e instanceof UnauthorizedException) {
                 if ($request->route()->getName() == 'mage.auth.login') {
                     return redirect()->route('mage.auth.login')->with('status', 'unauthorized');
                 }
