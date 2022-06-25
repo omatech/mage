@@ -16,15 +16,8 @@ class CustomHandler implements ExceptionHandlerContract
         $this->container = $container;
         $this->appExceptionHandler = $appExceptionHandler;
     }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Throwable $exception)
+    
+    public function render($request, Throwable $e)
     {
         $url = null;
 
@@ -36,15 +29,15 @@ class CustomHandler implements ExceptionHandlerContract
 
         if ($request->is($url)) {
             if ($exception instanceof NotFoundHttpException) {
-                return $this->exception(404, $request, $exception);
+                return $this->exception(404, $request, $e);
             }
 
             if ($exception instanceof ModelNotFoundException) {
-                return $this->exception(404, $request, $exception);
+                return $this->exception(404, $request, $e);
             }
 
             if ($exception instanceof ForbiddenException) {
-                return $this->exception(403, $request, $exception);
+                return $this->exception(403, $request, $e);
             }
 
             if ($exception instanceof UnauthorizedException) {
@@ -52,7 +45,7 @@ class CustomHandler implements ExceptionHandlerContract
                     return redirect()->route('mage.auth.login')->with('status', 'unauthorized');
                 }
 
-                return $this->exception(401, $request, $exception);
+                return $this->exception(401, $request, $e);
             }
         }
 
