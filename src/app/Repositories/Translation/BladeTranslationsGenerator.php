@@ -30,7 +30,7 @@ class BladeTranslationsGenerator
     private function generateJS($trans)
     {
         $trans = json_encode($trans);
-        $debug = env('APP_ENV') == 'prod';
+        $debug = config('app.env') == 'prod';
 
         $script = null;
         $scriptTrans = "window.Translations = $trans;";
