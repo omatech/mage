@@ -4,13 +4,13 @@
     "description": "",
     "require": {
         "spatie/laravel-permission": "^2.37|^3.0|^4.0|^5.0",
-        "yajra/laravel-datatables-oracle": "^8.13|^9.0",
+        "yajra/laravel-datatables-oracle": "^8.13|^9.0|^10.0",
         "tightenco/ziggy": "^1.4",
         "spatie/laravel-translation-loader": "^2.7",
         "omatech/lars": "^1.0",
         "maatwebsite/excel": "^3.1",
         "rap2hpoutre/fast-excel": "^1.7|^3.0",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0|^4.0"
     },
     "authors": [
         {
