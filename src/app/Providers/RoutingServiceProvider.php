@@ -2,9 +2,9 @@
 
 namespace Omatech\Mage\App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
-class RoutingServiceProvider extends ServiceProvider
+class RoutingServiceProvider extends RouteServiceProvider
 {
     /**
      * Register any other events for your application.
