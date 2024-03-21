@@ -61,7 +61,8 @@ return [
         ],
         'import_path' => [
             resource_path('lang')
-        ]
+        ],
+        'model' => Omatech\Mage\App\Models\Translation::class
     ],
 
     /**
