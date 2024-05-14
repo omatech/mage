@@ -10,7 +10,7 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "author": "",
     "license": "ISC",
@@ -18,12 +18,13 @@
         "@fortawesome/fontawesome-free": "^5.12.0",
         "axios": "^0.21.1",
         "bootstrap": "^4.4.1",
+        "cross-env": "^7.0.3",
         "datatables": "^1.10.18",
         "datatables.net-bs4": "^1.10.19",
         "feather-icons": "^4.25.0",
         "flag-icon-css": "^3.4.5",
         "ionicons": "^4.5.5",
-        "jquery": "^3.3.1",
+        "jquery": "^3.7.1",
         "laravel-mix": "^4.0.14",
         "libsodium-wrappers": "^0.7.6",
         "open-sans-fonts": "^1.5.0",
@@ -35,8 +36,5 @@
         "select2": "^4.0.12",
         "sweetalert2": "^8.19.0",
         "vue-template-compiler": "^2.6.11"
-    },
-    "dependencies": {
-        "fix": "^0.0.6"
     }
 }
