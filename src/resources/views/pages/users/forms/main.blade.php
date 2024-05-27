@@ -1,6 +1,6 @@
 <div class="card-body">
     <div class="form-group">
-        <label for="mage-users-name">@lang('mage.users.form.name')</label>
+        <label for="mage-users-name">@lang('mage.users.form.name.label')</label>
         <input name="users_name" type="text" class="form-control @if($errors->has('users_name')) is-invalid @endif" id="mage-users-name" placeholder="@lang('mage.users.form.name.placeholder')" value="{{ old('users_name', $user->name ?? '') }}">
     </div>
     <div class="form-group">

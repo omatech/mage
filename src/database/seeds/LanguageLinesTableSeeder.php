@@ -173,7 +173,7 @@ class LanguageLinesTableSeeder extends Seeder
             19 =>
             array (
                 'group' => 'mage',
-                'key' => 'roles.form.name',
+                'key' => 'roles.form.name.label',
                 'text' => '{"es":"Nombre","ca":"Nom","en":"Name"}',
                 'created_at' => null,
                 'updated_at' => null,
@@ -309,7 +309,7 @@ class LanguageLinesTableSeeder extends Seeder
             36 =>
             array (
                 'group' => 'mage',
-                'key' => 'users.form.name',
+                'key' => 'users.form.name.label',
                 'text' => '{"es":"Nombre","ca":"Nom","en":"Name"}',
                 'created_at' => null,
                 'updated_at' => null,
@@ -1333,7 +1333,7 @@ class LanguageLinesTableSeeder extends Seeder
             164 =>
             array (
                 'group' => 'mage',
-                'key' => 'permissions.form.name',
+                'key' => 'permissions.form.name.label',
                 'text' => '{"es":"Nombre","ca":"Nom","en":"Name"}',
                 'created_at' => null,
                 'updated_at' => null,
@@ -2293,7 +2293,7 @@ class LanguageLinesTableSeeder extends Seeder
             284 =>
             array (
                 'group' => 'mage',
-                'key' => 'profile.form.name',
+                'key' => 'profile.form.name.label',
                 'text' => '{"es":"Nombre","ca":"Nom","en":"Name"}',
                 'created_at' => '2019-06-27 13:20:39',
                 'updated_at' => '2019-06-27 14:08:37',
