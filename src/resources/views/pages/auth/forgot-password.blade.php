@@ -9,7 +9,7 @@
         <div class="mb-4">
             <i class="fa fa-key icon-login"></i>
         </div>
-        <h3 class="mb-5">@lang('mage.auth.forgot-password')</h3>
+        <h3 class="mb-5">@lang('mage.auth.forgot-password.title')</h3>
         @if(!session()->has('status'))
             <form action="{{route('mage.auth.password.email')}}" method="POST" class="social-auth-links text-center mb-4">
                 {{ csrf_field() }}

@@ -13,10 +13,10 @@ class LanguageLinesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('language_lines')->delete();
-        
+
         \DB::table('language_lines')->insert(array (
             0 =>
             array (
@@ -1533,7 +1533,7 @@ class LanguageLinesTableSeeder extends Seeder
             189 =>
             array (
                 'group' => 'mage',
-                'key' => 'auth.forgot-password',
+                'key' => 'auth.forgot-password.title',
                 'text' => '{"es":"Recordar contrase\\u00f1a","ca":"Recordar contrasenya","en":"Forgot password"}',
                 'created_at' => null,
                 'updated_at' => null,

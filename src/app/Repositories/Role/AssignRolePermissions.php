@@ -11,6 +11,7 @@ class AssignRolePermissions extends RoleBaseRepository
         $role = $this->query()
             ->find($id);
 
+        $permissions = array_map(fn($id) => (int) $id, $permissions);
         $role->syncPermissions($permissions);
     }
 }
