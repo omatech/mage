@@ -24,7 +24,7 @@
             <form action="{{ route('mage.translations.export') }}" method="POST" style="display: inline-block">
                 {{ csrf_field() }}
                 <button type="submit"
-                    class="btn btn-sm btn-success"><strong>{{t('Exportar traducciones','mage.translations.index.export')}}</strong></button>
+                    class="btn btn-sm btn-success"><strong>@lang('mage.translations.index.export')</strong></button>
             </form>
         </div>
     </div>
