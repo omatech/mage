@@ -47,4 +47,19 @@ class ForgotPasswordController extends Controller
     {
         return Password::broker('mage');
     }
+
+    /**
+     * Get the response for a failed password reset link.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        $response = 'passwords.sent';
+        return $this->sendResetLinkResponse($request, $response);
+    }
 }
