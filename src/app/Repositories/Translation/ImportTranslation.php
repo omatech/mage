@@ -2,9 +2,7 @@
 
 namespace Omatech\Mage\App\Repositories\Translation;
 
-use Box\Spout\Common\Type;
 use Rap2hpoutre\FastExcel\FastExcel;
-use Box\Spout\Reader\Common\Creator\ReaderFactory;
 
 class ImportTranslation
 {
@@ -34,14 +32,13 @@ class ImportTranslation
 
     public function import(string $path, string $locale = '') : array
     {
-        $sheetNames = $this->getSheets($path, $locale);
-        $sheets = $this->importSheets($path, $sheetNames);
+        $sheets = $this->importSheets($path, $locale);
 
-        if (count($sheetNames) <= 0) {
+        if ($sheets === []) {
             return [];
         }
 
-        return $this->parseTranslations($sheetNames, $sheets);
+        return $this->parseTranslations($sheets);
     }
 
     /**
@@ -49,49 +46,27 @@ class ImportTranslation
      * @param string $locale
      * @return array
      */
-    private function getSheets(string $path, string $locale = '') : array
+    private function importSheets(string $path, string $locale = '') : array
     {
-        $sheetNames = [];
+        $sheets = (new FastExcel)->withSheetsNames()->importSheets($path)->toArray();
+        $sheetNames = array_keys($sheets);
 
-        $reader = ReaderFactory::createFromType(Type::XLSX);
-        $reader->open($path);
-
-        foreach ($reader->getSheetIterator() as $sheet) {
-            array_push($sheetNames, $sheet->getName());
+        if($locale !== '' && in_array($locale, $sheetNames)) {
+            return [$locale => $sheets[$locale]];
+        } elseif ($sheetNames > 1) {
+            return $sheets;
         }
 
-        if ('' != $locale && in_array($locale, $sheetNames)) {
-            $sheetNames = [0 => $locale];
-        } elseif ('' != $locale && ! in_array($locale, $sheetNames)) {
-            $sheetNames = [];
-        }
-
-        return $sheetNames;
+        return [];
     }
 
-    /**
-     * @param string $path
-     * @param array $sheetNames
-     * @return array
-     */
-    private function importSheets(string $path, array $sheetNames) : array
-    {
-        $sheets = new FastExcel;
-
-        if (count($sheetNames) > 1) {
-            return $sheets->importSheets($path)->toArray();
-        }
-
-        return [$sheets->sheet(key($sheetNames) + 1)->import($path)->toArray()];
-    }
-
-    private function parseTranslations(array $sheetNames, array $sheets) : array
+    private function parseTranslations(array $sheets) : array
     {
         $translations = [];
         $parsedKeys = [];
 
         foreach ($sheets as $lang => $trans) {
-            $translations[$sheetNames[$lang]] = $trans;
+            $translations[$lang] = $trans;
         }
 
         foreach ($translations as $lang => $keys) {
