@@ -4,19 +4,30 @@ namespace Omatech\Mage\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Omatech\Mage\App\Repositories\Translation\CustomTranslator;
+use Spatie\LaravelPackageTools\Package;
 use Spatie\TranslationLoader\TranslationServiceProvider;
 
 class TranslatorServiceProvider extends TranslationServiceProvider
 {
-    /**
-     * Register any other events for your application.
-     *
-     * @return void
-     */
-    public function register()
+    public function configurePackage(Package $package): void
     {
-        parent::register();
+        $package
+            ->name('laravel-translation-loader')
+            ->hasConfigFile()
+            ->setBasePath(__DIR__.'/../')
+            ->hasMigrations('create_language_lines_table');
 
+        $this->registerLoader();
+        $this->registerTranslator();
+    }
+
+    /**
+     * Register the translation line loader. This method registers a
+     * `TranslationLoaderManager` instead of a simple `FileLoader` as the
+     * applications `translation.loader` instance.
+     */
+    protected function registerTranslator(): void
+    {
         $this->app->singleton('translator', function ($app) {
             $loader = $app['translation.loader'];
 
