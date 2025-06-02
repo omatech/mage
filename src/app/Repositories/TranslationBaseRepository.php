@@ -9,6 +9,6 @@ abstract class TranslationBaseRepository extends BaseRepository
 {
     public function model() : String
     {
-        return Translation::class;
+        return config('mage.translations.model', Translation::class);
     }
 }

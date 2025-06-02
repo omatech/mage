@@ -14,7 +14,7 @@ return [
      * This is the model used by the Db Translation loader. You can put any model here
      * that extends Spatie\TranslationLoader\LanguageLine.
      */
-    'model' => Omatech\Mage\App\Models\Translation::class,
+    'model' => config('mage.translations.model', Omatech\Mage\App\Models\Translation::class),
 
     /*
      * This is the translation manager which overrides the default Laravel `translation.loader`
