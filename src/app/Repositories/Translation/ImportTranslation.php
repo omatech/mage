@@ -101,7 +101,7 @@ class ImportTranslation
     private function setMissingTranslations($translation) : array
     {
         foreach ($this->getLocales() as $locale) {
-            if (! array_key_exists($locale, $translation['value'])) {
+            if (! array_key_exists((string) $locale, $translation['value'])) {
                 $translation['value'][$locale] = $translation['key'];
             }
         }

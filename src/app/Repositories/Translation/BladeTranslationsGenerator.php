@@ -2,16 +2,13 @@
 
 namespace Omatech\Mage\App\Repositories\Translation;
 
-use Tightenco\Ziggy\BladeRouteGenerator;
-
 class BladeTranslationsGenerator
 {
     private $getTranslations;
 
-    public function __construct(GetTranslations $getTranslations, BladeRouteGenerator $routerGenerator)
+    public function __construct(GetTranslations $getTranslations)
     {
         $this->getTranslations = $getTranslations;
-        $this->routerGenerator = $routerGenerator;
     }
 
     public function make($group = null)
