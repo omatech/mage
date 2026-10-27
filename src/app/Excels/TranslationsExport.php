@@ -6,11 +6,8 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
 class TranslationsExport implements WithMultipleSheets
 {
-    private $language;
-
-    public function __construct($language)
+    public function __construct(private $language)
     {
-        $this->language = $language;
     }
 
     public function sheets(): array

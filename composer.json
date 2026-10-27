@@ -3,14 +3,16 @@
     "license": "MIT",
     "description": "",
     "require": {
-        "spatie/laravel-permission": "^2.37|^3.0|^4.0|^5.0|^6.0|^8.3.2",
-        "yajra/laravel-datatables-oracle": "^8.13|^9.0|^10.0|^11.0|^12.0|^13.3.1",
-        "tightenco/ziggy": "^1.4|^2.6.5",
-        "spatie/laravel-translation-loader": "^2.7",
-        "omatech/lars": "^1.0",
-        "maatwebsite/excel": "^3.1|^4.0.6",
-        "rap2hpoutre/fast-excel": "^1.7|^2.0|^3.0|^4.0|^5.0",
-        "laravel/ui": "^3.0|^4.0"
+        "php": "^8.5",
+        "laravel/framework": "^13.0",
+        "spatie/laravel-permission": "^8.3",
+        "yajra/laravel-datatables-oracle": "^13.3",
+        "tightenco/ziggy": "^2.6",
+        "spatie/laravel-translation-loader": "^2.8",
+        "omatech/lars": "^2.0",
+        "maatwebsite/excel": "^4.0",
+        "rap2hpoutre/fast-excel": "^5.17",
+        "laravel/ui": "^4.6"
     },
     "authors": [
         {

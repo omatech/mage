@@ -6,22 +6,19 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+#[\Illuminate\Database\Eloquent\Attributes\Fillable([
+    'model_type',
+    'model_id',
+    'filename',
+    'mimetype',
+    'size',
+    'path',
+    'data'
+])]
+#[\Illuminate\Database\Eloquent\Attributes\Table(name: 'vault')]
 class Vault extends Model
 {
     use SoftDeletes;
-    
-    protected $table = 'vault';
-    protected $casts = ['data' => 'collection'];
-
-    protected $fillable = [
-        'model_type',
-        'model_id',
-        'filename',
-        'mimetype',
-        'size',
-        'path',
-        'data'
-    ];
 
     public function model()
     {
@@ -33,9 +30,9 @@ class Vault extends Model
         return Carbon::parse($this->attributes['created_at'])->format($format);
     }
 
-    public function getDataAttribute($value)
+    protected function data(): \Illuminate\Database\Eloquent\Casts\Attribute
     {
-        return json_decode((string) $value, true);
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(get: fn($value) => json_decode((string) $value, true));
     }
 
     public function size()
@@ -43,9 +40,9 @@ class Vault extends Model
         $bytes = $this->attributes['size'];
         $decimals = 2;
 
-        $size = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
+        $size = ['B','KB','MB','GB','TB','PB','EB','ZB','YB'];
         $factor = floor((strlen($bytes) - 1) / 3);
-        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
+        return sprintf("%.{$decimals}f", $bytes / 1024 ** $factor) . @$size[$factor];
     }
 
     public function filepath()
@@ -55,13 +52,14 @@ class Vault extends Model
 
     public function icon()
     {
-        switch ($this->attributes['mimetype']) {
-            case 'application/pdf':
-                return 'pdf';
-            case 'image/jpeg':
-                return 'jpg';
-            default:
-                return 'more';
-        }
+        return match ($this->attributes['mimetype']) {
+            'application/pdf' => 'pdf',
+            'image/jpeg' => 'jpg',
+            default => 'more',
+        };
+    }
+    protected function casts(): array
+    {
+        return ['data' => 'collection'];
     }
 }

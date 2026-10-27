@@ -6,11 +6,8 @@ use Omatech\Mage\App\Repositories\UserBaseRepository;
 
 class AssignRole extends UserBaseRepository
 {
-    private $user;
-
-    public function __construct(GetUser $user)
+    public function __construct(private readonly GetUser $user)
     {
-        $this->user = $user;
     }
 
     public function make($id, $roles)

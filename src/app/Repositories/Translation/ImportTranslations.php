@@ -9,13 +9,11 @@ class ImportTranslations
 {
     private $disk;
     private $scanPaths;
-    private $updateOrCreateTranslations;
 
-    public function __construct(UpdateOrCreateTranslations $updateOrCreateTranslations)
+    public function __construct(private readonly UpdateOrCreateTranslations $updateOrCreateTranslations)
     {
         $this->disk = new Filesystem;
         $this->scanPaths = config('mage.translations.import_path');
-        $this->updateOrCreateTranslations = $updateOrCreateTranslations;
     }
 
     public function make()

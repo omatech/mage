@@ -10,12 +10,12 @@ class RolesTableSeeder extends Seeder
     {
         \DB::table('roles')->delete();
         
-        \DB::table('roles')->insert(array (
+        \DB::table('roles')->insert( [
             0 =>
-            array (
+             [
                 'name' => 'God',
                 'guard_name' => 'web',
-            ),
-        ));
+            ],
+        ]);
     }
 }

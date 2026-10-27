@@ -4,13 +4,8 @@ namespace Omatech\Mage\App\Repositories\Translation;
 
 class ExistsCreateTranslation
 {
-    private $exists;
-    private $create;
-
-    public function __construct(ExistsTranslation $exists, CreateTranslation $create)
+    public function __construct(private readonly ExistsTranslation $exists, private readonly CreateTranslation $create)
     {
-        $this->exists = $exists;
-        $this->create = $create;
     }
 
     public function make($key, $value = null)

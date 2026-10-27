@@ -10,11 +10,8 @@ use Rap2hpoutre\FastExcel\SheetCollection;
 
 class ExportTranslations implements ExportTranslationInterface
 {
-    private $getAllTranslations;
-
-    public function __construct(GetAllTranslations $getAllTranslations)
+    public function __construct(private readonly GetAllTranslations $getAllTranslations)
     {
-        $this->getAllTranslations = $getAllTranslations;
     }
 
     public function make(): string
@@ -50,14 +47,12 @@ class ExportTranslations implements ExportTranslationInterface
         $date = Carbon::now('Europe/Madrid')->format('dmY_His');
         $path = storage_path('app/translations/' . $date . '_excel.xlsx');
 
-        return (new FastExcel(new SheetCollection($translations)))->export($path, function ($sheets) {
-            return [
-                'key1' => 'mage',
-                'key2' => $sheets['key'],
-                'value' => $sheets['value'],
-                'reference_value' => $sheets['reference_value'],
-            ];
-        });
+        return new FastExcel(new SheetCollection($translations))->export($path, fn($sheets) => [
+            'key1' => 'mage',
+            'key2' => $sheets['key'],
+            'value' => $sheets['value'],
+            'reference_value' => $sheets['reference_value'],
+        ]);
     }
 
     private function getLocales(): array

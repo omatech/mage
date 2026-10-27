@@ -6,22 +6,10 @@ use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
 use Omatech\Mage\App\Excels\TranslationsExport;
 
+#[\Illuminate\Console\Attributes\Description('Export translations')]
+#[\Illuminate\Console\Attributes\Signature('mage:translations-export {language?}')]
 class ExportTranslationsCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'mage:translations-export {language?}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Export translations';
-   
     /**
      * Create a new command instance.
      *

@@ -4,11 +4,8 @@ namespace Omatech\Mage\App\Repositories\Translation;
 
 class BladeTranslationsGenerator
 {
-    private $getTranslations;
-
-    public function __construct(GetTranslations $getTranslations)
+    public function __construct(private readonly GetTranslations $getTranslations)
     {
-        $this->getTranslations = $getTranslations;
     }
 
     public function make($group = null)

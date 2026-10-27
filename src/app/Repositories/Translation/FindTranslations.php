@@ -9,14 +9,12 @@ class FindTranslations
     private $disk;
     private $scanPaths;
     private $translationMethods;
-    private $updateOrCreateTranslations;
 
-    public function __construct(UpdateOrCreateTranslations $updateOrCreateTranslations)
+    public function __construct(private readonly UpdateOrCreateTranslations $updateOrCreateTranslations)
     {
         $this->disk = new Filesystem;
         $this->scanPaths = config('mage.translations.scan_paths');
         $this->translationMethods = config('mage.translations.scan_functions');
-        $this->updateOrCreateTranslations = $updateOrCreateTranslations;
     }
 
     public function make()
@@ -40,7 +38,7 @@ class FindTranslations
             if (preg_match_all("/$matchingPattern/siU", $file->getContents(), $matches)) {
                 foreach ($matches[2] as $key) {
                     if (preg_match("/(^[a-zA-Z0-9:_-]+([.][^\1)\ ]+)+$)/siU", $key, $arrayMatches)) {
-                        list($file, $k) = explode('.', $arrayMatches[0], 2);
+                        [$file, $k] = explode('.', $arrayMatches[0], 2);
                         $results['group'][$file][app()->getLocale()][$k] = '';
                         continue;
                     } else {

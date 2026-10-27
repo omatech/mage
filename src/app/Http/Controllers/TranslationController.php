@@ -22,7 +22,7 @@ class TranslationController extends Controller
 
     public function list(ListTranslationsDatatable $translations)
     {
-        $filter = request()->get('notTranslated');
+        $filter = request()->input('notTranslated');
         $filter = filter_var($filter, FILTER_VALIDATE_BOOLEAN);
 
         return $translations->make($filter);

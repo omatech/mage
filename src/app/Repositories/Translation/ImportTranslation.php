@@ -6,15 +6,8 @@ use Rap2hpoutre\FastExcel\FastExcel;
 
 class ImportTranslation
 {
-    private $findTranslation;
-    private $saveTranslation;
-
-    public function __construct(
-        FindTranslation $findTranslation,
-        SaveTranslation $saveTranslation
-    ) {
-        $this->findTranslation = $findTranslation;
-        $this->saveTranslation = $saveTranslation;
+    public function __construct(private readonly FindTranslation $findTranslation, private readonly SaveTranslation $saveTranslation)
+    {
     }
 
     public function make(string $path, string $locale = '')

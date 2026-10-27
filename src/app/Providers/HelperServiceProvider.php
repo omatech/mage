@@ -23,7 +23,7 @@ class HelperServiceProvider extends ServiceProvider
      */
     private function helpers()
     {
-        $files = array_diff(scandir(__DIR__.'/../Helpers/'), array('..', '.'));
+        $files = array_diff(scandir(__DIR__.'/../Helpers/'), ['..', '.']);
 
         foreach ($files as $file) {
             require_once __DIR__.'/../Helpers/'.$file;

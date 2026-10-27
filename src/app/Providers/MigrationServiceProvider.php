@@ -40,9 +40,7 @@ class MigrationServiceProvider extends ServiceProvider
         $timestamp = date('Y_m_d_His');
 
         return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
-            ->flatMap(function ($path) use ($filesystem, $fileName) {
-                return $filesystem->glob($path."*_{$fileName}.php");
-            })->push($this->app->databasePath()."/migrations/{$timestamp}_{$fileName}.php")
+            ->flatMap(fn($path) => $filesystem->glob($path."*_{$fileName}.php"))->push($this->app->databasePath()."/migrations/{$timestamp}_{$fileName}.php")
             ->first();
     }
 }

@@ -38,12 +38,8 @@ class TranslationLoaderManager extends FileLoader
         ?string $namespace = null
     ): array {
         return collect(config('translation-loader.translation_loaders'))
-            ->map(function (string $className) {
-                return app($className);
-            })
-            ->mapWithKeys(function (TranslationLoader $translationLoader) use ($locale, $group, $namespace) {
-                return $translationLoader->loadTranslations($locale, $group, $namespace);
-            })
+            ->map(fn(string $className) => app($className))
+            ->mapWithKeys(fn(TranslationLoader $translationLoader) => $translationLoader->loadTranslations($locale, $group, $namespace))
             ->toArray();
     }
 }

@@ -7,11 +7,8 @@ use Omatech\Mage\App\Repositories\VaultBaseRepository;
 
 class SaveFile extends VaultBaseRepository
 {
-    private $encrypt;
-
-    public function __construct(Encrypt $encrypt)
+    public function __construct(private readonly Encrypt $encrypt)
     {
-        $this->encrypt = $encrypt;
     }
     public function make($filesystem, $data, $file)
     {

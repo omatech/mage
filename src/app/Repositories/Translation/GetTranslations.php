@@ -9,7 +9,7 @@ class GetTranslations extends TranslationBaseRepository
 {
     public function make($group = null, $lang = null)
     {
-        $lang = $lang ?? app()->getLocale();
+        $lang ??= app()->getLocale();
 
         $query = $this->query()
             ->select(DB::raw("CONCAT(`group`, '.', `key`) as 'key'"), "text->$lang as value");

@@ -6,22 +6,10 @@ use Illuminate\Console\Command;
 use Omatech\Mage\App\Repositories\Translation\FindTranslations;
 use Omatech\Mage\App\Repositories\User\CreateUser;
 
+#[\Illuminate\Console\Attributes\Description('Create admin user')]
+#[\Illuminate\Console\Attributes\Signature('mage:users-create')]
 class CreateAdminUserCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'mage:users-create';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create admin user';
-
     /**
      * @var User
      */

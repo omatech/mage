@@ -12,20 +12,16 @@ class MailWelcomeWithoutPasswordNotification extends Notification implements Sho
     use Queueable;
 
     /**
-     * The password reset token.
-     *
-     * @var string
-     */
-    public $token;
-
-    /**
      * Create a new notification instance.
      *
      * @param $token
+     * @param string $token
      */
-    public function __construct($token)
+    public function __construct(/**
+     * The password reset token.
+     */
+    public $token)
     {
-        $this->token = $token;
         $this->queue = 'mail';
     }
 

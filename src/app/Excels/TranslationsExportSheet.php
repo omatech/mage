@@ -11,12 +11,10 @@ use Omatech\Mage\App\Repositories\Translation\GetTranslations;
 class TranslationsExportSheet implements FromArray, WithHeadings, WithMapping, WithTitle
 {
     private $getTranslations;
-    private $lang;
     
-    public function __construct($lang)
+    public function __construct(private $lang)
     {
         $this->getTranslations = new GetTranslations;
-        $this->lang = $lang;
     }
 
     public function headings(): array

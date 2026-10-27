@@ -6,18 +6,8 @@ use Omatech\Mage\App\Repositories\TranslationBaseRepository;
 
 class UpdateOrCreateTranslations extends TranslationBaseRepository
 {
-    private $getTranslationKey;
-    private $removeOrphanLanguagesFromTranslations;
-    private $addMissingLanguagesToTranslations;
-
-    public function __construct(
-        GetTranslationKey $getTranslationKey,
-        RemoveOrphanLanguagesFromTranslations $removeOrphanLanguagesFromTranslations,
-        AddMissingLanguagesToTranslations $addMissingLanguagesToTranslations
-    ) {
-        $this->getTranslationKey = $getTranslationKey;
-        $this->removeOrphanLanguagesFromTranslations = $removeOrphanLanguagesFromTranslations;
-        $this->addMissingLanguagesToTranslations = $addMissingLanguagesToTranslations;
+    public function __construct(private readonly GetTranslationKey $getTranslationKey, private readonly RemoveOrphanLanguagesFromTranslations $removeOrphanLanguagesFromTranslations, private readonly AddMissingLanguagesToTranslations $addMissingLanguagesToTranslations)
+    {
     }
 
     private function parseTranslations($scannedTranslationsKeys)

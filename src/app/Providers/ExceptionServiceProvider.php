@@ -13,10 +13,7 @@ class ExceptionServiceProvider extends ServiceProvider
         $appExceptionHandler = $this->app->make(ExceptionHandlerContract::class);
 
         $this->app->singleton(
-            ExceptionHandlerContract::class,
-            function ($app) use ($appExceptionHandler) {
-                return new CustomHandler($app, $appExceptionHandler);
-            }
+            fn($app): \Illuminate\Contracts\Debug\ExceptionHandler => new CustomHandler($app, $appExceptionHandler)
         );
     }
 }

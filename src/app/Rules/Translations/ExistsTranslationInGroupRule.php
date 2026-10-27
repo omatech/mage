@@ -27,7 +27,7 @@ class ExistsTranslationInGroupRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $translation = ['group' => request()->get('translations_group'), 'key' => request()->get('translations_key')];
+        $translation = ['group' => request()->input('translations_group'), 'key' => request()->input('translations_key')];
         return !$this->existsTranslationRepository->make($translation);
     }
 

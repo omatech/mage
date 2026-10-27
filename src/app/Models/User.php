@@ -10,6 +10,12 @@ use Omatech\Mage\App\Notifications\MailWelcomeNotification;
 use Omatech\Mage\App\Notifications\MailResetPasswordNotification;
 use Omatech\Mage\App\Notifications\MailWelcomeWithoutPasswordNotification;
 
+#[\Illuminate\Database\Eloquent\Attributes\Fillable([
+    'name', 'email', 'password', 'language',
+])]
+#[\Illuminate\Database\Eloquent\Attributes\Hidden([
+    'password', 'remember_token',
+])]
 class User extends Authenticatable
 {
     use Notifiable;
@@ -18,28 +24,11 @@ class User extends Authenticatable
     protected $guard_name = 'web';
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password', 'language',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
      * The event map for the model.
      *
      * @var array
      */
+    #[\Override]
     protected $dispatchesEvents = [
         'created' => UserCreated::class
     ];

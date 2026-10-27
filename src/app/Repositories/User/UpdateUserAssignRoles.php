@@ -8,13 +8,8 @@ use Omatech\Mage\App\Contracts\Users\UpdateUserAssignRolesInterface;
 
 class UpdateUserAssignRoles extends UserBaseRepository implements UpdateUserAssignRolesInterface
 {
-    private $user;
-    private $roles;
-
-    public function __construct(UpdateUser $user, AssignRole $roles)
+    public function __construct(private readonly UpdateUser $user, private readonly AssignRole $roles)
     {
-        $this->user = $user;
-        $this->roles = $roles;
     }
 
     public function make($id, $data)

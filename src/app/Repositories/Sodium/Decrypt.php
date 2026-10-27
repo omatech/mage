@@ -4,11 +4,8 @@ namespace Omatech\Mage\App\Repositories\Sodium;
 
 class Decrypt
 {
-    private $pairKeys;
-
-    public function __construct(CreatePairKeysFromKeys $pairKeys)
+    public function __construct(private readonly CreatePairKeysFromKeys $pairKeys)
     {
-        $this->pairKeys = $pairKeys;
     }
     public function make($file, $public_key, $private_key)
     {

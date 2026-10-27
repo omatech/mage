@@ -6,17 +6,15 @@ use Illuminate\Support\Carbon;
 use Omatech\Mage\App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
+#[\Illuminate\Database\Eloquent\Attributes\Fillable([
+    'model_type',
+    'model_id',
+    'user_id',
+    'annotation'
+])]
+#[\Illuminate\Database\Eloquent\Attributes\Table(name: 'annotations')]
 class Annotation extends Model
 {
-    protected $table = 'annotations';
-
-    protected $fillable = [
-        'model_type',
-        'model_id',
-        'user_id',
-        'annotation'
-    ];
-
     public function model()
     {
         return $this->morphTo();
