@@ -38,7 +38,7 @@ class ExistsCreateTranslation
 
     private function parseKey($key)
     {
-        $key = explode('.', $key);
+        $key = explode('.', (string) $key);
 
         if(count($key) > 1) {
             $group = $key[0];

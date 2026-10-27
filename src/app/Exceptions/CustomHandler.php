@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CustomHandler implements ExceptionHandlerContract
 {
+    private Container $container;
+    private ExceptionHandlerContract $appExceptionHandler;
+
     public function __construct(Container $container, ExceptionHandlerContract $appExceptionHandler)
     {
         $this->container = $container;

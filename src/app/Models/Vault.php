@@ -35,7 +35,7 @@ class Vault extends Model
 
     public function getDataAttribute($value)
     {
-        return json_decode($value, true);
+        return json_decode((string) $value, true);
     }
 
     public function size()

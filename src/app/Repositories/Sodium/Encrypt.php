@@ -6,6 +6,6 @@ class Encrypt
 {
     public function make($data, $publicKey)
     {
-        return sodium_crypto_box_seal(base64_encode($data), base64_decode($publicKey));
+        return sodium_crypto_box_seal(base64_encode((string) $data), base64_decode((string) $publicKey));
     }
 }
