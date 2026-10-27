@@ -33,9 +33,9 @@ Route::namespace('Omatech\Mage\App\Http\Controllers')
                 $auth->post('password/reset', 'ResetPasswordController@reset')->name('password.update');
             });
 
-        if (config('app.env') != 'prod') {
+        if (config('mage.translations.auto_scan_enable') && config('app.env') != 'prod') {
             $route->post('translations/add', 'TranslationController@add')->name('translations.add')
-                ->middleware(['mageRedirectIfNotAuthenticated', 'checkForPermissions:mage-access-translations-zone']);
+                ->middleware('mageRedirectIfNotAuthenticated');
         }
 
         /**

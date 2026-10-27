@@ -24,7 +24,7 @@ class BladeTranslationsGenerator
     private function generateJS($trans)
     {
         $trans = json_encode($trans);
-        $debug = config('app.env') == 'prod';
+        $debug = !config('mage.translations.auto_scan_enable') || config('app.env') == 'prod';
 
         $script = null;
         $scriptTrans = "window.Translations = $trans;";

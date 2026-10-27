@@ -25,6 +25,7 @@ class ErrorController extends Controller
         if (auth()->guard('mage')->check()) {
             return response()->view('mage::errors.auth.403', [], 403);
         }
+        return response()->view('mage::errors.401', [], 403);
     }
 
     /**
