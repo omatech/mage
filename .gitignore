@@ -5,3 +5,6 @@ package-lock.json
 yarn.lock
 .idea
 .DS_Store
+/vendor/
+/.phpunit.cache/
+/.docker/evidence/
