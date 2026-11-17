@@ -2921,21 +2921,25 @@
         },
         {
             "name": "omatech/lars",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/omatech/lars.git",
-                "reference": "db1ff5935a5ef3b9754bfeb3e1bc398b8d670bec"
+                "reference": "7bc08865ba08d386c04b070f7ef40d4ec00282d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/omatech/lars/zipball/db1ff5935a5ef3b9754bfeb3e1bc398b8d670bec",
-                "reference": "db1ff5935a5ef3b9754bfeb3e1bc398b8d670bec",
+                "url": "https://api.github.com/repos/omatech/lars/zipball/7bc08865ba08d386c04b070f7ef40d4ec00282d2",
+                "reference": "7bc08865ba08d386c04b070f7ef40d4ec00282d2",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^13.0",
                 "php": "^8.5"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^11.3.0",
+                "phpunit/phpunit": "13.4.6"
             },
             "type": "library",
             "autoload": {
@@ -2961,9 +2965,9 @@
             ],
             "support": {
                 "issues": "https://github.com/omatech/lars/issues",
-                "source": "https://github.com/omatech/lars/tree/v2.0.0"
+                "source": "https://github.com/omatech/lars/tree/v2.0.1"
             },
-            "time": "2026-10-27T14:34:36+00:00"
+            "time": "2026-11-17T21:33:44+00:00"
         },
         {
             "name": "openspout/openspout",
