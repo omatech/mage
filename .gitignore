@@ -8,3 +8,5 @@ yarn.lock
 /vendor/
 /.phpunit.cache/
 /.docker/evidence/
+
+!/composer.lock
