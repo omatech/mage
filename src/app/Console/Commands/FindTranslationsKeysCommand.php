@@ -26,6 +26,5 @@ class FindTranslationsKeysCommand extends Command
     public function handle()
     {
         $this->findTranslations->make();
-        $this->call('cache:clear');
     }
 }

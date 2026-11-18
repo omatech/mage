@@ -27,6 +27,5 @@ class ImportTranslationsFromFilesCommand extends Command
     public function handle()
     {
         $this->importTranslations->make();
-        $this->call('cache:clear');
     }
 }
